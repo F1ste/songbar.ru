@@ -1,0 +1,32 @@
+#tarif li.nav-item{
+    width:50%;
+    text-align:center;
+}
+#tarif .description{   
+    text-align:center;
+    margin-top:20px
+}
+#tarif .order{
+    height:300px;
+    text-align:center;
+    display:flex;
+    flex-direction: column;
+    justify-content: flex-end;
+    border:1px solid #80808059;
+    padding:0px;
+    width: 250px;
+}
+#tarif .order .title{
+    font-size:50px;
+    margin-bottom:70px
+}
+#tarif .tab-content .row{
+    justify-content: space-around;
+}
+#tarif .card-body{
+    padding-top:40px
+}
+#imgLogo{
+    width: 300px;
+    height: auto;
+}

