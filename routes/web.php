@@ -38,6 +38,8 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::post('/importExcell', [App\Http\Controllers\Admin\CatalogController::class, 'importExcell'])->name('importExcell');
     Route::post('/infoupdate', [App\Http\Controllers\Admin\CatalogController::class, 'infoupdate'])->name('infoupdate');
     Route::get('/processing-status', [App\Http\Controllers\Admin\CatalogController::class, 'getStatus'])->name('processing.status');
+    Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('profile');
+    Route::post('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
  });
 
  Route::get('/clear-cache', function() {
