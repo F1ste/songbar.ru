@@ -24,7 +24,7 @@
 
     <!-- Main content -->
     <section class="content" id="tarif">
-    <div class="row">
+      <div class="row">
           <div class="col-md-8 offset-md-2 col-sm-6">
             <div class="card card-primary card-tabs">
               <div class="card-header p-0 pt-1">
@@ -95,7 +95,7 @@
             </div>
           </div>
           
-        </div>
+      </div>
     </section>
     <!-- /.content -->
     @endsection
