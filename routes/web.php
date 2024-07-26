@@ -40,6 +40,7 @@ Route::middleware(['role:admin'])->prefix('admin_panel')->group(function () {
     Route::get('/processing-status', [App\Http\Controllers\Admin\CatalogController::class, 'getStatus'])->name('processing.status');
     Route::get('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'index'])->name('profile');
     Route::post('/profile', [App\Http\Controllers\Admin\ProfileController::class, 'update'])->name('profile.update');
+    Route::get('/help-center', [App\Http\Controllers\Admin\HelpCenterController::class, 'index'])->name('help');
  });
 
  Route::get('/clear-cache', function() {
