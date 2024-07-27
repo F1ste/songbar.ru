@@ -10,18 +10,23 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
       - name: Configuring SSH
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/production.key
           chmod 600 ~/.ssh/production.key
+          echo "$SSH_PRIVATE_KEY" > ~/.ssh/known_hosts
           cat >> ~/.ssh/config << END
           Host production
             HostName $SSH_HOST
             Port $SSH_PORT
             User $SSH_USER
             IdentityFile ~/.ssh/production.key
-            StrictHostKeyChecking no
+            StrictHostKeyChecking yes
+            UserKnownHostsFile ~/.ssh/known_hosts
           END
         env:
           SSH_USER: ${{ vars.SSH_USER }}
@@ -32,10 +37,10 @@ jobs:
       - name: Update code
         run: |
           ssh production "cd $PROJECT_DIR &&
-            git remote set-url origin $REPO_NAME &&
+            git remote set-url origin $REPO_URL &&
             git stash --include-untracked > /dev/null &&
             git checkout master &&
             git pull"
         env:
           PROJECT_DIR: ${{ vars.PROJECT_DIR }}
-          REPO_NAME: ${{ vars.REPO_NAME }}
+          REPO_URL: ${{ vars.REPO_URL }}
