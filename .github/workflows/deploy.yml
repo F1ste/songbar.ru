@@ -32,11 +32,10 @@ jobs:
       - name: Update code
         run: |
           ssh production "cd $PROJECT_DIR &&
+            git remote set-url origin $REPO_URL &&
             git stash --include-untracked > /dev/null &&
             git checkout master &&
             git pull"
         env:
           PROJECT_DIR: ${{ vars.PROJECT_DIR }}
-
-      - name: Test SSH Connection
-        run: ssh production "echo 'SSH connection successful!'"
+          REPO_URL: ${{ vars.REPO_URL }}
