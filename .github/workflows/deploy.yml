@@ -32,9 +32,10 @@ jobs:
       - name: Update code
         run: |
           ssh production "cd $PROJECT_DIR &&
-            git remote set-url origin https://github.com/F1ste/songbar.ru.git
+            git remote set-url origin ${{ vars.REPO_NAME }}
             git stash --include-untracked > /dev/null &&
             git checkout master &&
             git pull"
         env:
           PROJECT_DIR: ${{ vars.PROJECT_DIR }}
+          REPO_NAME: ${{ vars.REPO_NAME }}
