@@ -10,9 +10,6 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-
       - name: Configuring SSH
         run: |
           mkdir -p ~/.ssh/
@@ -35,7 +32,7 @@ jobs:
       - name: Update code
         run: |
           ssh production "
-            git config --global --add safe.directory /var/www/www-root/data/www/songbar.ru &&
+            git config --global --add safe.directory $PROJECT_DIR &&
             cd $PROJECT_DIR &&
             git stash --include-untracked > /dev/null &&
             git checkout master &&
