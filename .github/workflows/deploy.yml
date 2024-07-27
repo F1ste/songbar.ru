@@ -34,8 +34,11 @@ jobs:
           ssh production "
             git config --global --add safe.directory $PROJECT_DIR &&
             cd $PROJECT_DIR &&
+            git remote set-url origin git@github.com:$REPO_USER/$REPO_NAME &&
             git stash --include-untracked > /dev/null &&
             git checkout master &&
             git pull"
         env:
           PROJECT_DIR: ${{ vars.PROJECT_DIR }}
+          REPO_USER: ${{ vars.REPO_USER }}
+          REPO_NAME: ${{ vars.REPO_NAME }}
