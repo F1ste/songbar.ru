@@ -37,3 +37,6 @@ jobs:
             git pull"
         env:
           PROJECT_DIR: ${{ vars.PROJECT_DIR }}
+
+      - name: Test SSH Connection
+        run: ssh production "echo 'SSH connection successful!'"
