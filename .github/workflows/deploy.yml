@@ -46,10 +46,10 @@ jobs:
           echo "SSH key fingerprints:"
           ssh-keygen -y -f ~/.ssh/production.key || echo "Failed to generate SSH key fingerprints"
         env:
-          SSH_USER: ${{ secrets.SSH_USER }}
-          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_USER: ${{ vars.SSH_USER }}
+          SSH_PORT: ${{ vars.SSH_PORT }}
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ secrets.SSH_HOST }}
+          SSH_HOST: ${{ vars.SSH_HOST }}
 
       - name: Update code
         run: |
@@ -58,4 +58,4 @@ jobs:
             git checkout master &&
             git pull"
         env:
-          PROJECT_DIR: ${{ secrets.PROJECT_DIR }}
+          PROJECT_DIR: ${{ vars.PROJECT_DIR }}
