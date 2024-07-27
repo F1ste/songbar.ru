@@ -1,37 +1,26 @@
-name: Deployment
+name: Deploy
 
 on:
   push:
     branches:
-      - "master"
+      - main
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    environment: production
     steps:
-      - name: Configuring SSH
-        run: |
-          mkdir -p ~/.ssh/
-          echo "$SSH_KEY" > ~/.ssh/production.key
-          chmod 600 ~/.ssh/production.key
-          cat >>~/.ssh/config <<END
-          Host production
-            HostName $SSH_HOST
-            User $SSH_USER
-            IdentityFile ~/.ssh/production.key
-            StrictHostKeyChecking no
-          END
-        env:
-          SSH_USER: ${{ vars.SSH_USER }}
-          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-          SSH_HOST: ${{ vars.SSH_HOST }}
+      - name: Checkout repository
+        uses: actions/checkout@v3
 
-      - name: Update code
+      - name: Setup SSH Key
         run: |
-          ssh production "cd $PROJECT_DIR &&
-            git stash --include-untracked > /dev/null &&
-            git checkout master &&
-            git pull"
+          mkdir -p "$HOME/.ssh"
+          echo "${{ secrets.SSH_PRIVATE_KEY }}" > "$HOME/.ssh/id_rsa"
+          chmod 600 "$HOME/.ssh/id_rsa"
+          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> "$HOME/.ssh/known_hosts"
         env:
-          PROJECT_DIR: ${{ vars.PROJECT_DIR }}
+          SSH_HOST: ${{ variables.SSH_HOST }}
+
+      - name: Deploy with rsync
+        run: |
+          rsync -e "ssh -p ${{ variables.SSH_PORT }} -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete ./ ${{ variables.REPO_USER }}@${{ variables.SSH_HOST }}:${{ variables.REPO_NAME }}
