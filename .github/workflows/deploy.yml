@@ -29,21 +29,13 @@ jobs:
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ vars.SSH_HOST }}
 
-      - name: Test SSH Connection
-        run: ssh production "echo 'SSH connection successful!'"
-
       - name: Update code
         run: |
-          ssh production << 'EOF'
-            mkdir -p ~/.ssh/
-            echo "$SSH_KEY" > ~/.ssh/production.key
-            chmod 600 ~/.ssh/production.key
-            export GIT_SSH_COMMAND='ssh -i ~/.ssh/production.key -o UserKnownHostsFile=/dev/null -o StrictHostKeyChecking=no'
-            cd $PROJECT_DIR
-            git stash --include-untracked > /dev/null
-            git checkout master
-            git pull
-          EOF
+          ssh production "cd $PROJECT_DIR &&
+            git remote set-url origin $REPO_URL &&
+            git stash --include-untracked > /dev/null &&
+            git checkout master &&
+            git pull"
         env:
-          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           PROJECT_DIR: ${{ vars.PROJECT_DIR }}
+          REPO_URL: ${{ vars.REPO_URL }}
