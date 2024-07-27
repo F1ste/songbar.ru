@@ -10,20 +10,12 @@ jobs:
     runs-on: ubuntu-latest
     environment: production
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v3
-
       - name: Configuring SSH
         run: |
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/production.key
           chmod 600 ~/.ssh/production.key
-
-          # Add server host key to known_hosts
-          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
-
-          # Create SSH config file
-          cat > ~/.ssh/config <<END
+          cat >>~/.ssh/config <<END
           Host production
             HostName $SSH_HOST
             Port $SSH_PORT
@@ -31,17 +23,6 @@ jobs:
             IdentityFile ~/.ssh/production.key
             StrictHostKeyChecking no
           END
-
-          # Debug: Show SSH key and config contents
-          echo "SSH key contents:"
-          cat ~/.ssh/production.key
-          
-          echo "SSH config contents:"
-          cat ~/.ssh/config
-
-          # Test SSH connection
-          echo "Testing SSH connection..."
-          ssh -o StrictHostKeyChecking=no -i ~/.ssh/production.key $SSH_USER@$SSH_HOST 'echo "SSH connection successful"'
         env:
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_PORT: ${{ vars.SSH_PORT }}
@@ -50,7 +31,8 @@ jobs:
 
       - name: Update code
         run: |
-          ssh -o StrictHostKeyChecking=no production "cd $PROJECT_DIR &&
+          ssh production "cd $PROJECT_DIR &&
+            git remote set-url origin https://github.com/F1ste/songbar.ru.git
             git stash --include-untracked > /dev/null &&
             git checkout master &&
             git pull"
