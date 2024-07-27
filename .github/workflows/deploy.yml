@@ -15,7 +15,7 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/production.key
           chmod 600 ~/.ssh/production.key
-          cat >>~/.ssh/config <<END
+          cat >> ~/.ssh/config << END
           Host production
             HostName $SSH_HOST
             Port $SSH_PORT
@@ -32,7 +32,7 @@ jobs:
       - name: Update code
         run: |
           ssh production "cd $PROJECT_DIR &&
-            git remote set-url origin ${{ vars.REPO_NAME }}
+            git remote set-url origin $REPO_NAME &&
             git stash --include-untracked > /dev/null &&
             git checkout master &&
             git pull"
