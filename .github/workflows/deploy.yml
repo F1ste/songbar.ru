@@ -32,7 +32,15 @@ jobs:
             StrictHostKeyChecking no
           END
 
+          # Debug: Show SSH key and config contents
+          echo "SSH key contents:"
+          cat ~/.ssh/production.key
+          
+          echo "SSH config contents:"
+          cat ~/.ssh/config
+
           # Test SSH connection
+          echo "Testing SSH connection..."
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/production.key $SSH_USER@$SSH_HOST 'echo "SSH connection successful"'
         env:
           SSH_USER: ${{ vars.SSH_USER }}
@@ -42,7 +50,7 @@ jobs:
 
       - name: Update code
         run: |
-          ssh production "cd $PROJECT_DIR &&
+          ssh -o StrictHostKeyChecking=no production "cd $PROJECT_DIR &&
             git stash --include-untracked > /dev/null &&
             git checkout master &&
             git pull"
