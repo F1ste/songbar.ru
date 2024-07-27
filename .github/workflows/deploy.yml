@@ -19,12 +19,10 @@ jobs:
           echo "$SSH_KEY" > ~/.ssh/production.key
           chmod 600 ~/.ssh/production.key
 
-          # Debug: Show the contents of the SSH key file
-          echo "SSH key contents:"
-          cat ~/.ssh/production.key || echo "SSH key file not found or empty"
+          # Add server host key to known_hosts
+          ssh-keyscan -H $SSH_HOST >> ~/.ssh/known_hosts
 
           # Create SSH config file
-          echo "Creating SSH config file..."
           cat > ~/.ssh/config <<END
           Host production
             HostName $SSH_HOST
@@ -34,17 +32,8 @@ jobs:
             StrictHostKeyChecking no
           END
 
-          # Debug: Show the contents of the SSH config file
-          echo "SSH config contents:"
-          cat ~/.ssh/config || echo "SSH config file not found or empty"
-
-          # Debug: Test SSH connection
-          echo "Testing SSH connection..."
+          # Test SSH connection
           ssh -o StrictHostKeyChecking=no -i ~/.ssh/production.key $SSH_USER@$SSH_HOST 'echo "SSH connection successful"'
-
-          # Debug: Show SSH key fingerprints
-          echo "SSH key fingerprints:"
-          ssh-keygen -y -f ~/.ssh/production.key || echo "Failed to generate SSH key fingerprints"
         env:
           SSH_USER: ${{ vars.SSH_USER }}
           SSH_PORT: ${{ vars.SSH_PORT }}
