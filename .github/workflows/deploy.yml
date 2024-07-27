@@ -18,7 +18,7 @@ jobs:
           mkdir -p ~/.ssh/
           echo "$SSH_KEY" > ~/.ssh/production.key
           chmod 600 ~/.ssh/production.key
-          echo "$SSH_KEY" > ~/.ssh/known_hosts
+          echo "$SSH_HOST_KEY" > ~/.ssh/known_hosts
           cat >> ~/.ssh/config << END
           Host production
             HostName $SSH_HOST
@@ -33,6 +33,7 @@ jobs:
           SSH_PORT: ${{ vars.SSH_PORT }}
           SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
           SSH_HOST: ${{ vars.SSH_HOST }}
+          SSH_HOST_KEY: ${{ secrets.SSH_HOST_KEY }}
 
       - name: Update code
         run: |
