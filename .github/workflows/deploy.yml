@@ -1,26 +1,60 @@
-name: Deploy
+name: Deployment
 
 on:
   push:
     branches:
-      - master
+      - "master"
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    environment: production
     steps:
       - name: Checkout repository
         uses: actions/checkout@v3
 
-      - name: Setup SSH Key
+      - name: Configuring SSH
         run: |
-          mkdir -p "$HOME/.ssh"
-          echo "${{ secrets.SSH_PRIVATE_KEY }}" > "$HOME/.ssh/id_rsa"
-          chmod 600 "$HOME/.ssh/id_rsa"
-          ssh-keyscan -H ${{ secrets.SSH_HOST }} >> "$HOME/.ssh/known_hosts"
-        env:
-          SSH_HOST: ${{ variables.SSH_HOST }}
+          mkdir -p ~/.ssh/
+          echo "$SSH_KEY" > ~/.ssh/production.key
+          chmod 600 ~/.ssh/production.key
 
-      - name: Deploy with rsync
+          # Debug: Show the contents of the SSH config file
+          echo "SSH config:"
+          cat ~/.ssh/config
+
+          # Debug: Show the contents of the SSH key
+          echo "SSH key:"
+          cat ~/.ssh/production.key
+
+          # Debug: Test SSH connection
+          echo "Testing SSH connection:"
+          ssh -o StrictHostKeyChecking=no -i ~/.ssh/production.key $SSH_USER@$SSH_HOST 'echo "SSH connection successful"'
+
+          # Debug: Show SSH key fingerprints
+          echo "SSH key fingerprints:"
+          ssh-keygen -y -f ~/.ssh/production.key
+
+          # Create SSH config
+          cat >>~/.ssh/config <<END
+          Host production
+            HostName $SSH_HOST
+            Port $SSH_PORT
+            User $SSH_USER
+            IdentityFile ~/.ssh/production.key
+            StrictHostKeyChecking no
+          END
+        env:
+          SSH_USER: ${{ secrets.SSH_USER }}
+          SSH_PORT: ${{ secrets.SSH_PORT }}
+          SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
+          SSH_HOST: ${{ secrets.SSH_HOST }}
+
+      - name: Update code
         run: |
-          rsync -e "ssh -p ${{ variables.SSH_PORT }} -i $HOME/.ssh/id_rsa -o StrictHostKeyChecking=no" --archive --compress --delete ./ ${{ variables.REPO_USER }}@${{ variables.SSH_HOST }}:${{ variables.REPO_NAME }}
+          ssh production "cd $PROJECT_DIR &&
+            git stash --include-untracked > /dev/null &&
+            git checkout master &&
+            git pull"
+        env:
+          PROJECT_DIR: ${{ secrets.PROJECT_DIR }}
