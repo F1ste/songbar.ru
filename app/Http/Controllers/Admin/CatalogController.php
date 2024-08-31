@@ -6,29 +6,18 @@ use App\Http\Controllers\Controller;
 use App\Models\Catalog;
 use App\Models\Design;
 use App\Models\Info;
+use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
-use Maatwebsite\Excel\Facades\Excel;
-use Maatwebsite\Excel\Concerns\ToArray;
-use Maatwebsite\Excel\Concerns\FromArray;
-use Maatwebsite\Excel\Concerns\WithHeadings;
-use Maatwebsite\Excel\Excel as ExcelExcel;
-use PhpOffice\PhpSpreadsheet\Writer\Csv;
-use PhpOffice\PhpSpreadsheet\IOFactory;
-use App\Models\Upload;
-use Illuminate\Support\Facades\Log;
 use Endroid\QrCode\Builder\Builder;
 use Endroid\QrCode\Writer\PngWriter;
-use Illuminate\Support\Facades\Storage;
-use Symfony\Component\HttpFoundation\Response;
-use Illuminate\Support\Str;
-use Illuminate\Support\Facades\DB;
-use Illuminate\Support\Facades\Artisan;
 use App\Jobs\ProcessExcelChunk;
-
+use App\Models\ProcessingStatus;
+use Faker\Factory as FakerFactory;
 
 class CatalogController extends Controller
 {
+    use WithFaker;
     /**
      * Display a listing of the resource.
      */
@@ -44,12 +33,9 @@ class CatalogController extends Controller
     {
         $user_id = Auth::id();
         $catalog = new Catalog();
-       
         $catalog->user_id = $user_id;
-            $table = 'catalogs'; // Название таблицы
-            $column = 'address'; // Название столбца, где должна быть уникальная строка           
-            $uniqueString = $this->generateUniqueString($table, $column);
-            $catalog->address = $uniqueString;
+            $faker = FakerFactory::create();
+            $catalog->address = $faker->unique()->lexify('????????');
             $catalog_temaddress = $catalog->address.'.songbar.ru';
             $catalog->save();
 
@@ -64,22 +50,6 @@ class CatalogController extends Controller
     }
 
     /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
-
-    /**
-     * Display the specified resource.
-     */
-    public function show(Catalog $catalog)
-    {
-        //
-    }
-
-    /**
      * Show the form for editing the specified resource.
      */
     public function edit(Request $request)
@@ -89,39 +59,18 @@ class CatalogController extends Controller
         $info = Info::where('catalog_id', $request->id)->first();
         return view('admin.catalog.edit', compact('design','info','catalog'));
     }
-
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request)
-    {
-        //
-    }
-    
     
     public function infoupdate(Request $request)
     {
-        // Валидация данных
         $request->validate([
             'logo' => 'required|file|mimes:jpg,png,jpeg,gif,svg,pdf|max:2048',
         ]);
 
         
-
-        
         $catalog = Catalog::find($request->catalog_id);
-        if(!isset($catalog->address)){ 
-            $table = 'catalogs'; // Название таблицы
-            $column = 'address'; // Название столбца, где должна быть уникальная строка           
-            $uniqueString = $this->generateUniqueString($table, $column);
-            $catalog->address = $uniqueString;
-            $catalog->save();
-        }
-        //$design = Design::where('catalog_id', $catalog->id)->first();
         $info = Info::where('catalog_id', $catalog->id)->first();
 
-        // Сохранение данных в базу
-        if(!isset($info)){
+        if(is_null($info)){
             $info = new Info();
             $info->catalog_id = $request->catalog_id;
         }        
@@ -170,8 +119,6 @@ class CatalogController extends Controller
         }
 
         return response()->json(['message' => 'Form submitted successfully.']);
-
-
     }
 
     /**
@@ -187,12 +134,10 @@ class CatalogController extends Controller
     public function updateField(Request $request)
     {
         $fieldName = $request->input('fieldName');
-        $fieldName = str_replace('-','_',$fieldName);
+        $fieldName = str_replace('-','_', $fieldName);
         $fieldValue = $request->input('fieldValue');
         $catalog_id = $request->input('catalog_id');
-
-        // Обновление поля в базе данных
-        // Предположим, что вы обновляете запись с ID = 1. Замените это на необходимую логику.       
+    
         $design = Design::where('catalog_id', $catalog_id)->first();
         if(!$design){
             $design = new Design();
@@ -207,60 +152,43 @@ class CatalogController extends Controller
 
     public function importExcell(Request $request)
     {
-       $request->validate([
-            'file' => 'required|mimes:xlsx,xls'
+        $request->validate([
+            'file' => 'required|mimes:xlsx,xls',
         ]);
-
-        ini_set('memory_limit', '1000M'); // Увеличение лимита памяти
-        ini_set('max_execution_time', 300); // Увеличение времени выполнения
-
-        
-            // Декодируем файл из base64
-            $file = $request->file('file');
-            $catalogId = $request->input('catalog_id');
-
-            $path = $file->store('uploads');
-        //$totalRows = $this->getRowCount($file);
-
-        $upload = Upload::create([
-            'file_path' => $path,
-            'catalog_id' => $request->catalog_id,
-        ]);        
-
-        return response()->json(['message' => 'Файл загружен','path'=>$path]);
-
-            /*// Читаем файл XLSX в массив
-            $import = new XlsxImport();
-            $data = Excel::import($import, $file);
     
-            // Экспортируем данные в CSV
-            $csvExport = new CsvExport($import->array($data));
+        $file = $request->file('file');
+        $catalogId = $request->input('catalog_id');
     
-            $csvFilename = pathinfo($file->getClientOriginalName(), PATHINFO_FILENAME) . '.csv';
-            return Excel::download($csvExport, $csvFilename, \Maatwebsite\Excel\Excel::CSV);*/
+        $filePath = $file->store('uploads');
+    
+        $fullFilePath = storage_path('\/app/' . $filePath);
+    
+        ProcessExcelChunk::dispatch($fullFilePath, $catalogId, 1, 1000);
+    
+        return response()->json(['message' => 'Файл загружен и будет обработан в фоновом режиме.']);
     }
-
-
-    public function getStatus(Request $request)
+    
+    
+    public function checkProgress(Request $request)
     {
-        
-        
-        $temp = ProcessExcelChunk::dispatch($request->filePath, 1);
-
-        return response()->json(['message' => 'File uploaded and processing started.','result' => $temp]);
-    }
-
-    public function generateUniqueString($table, $column, $length = 8)
-    {
-        do {
-            // Генерация случайной строки
-            $string = Str::random($length);
-
-            // Проверка уникальности строки в указанной таблице и столбце
-            $exists = DB::table($table)->where($column, $string)->exists();
-        } while ($exists);
-
-        return $string;
-    }
+        $catalogId = $request->query('catalog_id');
     
+        $status = ProcessingStatus::where('catalog_id', $catalogId)->first();
+    
+        if (!$status) {
+            return response()->json(['error' => 'Статус не найден.'], 404);
+        }
+    
+        $totalRows = $status->total_rows;
+        $processedRows = $status->processed_rows;
+        $progress = $totalRows > 0 ? ($processedRows / $totalRows) * 100 : 0;
+        $statusText = $status->status;
+    
+        return response()->json([
+            'progress' => $progress,
+            'processed_rows' => $processedRows,
+            'total_rows' => $totalRows,
+            'status' => $statusText
+        ]);
+    }
 }

@@ -12,8 +12,11 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('catalogs', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
-            $table->integer('user_id');
+            $table->unsignedBigInteger('user_id');
+            $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->string('address');
             $table->timestamps();
         });
     }

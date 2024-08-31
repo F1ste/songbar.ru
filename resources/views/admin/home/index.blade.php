@@ -19,7 +19,7 @@
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-3">
-                <a href="{{route('catalog.create')}}" class="btn bg-gradient-info btn-block btn-flat"><i
+                <a href="{{route('catalog.store')}}" class="btn bg-gradient-info btn-block btn-flat"><i
                         class="fa fa-book"></i> Создать Каталог</a><br>
             </div>
 

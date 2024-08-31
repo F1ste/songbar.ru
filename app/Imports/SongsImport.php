@@ -1,13 +1,13 @@
 <?php
 namespace App\Imports;
 
-use App\Models\Song;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\WithChunkReading;
+use App\Models\Song;
 
 class SongsImport implements ToModel, WithChunkReading
 {
-    private $catalogId;
+    protected $catalogId;
 
     public function __construct($catalogId)
     {
@@ -16,15 +16,28 @@ class SongsImport implements ToModel, WithChunkReading
 
     public function model(array $row)
     {
-        return new Song([
-            'title' => $row[0],
-            'singer' => $row[1],
-            'catalog_id' => $this->catalogId,
-        ]);
+        $title = $row[1];
+        $singer = $row[2];
+
+        $existingSong = Song::where('title', $title)
+            ->where('singer', $singer)
+            ->where('catalog_id', $this->catalogId)
+            ->first();
+
+        if (!$existingSong) {
+            return new Song([
+                'catalog_id' => $this->catalogId,
+                'title' => $title,
+                'singer' => $singer,
+            ]);
+        }
+
+        return null;
     }
 
     public function chunkSize(): int
     {
-        return 500; // Чанк размером в 500 строк
+        return 1000;
     }
 }
+

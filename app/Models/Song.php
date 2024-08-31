@@ -9,9 +9,10 @@ class Song extends Model
 {
     use HasFactory;
 
-    protected $fillable = [
-        'title', // Добавьте атрибут 'title'
-        'singer', // Добавьте атрибут 'singer'
-        'catalog_id' // Добавьте атрибут 'catalog_id'
-    ];
+    protected $fillable = ['catalog_id', 'title', 'singer'];
+
+    public function catalogs()
+    {
+        return $this->belongsToMany(Catalog::class, 'catalog_songs');
+    }
 }
