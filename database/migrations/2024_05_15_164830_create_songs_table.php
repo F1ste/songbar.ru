@@ -14,11 +14,11 @@ return new class extends Migration
         Schema::create('songs', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->integer('cnumber');
+            $table->integer('cnumber')->nullable();
             $table->string('title');
             $table->string('singer');
             $table->boolean('back')->default(false);
-            $table->char('type');
+            $table->char('type')->nullable();
             $table->timestamps();
         });
     }

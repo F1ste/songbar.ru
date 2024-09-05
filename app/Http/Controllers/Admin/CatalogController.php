@@ -14,6 +14,8 @@ use Endroid\QrCode\Writer\PngWriter;
 use App\Jobs\ProcessExcelChunk;
 use App\Models\ProcessingStatus;
 use Faker\Factory as FakerFactory;
+use App\Http\Requests\FilterRequest;
+use App\Http\Filters\SongFilter;
 
 class CatalogController extends Controller
 {
@@ -22,7 +24,7 @@ class CatalogController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {  
+    {
         return view('admin.catalog.index');
     }
 
@@ -34,19 +36,18 @@ class CatalogController extends Controller
         $user_id = Auth::id();
         $catalog = new Catalog();
         $catalog->user_id = $user_id;
-            $faker = FakerFactory::create();
-            $catalog->address = $faker->unique()->lexify('????????');
-            $catalog_temaddress = $catalog->address.'.songbar.ru';
-            $catalog->save();
+        $faker = FakerFactory::create();
+        $catalog->address = $faker->unique()->lexify('????????');
+        $catalog->save();
 
-            $info = new Info();
-            $info->catalog_id = $catalog->id;
-            $info->save();
-            $design = new Design();        
-            $design->catalog_id = $catalog->id;
-            $design->save();
+        $info = new Info();
+        $info->catalog_id = $catalog->id;
+        $info->save();
+        $design = new Design();
+        $design->catalog_id = $catalog->id;
+        $design->save();
 
-        return view('admin.catalog.create', compact('catalog','info','design','catalog_temaddress'));
+        return redirect()->route('catalog.edit', ['id' => $catalog->id]);
     }
 
     /**
@@ -57,25 +58,37 @@ class CatalogController extends Controller
         $catalog = Catalog::find($request->id);
         $design = Design::where('catalog_id', $request->id)->first();
         $info = Info::where('catalog_id', $request->id)->first();
-        return view('admin.catalog.edit', compact('design','info','catalog'));
+        return view('admin.catalog.edit', compact('design', 'info', 'catalog'));
     }
-    
+
+    public function fetchSongs(FilterRequest $request)
+    {
+        $filter = app()->make(SongFilter::class, ['queryParams' => ($request->validated())]);
+
+        $catalog = Catalog::find($request->catalogId);
+        $songs = $catalog->songs()->filter($filter)->paginate(20);
+
+        return response()->json([
+            'songs' => $songs->items(),
+            'pagination' => $songs->links()->render(),
+        ]);
+    }
+
     public function infoupdate(Request $request)
     {
         $request->validate([
             'logo' => 'required|file|mimes:jpg,png,jpeg,gif,svg,pdf|max:2048',
         ]);
 
-        
+
         $catalog = Catalog::find($request->catalog_id);
         $info = Info::where('catalog_id', $catalog->id)->first();
 
-        if(is_null($info)){
+        if (is_null($info)) {
             $info = new Info();
             $info->catalog_id = $request->catalog_id;
-        }        
-        
-        // Обработка файла
+        }
+
         if ($request->hasFile('logo')) {
             $file = $request->file('logo');
             $fileName = time() . '_' . $file->getClientOriginalName();
@@ -84,23 +97,23 @@ class CatalogController extends Controller
         }
 
         $info->contact = nl2br($request->contact);
-        $info->	button_text = $request->button_text;
-        $info->	button_href = $request->button_href;
-        $info->	ourlogo = $request->ourlogo;
-        
-        
-        if($info->save()){
-            if(isset($catalog->address)){
+        $info->button_text = $request->button_text;
+        $info->button_href = $request->button_href;
+        $info->ourlogo = $request->ourlogo;
+
+
+        if ($info->save()) {
+            if (isset($catalog->address)) {
                 // Создание экземпляра QR-кода
                 $result = Builder::create()
-                ->writer(new PngWriter())
-                ->data('https://'.$catalog->address.'.songbar.ru')
-                ->size(300)
-                ->margin(10)
-                ->build();
+                    ->writer(new PngWriter())
+                    ->data('https://' . $catalog->address . '.songbar.ru')
+                    ->size(300)
+                    ->margin(10)
+                    ->build();
 
                 // Сохранение QR-кода в формате PNG
-                $filename = 'qr-'.$catalog->address.'.png';
+                $filename = 'qr-' . $catalog->address . '.png';
                 $path = storage_path('app/public/' . $filename);
                 file_put_contents($path, $result->getString());
                 // Возвращение Data URI и URL файла
@@ -113,7 +126,7 @@ class CatalogController extends Controller
                 return response()->json([
                     'qr_code' => $dataUri,
                     'download_link' => $downloadUrl,
-                    'href' => 'https://'.$catalog->address.'.songbar.ru'
+                    'href' => 'https://' . $catalog->address . '.songbar.ru'
                 ]);
             }
         }
@@ -126,20 +139,20 @@ class CatalogController extends Controller
      */
     public function destroy($id)
     {
-        $catalog = Catalog::find($id);       
-        $catalog ->delete();
+        $catalog = Catalog::find($id);
+        $catalog->delete();
         return redirect()->back()->withSuccess('Каталог удален!');
     }
 
     public function updateField(Request $request)
     {
         $fieldName = $request->input('fieldName');
-        $fieldName = str_replace('-','_', $fieldName);
+        $fieldName = str_replace('-', '_', $fieldName);
         $fieldValue = $request->input('fieldValue');
         $catalog_id = $request->input('catalog_id');
-    
+
         $design = Design::where('catalog_id', $catalog_id)->first();
-        if(!$design){
+        if (!$design) {
             $design = new Design();
             $design->catalog_id = $catalog_id;
         }
@@ -155,35 +168,35 @@ class CatalogController extends Controller
         $request->validate([
             'file' => 'required|mimes:xlsx,xls',
         ]);
-    
+
         $file = $request->file('file');
         $catalogId = $request->input('catalog_id');
-    
+
         $filePath = $file->store('uploads');
-    
+
         $fullFilePath = storage_path('\/app/' . $filePath);
-    
+
         ProcessExcelChunk::dispatch($fullFilePath, $catalogId, 1, 1000);
-    
+
         return response()->json(['message' => 'Файл загружен и будет обработан в фоновом режиме.']);
     }
-    
-    
+
+
     public function checkProgress(Request $request)
     {
         $catalogId = $request->query('catalog_id');
-    
+
         $status = ProcessingStatus::where('catalog_id', $catalogId)->first();
-    
+
         if (!$status) {
             return response()->json(['error' => 'Статус не найден.'], 404);
         }
-    
+
         $totalRows = $status->total_rows;
         $processedRows = $status->processed_rows;
         $progress = $totalRows > 0 ? ($processedRows / $totalRows) * 100 : 0;
         $statusText = $status->status;
-    
+
         return response()->json([
             'progress' => $progress,
             'processed_rows' => $processedRows,

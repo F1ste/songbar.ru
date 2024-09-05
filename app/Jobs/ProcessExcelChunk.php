@@ -18,11 +18,11 @@ class ProcessExcelChunk implements ShouldQueue
     use Dispatchable, InteractsWithQueue, Queueable, SerializesModels;
 
     protected $filePath;
-    protected $catalogId;
+    protected int $catalogId;
     protected $startRow;
     protected $chunkSize;
 
-    public function __construct($filePath, $catalogId, $startRow = 1, $chunkSize = 1000)
+    public function __construct($filePath, int $catalogId, $startRow = 1, $chunkSize = 1000)
     {
         $this->filePath = $filePath;
         $this->catalogId = $catalogId;
@@ -60,19 +60,11 @@ class ProcessExcelChunk implements ShouldQueue
     
                     if (!$song) {
                         $song = Song::create([
-                            'catalog_id' => $this->catalogId,
                             'title' => $title,
                             'singer' => $singer,
-                        ]);
+                        ]);                        
                     }
-    
-                    CatalogSong::updateOrCreate(
-                        [
-                            'song_id' => $song->id,
-                            'catalog_id' => $this->catalogId
-                        ],
-                        []
-                    );
+                    $song->catalogs()->syncWithoutDetaching($this->catalogId);
                 }
             }
         }

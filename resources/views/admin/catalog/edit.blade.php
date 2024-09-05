@@ -33,8 +33,12 @@
       <ul class="nav nav-tabs" id="custom-content-below-tab" role="tablist">
         <li class="nav-item">
           <a class="nav-link active" id="custom-content-below-home-tab" data-toggle="pill"
-            href="#custom-content-below-home" role="tab" aria-controls="custom-content-below-home"
-            aria-selected="true">Каталог</a>
+            href="#custom-content-below-load" role="tab" aria-controls="custom-content-below-home"
+            aria-selected="true">Загрузка каталога</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" id="custom-content-below-home-tab" data-toggle="pill" href="#custom-content-below-songs"
+            role="tab" aria-controls="custom-content-below-home" aria-selected="true">Каталог песен</a>
         </li>
         <li class="nav-item">
           <a class="nav-link" id="custom-content-below-profile-tab" data-toggle="pill"
@@ -49,13 +53,13 @@
 
       </ul>
       <div class="tab-content" id="custom-content-below-tabContent">
-        <div class="tab-pane fade show active" id="custom-content-below-home" role="tabpanel"
-          aria-labelledby="custom-content-below-home-tab">
+        <div class="tab-pane fade show active" id="custom-content-below-load" role="tabpanel"
+          aria-labelledby="custom-content-below-load-tab">
           <h5 class="mt-3">Загрузите песни в формате xlsx, csv</h5>
           <p><a href="">Скачать образец</a></p>
           <form id="upload-form" action="{{ route('importExcell') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="catalog_id" value="{{ $catalog }}">
+            <input type="hidden" name="catalog_id" value="{{ $catalog->id ?? '' }}">
             <input type="file" name="file" required>
             <button type="submit">Загрузить файл</button>
           </form>
@@ -63,6 +67,35 @@
             <div id="progress" style="width: 0; height: 20px; background-color: green;"></div>
           </div>
           <p id="status-text">Загружено 0 из 0 композиций</p>
+
+        </div>
+        <div class="tab-pane fade show" id="custom-content-below-songs" role="tabpanel"
+          aria-labelledby="custom-content-below-songs-tab">
+          <h5 class="mt-3">Каталог песен</h5>
+          <div class="row mb-3">
+            <div class="col-md-6">
+              <input type="text" id="songInput" class="form-control" placeholder="Поиск песен...">
+            </div>
+          </div>
+          <div class="table-responsive">
+            <table class="table table-bordered">
+              <thead class="thead-light">
+                <tr>
+                  <th>Исполнитель</th>
+                  <th>Песня</th>
+                  <th>Действие</th>
+                </tr>
+              </thead>
+              <tbody id="songTable">
+              </tbody>
+            </table>
+          </div>
+
+          <nav aria-label="Song Pagination">
+            <ul class="pagination justify-content-center" id="pagination">
+
+            </ul>
+          </nav>
 
         </div>
         <div class="tab-pane fade" id="custom-content-below-profile" role="tabpanel"
@@ -102,8 +135,8 @@
               <div class="form-group" style="text-align:center">
                 <label>Пагинация</label>
                 <div class="input-group" style="justify-content: center">
-                  <input type="checkbox" value="{{$design->pagination_color ?? ''}}" class="update-field" name="pagination"
-                    checked data-bootstrap-switch>
+                  <input type="checkbox" value="{{$design->pagination_color ?? ''}}" class="update-field"
+                    name="pagination" checked data-bootstrap-switch>
                 </div>
               </div>
             </div>
@@ -402,20 +435,18 @@
       }
 
       $.ajax({
-        url: '/admin_panel/updateField', // Маршрут к вашему методу обновления поля в контроллере
+        url: '/admin_panel/updateField',
         method: 'POST',
         data: {
           fieldName: fieldName,
           fieldValue: fieldValue,
           catalog_id: catalog_id,
-          _token: $('meta[name="csrf-token"]').attr('content') // CSRF токен для безопасности
+          _token: $('meta[name="csrf-token"]').attr('content')
         },
         success: function (response) {
-          // Обработка успешного ответа
           console.log(response.message);
         },
         error: function (xhr, status, error) {
-          // Обработка ошибки
           console.error(xhr.responseText);
         }
       });
@@ -439,70 +470,68 @@
           $('#response').html('<img src="' + response.qr_code + '" alt="QR Code">');
         },
         error: function (response) {
-          //$('#response').html('An error occurred.');
         }
       });
     });
 
     $('#clearButton').click(function () {
-      $('#fileLogo').val('');  // Очистка значения элемента input
-      $('#imgLogo').attr('src', '');  // Очистка значения элемента input
+      $('#fileLogo').val('');
+      $('#imgLogo').attr('src', '');
     });
   });
 </script>
 <script>
-function getCsrfToken() {
+  function getCsrfToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
-}
+  }
 
-function checkProgress(catalogId) {
+  function checkProgress(catalogId) {
     const csrfToken = getCsrfToken();
     const routeUrl = @json(route('processing.status'));
     const url = `${routeUrl}?catalog_id=${catalogId}`;
 
-    var progressInterval = setInterval(function() {
-        fetch(url, {
-            method: 'GET',
-            headers: {
-                'X-CSRF-TOKEN': csrfToken,
-                'Accept': 'application/json'
-            },
-            
-        })
+    var progressInterval = setInterval(function () {
+      fetch(url, {
+        method: 'GET',
+        headers: {
+          'X-CSRF-TOKEN': csrfToken,
+          'Accept': 'application/json'
+        },
+
+      })
         .then(response => {
-            if (!response.ok) {
-                throw new Error('Network response was not ok');
-            }
-            return response.json();
+          if (!response.ok) {
+            throw new Error('Network response was not ok');
+          }
+          return response.json();
         })
         .then(data => {
-            document.getElementById('progress').style.width = data.progress + '%';
-            document.getElementById('status-text').innerText = `Загружено ${data.processed_rows} из ${data.total_rows} композиций`;
+          document.getElementById('progress').style.width = data.progress + '%';
+          document.getElementById('status-text').innerText = `Загружено ${data.processed_rows} из ${data.total_rows} композиций`;
 
-            if (data.progress === 100 && data.status === 'completed') {
-                clearInterval(progressInterval);
-            }
+          if (data.progress === 100 && data.status === 'completed') {
+            clearInterval(progressInterval);
+          }
         })
         .catch(error => {
-            console.error('There was a problem with the fetch operation:', error);
-            clearInterval(progressInterval); // Остановить интервал, если ошибка
+          console.error('There was a problem with the fetch operation:', error);
+          clearInterval(progressInterval);
         });
     }, 1000);
-}
+  }
 
-// Функция для проверки статуса сразу при загрузке страницы
-function initialCheck() {
+  function initialCheck() {
     var catalogId = document.querySelector('input[name="catalog_id"]').value;
     if (catalogId) {
-        checkProgress({{$catalog->id ?? $catalog}});
+      checkProgress({{$catalog->id ?? $catalog}});
     }
-}
+  }
 
-document.addEventListener('DOMContentLoaded', function() {
-    initialCheck(); // Проверяем статус при загрузке страницы
-});
+  document.addEventListener('DOMContentLoaded', function () {
+    initialCheck();
+  });
 
-document.getElementById('upload-form').addEventListener('submit', function(e) {
+  document.getElementById('upload-form').addEventListener('submit', function (e) {
     e.preventDefault();
 
     var formData = new FormData(this);
@@ -512,17 +541,158 @@ document.getElementById('upload-form').addEventListener('submit', function(e) {
     xhr.setRequestHeader('X-CSRF-TOKEN', getCsrfToken());
 
     xhr.onload = function () {
-        if (xhr.status === 200) {
-            var catalogId = document.querySelector('input[name="catalog_id"]').value;
-            checkProgress(catalogId); // Проверяем статус после отправки формы
-        } else {
-            alert('Ошибка при загрузке файла.');
-        }
+      if (xhr.status === 200) {
+        var catalogId = document.querySelector('input[name="catalog_id"]').value;
+        checkProgress(catalogId);
+      } else {
+        alert('Ошибка при загрузке файла.');
+      }
     };
 
     xhr.send(formData);
-});
+  });
 </script>
 
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    const catalogId = {{ $catalog->id }};
+    const songInput = document.getElementById('songInput');
+    const tbody = document.getElementById('songTable');
+
+    const addButtonRow = `<tr>
+            <td><input type="text" id="newSongSinger" placeholder="Исполнитель" class="form-control"></td>
+            <td><input type="text" id="newSongTitle" placeholder="Песня" class="form-control"></td>
+            <td>
+                <button class="btn btn-primary btn-sm add-song">Добавить</button>
+            </td>
+        </tr>`;
+
+    function fetchSongs(page = 1) {
+      fetch(`{{ route('songs.fetch') }}?catalogId=${catalogId}&page=${page}`)
+        .then(response => response.json())
+        .then(data => {
+          renderTable(data.songs);
+          renderPagination(data.pagination);
+        });
+    }
+
+    function renderTable(songs) {
+      tbody.innerHTML = '';
+
+      if (!songs.length) {
+        const noResultRow = `<tr>
+            <td colspan="3" class="text-center">
+            ${songInput.value === '' ? '<p class="text-muted">В каталоге нет песен</p>'
+            : '<p class="text-muted">По Вашему запросу ничего не найдено</p>'}
+            </td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', noResultRow);
+      }
+
+      songs.forEach(song => {
+        const row = `<tr>
+            <td>${song.singer}</td>
+            <td>${song.title}</td>
+            <td>
+                <button class="btn btn-danger btn-sm delete-song" data-id="${song.id}">Удалить</button>
+            </td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', row);
+      });
+
+      tbody.insertAdjacentHTML('beforeend', addButtonRow);
+
+      document.querySelectorAll('.delete-song').forEach(button => {
+        button.addEventListener('click', function () {
+          const songId = this.getAttribute('data-id');
+          deleteSong(songId);
+        });
+      });
+
+      document.querySelector('.add-song').addEventListener('click', function () {
+        const singer = document.getElementById('newSongSinger').value;
+        const title = document.getElementById('newSongTitle').value;
+        addSong(singer, title);
+      });
+
+    }
+
+    function renderPagination(paginationHtml) {
+      pagination.innerHTML = "";
+      
+      if (songInput.value === "") {        
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = paginationHtml;
+  
+        document.querySelectorAll('#pagination a').forEach(link => {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const page = new URL(this.href).searchParams.get('page');
+            fetchSongs(page);
+          });
+        });
+      }
+    }
+
+    function addSong(singer, title) {
+      fetch(`{{ route('songs.store') }}`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify({
+          singer: singer,
+          title: title,
+          catalogId: catalogId,
+        }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          console.log(data);
+
+          if (data.status === 'success') {
+            fetchSongs();
+          } else {
+            alert('Ошибка при добавлении песни');
+          }
+        });
+    }
+
+    function deleteSong(songId) {
+      fetch(`/admin_panel/catalog/songs/${songId}`, {
+        method: 'DELETE',
+        headers: {
+          'Content-Type': 'application/json',
+          'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content'),
+        },
+        body: JSON.stringify({ catalog_id: catalogId }),
+      })
+        .then(response => response.json())
+        .then(data => {
+          if (data.status === 'success') {
+            fetchSongs();
+          } else {
+            alert('Ошибка при удалении песни');
+          }
+        });
+    }
+
+    function searchSongs() {
+      fetch(`{{ route('songs.search') }}?songInput=${songInput.value}&catalogId=${catalogId}`).then(response => response.json()).then((data) => {
+        const songsData = data.songs || [];
+        tbody.innerHTML = "";
+        renderTable(songsData);
+      })
+
+      if (songInput.value === '') fetchSongs();
+      renderPagination();
+    }
+
+    songInput.addEventListener("input", searchSongs);
+
+    fetchSongs();
+  });
+</script>
 <!-- /.content -->
 @endsection
