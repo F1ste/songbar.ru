@@ -5,7 +5,7 @@
 @section('content')
 
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<input type="hidden" value="{{$catalog}}" id="catalog_id">
+
 <!-- Content Header (Page header) -->
 <div class="content-header">
   <div class="container-fluid">
@@ -59,7 +59,7 @@
           <p><a href="">Скачать образец</a></p>
           <form id="upload-form" action="{{ route('importExcell') }}" method="POST" enctype="multipart/form-data">
             @csrf
-            <input type="hidden" name="catalog_id" value="{{ $catalog->id ?? '' }}">
+            <input type="hidden" name="catalog_id" value="{{ $catalog->id }}">
             <input type="file" name="file" required>
             <button type="submit">Загрузить файл</button>
           </form>
@@ -122,7 +122,7 @@
                 <label>Фон: цвет</label>
 
                 <div id="fon" class="input-group my-colorpicker2">
-                  <input type="text" name="color" value="{{$design->color ?? ''}}" class="form-control update-field">
+                  <input type="text" name="color" value="{{$design->color}}" class="form-control update-field">
 
                   <div class="input-group-append">
                     <span class="input-group-text"><i class="fas fa-square"></i></span>
@@ -135,7 +135,7 @@
               <div class="form-group" style="text-align:center">
                 <label>Пагинация</label>
                 <div class="input-group" style="justify-content: center">
-                  <input type="checkbox" value="{{$design->pagination_color ?? ''}}" class="update-field"
+                  <input type="checkbox" value="{{$design->pagination_color}}" class="update-field"
                     name="pagination" checked data-bootstrap-switch>
                 </div>
               </div>
@@ -146,7 +146,7 @@
                 <label>Пагинация цвет</label>
 
                 <div id="paginationcolor" class="input-group my-colorpicker2">
-                  <input type="text" name="pagination-color" value="{{$design->pagination_color ?? ''}}"
+                  <input type="text" name="pagination-color" value="{{$design->pagination_color}}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -165,7 +165,7 @@
                 <label>Поисковик фон (цвет)</label>
 
                 <div id="fonsearch" class="input-group my-colorpicker2">
-                  <input type="text" name="search-color" value="{{$design->search_color ?? ''}}"
+                  <input type="text" name="search-color" value="{{$design->search_color}}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -182,7 +182,7 @@
                 <label>Цвет границы</label>
 
                 <div id="bordersearch" class="input-group my-colorpicker2">
-                  <input type="text" name="search-border-color" value="{{$design->search_border_color ?? ''}}"
+                  <input type="text" name="search-border-color" value="{{$design->search_border_color}}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -199,7 +199,7 @@
                 <label>Цвет шрифта</label>
 
                 <div id="searchFontColor" class="input-group my-colorpicker2">
-                  <input type="text" name="search-font-color" value="{{$design->search_font_color ?? ''}}"
+                  <input type="text" name="search-font-color" value="{{$design->search_font_color }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -232,7 +232,7 @@
                 <label>Фон (цвет)</label>
 
                 <div id="fonsearchresult" class="input-group my-colorpicker2">
-                  <input type="text" name="searchres-color" value="{{$design->searchres_color ?? ''}}"
+                  <input type="text" name="searchres-color" value="{{$design->searchres_color }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -249,7 +249,7 @@
                 <label>Цвет границы</label>
 
                 <div id="bordersearchresult" class="input-group my-colorpicker2">
-                  <input type="text" name="searchres-border-color" value="{{$design->searchres_border_color ?? ''}}"
+                  <input type="text" name="searchres-border-color" value="{{$design->searchres_border_color }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -266,7 +266,7 @@
                 <label>Цвет шрифта</label>
 
                 <div id="searchfontcolorresult" class="input-group my-colorpicker2">
-                  <input type="text" name="searchres-font-color" value="{{$design->searchres_font_color ?? ''}}"
+                  <input type="text" name="searchres-font-color" value="{{$design->searchres_font_color }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -302,7 +302,7 @@
                     <label>Цвет фона</label>
 
                     <div id="buttonheaderfoncolor" class="input-group my-colorpicker2">
-                      <input type="text" name="headbutton-font-color" value="{{$design->headbutton_font_color ?? ''}}"
+                      <input type="text" name="headbutton-font-color" value="{{$design->headbutton_font_color }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -319,7 +319,7 @@
                     <label>Цвет текста</label>
 
                     <div id="buttonheadertextcolor" class="input-group my-colorpicker2">
-                      <input type="text" name="headbutton-font-size" value="{{$design->headbutton_font_size ?? ''}}"
+                      <input type="text" name="headbutton-font-size" value="{{$design->headbutton_font_size }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -341,7 +341,7 @@
                     <label>Цвет текста</label>
 
                     <div id="contactheadertextcolor" class="input-group my-colorpicker2">
-                      <input type="text" name="headcontact-font-color" value="{{$design->headcontact_font_color ?? ''}}"
+                      <input type="text" name="headcontact-font-color" value="{{$design->headcontact_font_color }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -365,10 +365,10 @@
                 <div class="col-md-3">
                   <div class="form-group">
                     <label>Логотип(в формате png, svg)</label>
-                    <input type="file" name="logo" value="{{$info->logo ?? ''}}" id="fileLogo" class="form-control">
+                    <input type="file" name="logo" value="{{$info->logo}}" id="fileLogo" class="form-control">
                     @if(1 == 1)
             <div class="col-md-6">
-              <img id="imgLogo" src="/{{$info->logo ?? ''}}" alt="">
+              <img id="imgLogo" src="/{{$info->logo}}" alt="">
               <button type="button" id="clearButton" class="btn btn-block btn-danger">Удалить</button>
             </div>
           @endif
@@ -377,7 +377,7 @@
                 <div class="col-md-5 offset-md-1">
                   <div class="form-group">
                     <label>Контактная информация</label>
-                    <textarea class="form-control" rows="5" name="contact" value="{!! $info->contact ?? '' !!}"
+                    <textarea class="form-control" rows="5" name="contact" value="{!! $info->contact !!}"
                       id=""></textarea>
                   </div>
                 </div>
@@ -388,11 +388,11 @@
                     <label>Кнопка</label>
                     <div class="row">
                       <div class="col-md-6">
-                        <input class="form-control" name="button_text" value="{{$info->button_text ?? ''}}"
+                        <input class="form-control" name="button_text" value="{{$info->button_text }}"
                           placeholder="Текст" type="text">
                       </div>
                       <div class="col-md-6">
-                        <input class="form-control" name="button_href" value="{{$info->button_text ?? ''}}"
+                        <input class="form-control" name="button_href" value="{{$info->button_text}}"
                           placeholder="Ссылка" type="text">
                       </div>
                     </div>
@@ -416,13 +416,38 @@
       </div>
     </div>
     <div class="preview">
-      <iframe src="{{$catalog->address ?? ''}}" style="width:100%; height:600px; border:none;"></iframe>
+      <iframe src="http://{{($catalog->address).'.songbar'}}" style="width:100%; height:600px; border:none;"></iframe>
     </div>
   </div><!-- /.container-fluid -->
 </section>
 
 <script>
   $(document).ready(function () {
+    // Функция для загрузки iframe
+    function loadIframe() {
+      // Создаем элемент iframe с помощью jQuery
+      var iframe = $('<iframe>', {
+        src: 'https://{{$catalog->address}}.songbar', // Укажите URL, который вы хотите загрузить
+        height: '400',
+        overflow: 'hidden',
+        frameborder: '0'
+      });
+
+      // Очищаем контейнер перед вставкой нового iframe (если это необходимо)
+      $('#iframeContainer').empty();
+
+      // Вставляем iframe в контейнер
+      $('#iframeContainer').append(iframe);
+    }
+
+    // Загрузка iframe после загрузки страницы
+    loadIframe();
+
+    // Добавляем обработчик на кнопку для перезагрузки iframe по нажатию
+    $('#loadIframeButton').on('click', function () {
+      loadIframe();
+    });
+
     $('.update-field').change(function () {
       var fieldName = $(this).attr('name');
       var catalog_id = $('#catalog_id').val();
@@ -435,24 +460,25 @@
       }
 
       $.ajax({
-        url: '/admin_panel/updateField',
+        url: '/admin_panel/updateField', // Маршрут к вашему методу обновления поля в контроллере
         method: 'POST',
         data: {
           fieldName: fieldName,
           fieldValue: fieldValue,
           catalog_id: catalog_id,
-          _token: $('meta[name="csrf-token"]').attr('content')
+          _token: $('meta[name="csrf-token"]').attr('content') // CSRF токен для безопасности
         },
         success: function (response) {
+          // Обработка успешного ответа
           console.log(response.message);
+          loadIframe();
         },
         error: function (xhr, status, error) {
+          // Обработка ошибки
           console.error(xhr.responseText);
         }
       });
     });
-
-
 
     $('#ajaxForm').on('submit', function (event) {
       event.preventDefault();
@@ -467,19 +493,22 @@
         processData: false,
         contentType: false,
         success: function (response) {
-          $('#response').html('<img src="' + response.qr_code + '" alt="QR Code">');
+          loadIframe();
+          $('#response').html('<br><br><a class="btn btn-info mt-3" id="download-link" href="' + response.download_link + '" download="qr-code.png">Скачать QR</a><br><br><img src="' + response.qr_code + '" alt="QR Code"><br><br><a target="_blank" href="' + response.href + '">' + response.href + '</a>');
         },
         error: function (response) {
+          //$('#response').html('An error occurred.');
         }
       });
     });
 
     $('#clearButton').click(function () {
-      $('#fileLogo').val('');
-      $('#imgLogo').attr('src', '');
+      loadIframe();
+      $('#fileLogo').val('');  // Очистка значения элемента input
     });
   });
 </script>
+
 <script>
   function getCsrfToken() {
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
@@ -523,7 +552,7 @@
   function initialCheck() {
     var catalogId = document.querySelector('input[name="catalog_id"]').value;
     if (catalogId) {
-      checkProgress({{$catalog->id ?? $catalog}});
+      checkProgress({{$catalog->id}});
     }
   }
 

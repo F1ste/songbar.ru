@@ -25,7 +25,15 @@ class CatalogController extends Controller
      */
     public function index()
     {
-        return view('admin.catalog.index');
+        $user = Auth::user();
+        $catalogs = $user->catalogs;  
+
+        return view('admin.catalog.index', compact('catalogs'));
+    }
+
+    public function preview() 
+    {
+        return view('template');
     }
 
     /**

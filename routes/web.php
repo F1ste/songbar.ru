@@ -27,8 +27,9 @@ Route::middleware(['auth'])->prefix('admin_panel')->group(function () {
     Route::get('/payment/fail', [App\Http\Controllers\Admin\PaymentController::class, 'fail'])->name('payment.fail');
     Route::get('/payment/{order_id}', [App\Http\Controllers\Admin\PaymentController::class, 'pay'])->name('payment');
     Route::post('/order/create', [App\Http\Controllers\Admin\OrderController::class, 'create'])->name('order.create');
-    Route::get('/', [App\Http\Controllers\Admin\HomeController::class, 'index'])->name('admin_panel');
-    Route::get('/catalog', [CatalogController::class, 'index'])->name('catalog');
+    Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('admin_panel');
+    Route::get('/catalog/preview', [CatalogController::class, 'preview'])->name('catalog.preview');
+    Route::get('/catalogs', [CatalogController::class, 'index'])->name('catalogs');
     Route::get('/catalog/create', [CatalogController::class, 'create'])->name('catalog.create');
     Route::get('/catalog/edit/{id}', [CatalogController::class, 'edit'])->name('catalog.edit');
     Route::post('/catalog/destroy/{id}', [CatalogController::class, 'destroy'])->name('catalog.destroy');
