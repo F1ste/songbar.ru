@@ -8,27 +8,27 @@
   <!-- Google Font: Source Sans Pro -->
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
   <!-- Font Awesome -->
-  <link rel="stylesheet" href="/admin/plugins/fontawesome-free/css/all.min.css">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/fontawesome-free/css/all.min.css') }}">
   <!-- Ionicons -->
   <link rel="stylesheet" href="https://code.ionicframework.com/ionicons/2.0.1/css/ionicons.min.css">
   <!-- Tempusdominus Bootstrap 4 -->
-  <link rel="stylesheet" href="/admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/tempusdominus-bootstrap-4/css/tempusdominus-bootstrap-4.min.css') }}">
   <!-- iCheck -->
-  <link rel="stylesheet" href="/admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/icheck-bootstrap/icheck-bootstrap.min.css') }}">
   <!-- JQVMap -->
-  <link rel="stylesheet" href="/admin/plugins/jqvmap/jqvmap.min.css">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/jqvmap/jqvmap.min.css') }}">
   <!-- Theme style -->
-  <link rel="stylesheet" href="/admin/dist/css/adminlte.min.css">
+  <link rel="stylesheet" href="{{ asset('admin/dist/css/adminlte.min.css') }}">
   <!-- overlayScrollbars -->
-  <link rel="stylesheet" href="/admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/overlayScrollbars/css/OverlayScrollbars.min.css') }}">
   <!-- Daterange picker -->
-  <link rel="stylesheet" href="/admin/plugins/daterangepicker/daterangepicker.css">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/daterangepicker/daterangepicker.css') }}">
   <!-- summernote -->
-  <link rel="stylesheet" href="/admin/plugins/summernote/summernote-bs4.min.css">
-  <link rel="stylesheet" href="/admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css">
-  <link rel="stylesheet" href="/admin/custom.css">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/summernote/summernote-bs4.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/plugins/bootstrap-colorpicker/css/bootstrap-colorpicker.min.css') }}">
+  <link rel="stylesheet" href="{{ asset('admin/custom.css') }}">
   <!-- jQuery -->
-<script src="/admin/plugins/jquery/jquery.min.js"></script>
+<script src="{{ asset('/admin/plugins/jquery/jquery.min.js') }}"></script>
 </head>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -153,59 +153,54 @@
   $.widget.bridge('uibutton', $.ui.button)
 </script>
 <!-- Bootstrap 4 -->
-<script src="/admin/plugins/bootstrap/js/bootstrap.bundle.min.js"></script>
+<script src="{{ asset('admin/plugins/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 <!-- ChartJS -->
-<script src="/admin/plugins/chart.js/Chart.min.js"></script>
+<script src="{{ asset('admin/plugins/chart.js/Chart.min.js') }}"></script>
 <!-- Sparkline -->
-<script src="/admin/plugins/sparklines/sparkline.js"></script>
+<script src="{{ asset('admin/plugins/sparklines/sparkline.js') }}"></script>
 <!-- JQVMap -->
-<script src="/admin/plugins/jqvmap/jquery.vmap.min.js"></script>
-<script src="/admin/plugins/jqvmap/maps/jquery.vmap.usa.js"></script>
+<script src="{{ asset('admin/plugins/jqvmap/jquery.vmap.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/jqvmap/maps/jquery.vmap.usa.js') }}"></script>
 <!-- jQuery Knob Chart -->
-<script src="/admin/plugins/jquery-knob/jquery.knob.min.js"></script>
+<script src="{{ asset('admin/plugins/jquery-knob/jquery.knob.min.js') }}"></script>
 <!-- daterangepicker -->
-<script src="/admin/plugins/moment/moment.min.js"></script>
-<script src="/admin/plugins/daterangepicker/daterangepicker.js"></script>
+<script src="{{ asset('admin/plugins/moment/moment.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/daterangepicker/daterangepicker.js') }}"></script>
 <!-- Tempusdominus Bootstrap 4 -->
-<script src="/admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js"></script>
+<script src="{{ asset('admin/plugins/tempusdominus-bootstrap-4/js/tempusdominus-bootstrap-4.min.js') }}"></script>
 <!-- Summernote -->
-<script src="/admin/plugins/summernote/summernote-bs4.min.js"></script>
+<script src="{{ asset('admin/plugins/summernote/summernote-bs4.min.js') }}"></script>
 <!-- overlayScrollbars -->
-<script src="/admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js"></script>
+<script src="{{ asset('admin/plugins/overlayScrollbars/js/jquery.overlayScrollbars.min.js') }}"></script>
 <!-- AdminLTE App -->
-<script src="/admin/dist/js/adminlte.js"></script>
+<script src="{{ asset('admin/dist/js/adminlte.js') }}"></script>
 <!-- AdminLTE for demo purposes
-<script src="/admin/dist/js/demo.js"></script> -->
+<script src="/admin/dist/js/demo.js') }}"></script> -->
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
-<script src="/admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js"></script>
-<script src="/admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js"></script>
-<script src="/admin/dist/js/pages/dashboard.js"></script>
+<script src="{{ asset('admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
+<script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
+<script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
 <script>
     //switch
     $("input[data-bootstrap-switch]").each(function(){
       $(this).bootstrapSwitch('state', $(this).prop('checked'));
     })
         //color picker with addon
-    $('#fon').colorpicker() 
-    $('#paginationcolor').colorpicker()
-    $('#fonsearch').colorpicker()
-    $('#bordersearch').colorpicker() 
-    $('#searchFontColor').colorpicker()
-    $('#fonsearchresult').colorpicker()
+    $('#bg').colorpicker() 
+    $('#pagination_color').colorpicker()
+    $('#pagination_color_active').colorpicker()
+    $('#search_bg').colorpicker()
+    $('#search_border_color').colorpicker() 
+    $('#search_font_color').colorpicker()
+    $('#search_results_bg').colorpicker()
 
-    $('#bordersearchresult').colorpicker()
-    $('#searchfontcolorresult').colorpicker()
-    $('#buttonheaderfoncolor').colorpicker() 
-    $('#buttonheadertextcolor').colorpicker()
-    $('#headbuttonbordercolor').colorpicker()
-    $('#contactheadertextcolor').colorpicker()
+    $('#search_results_border_color').colorpicker()
+    $('#search_results_font_color').colorpicker()
+    $('#header_btn_bg').colorpicker() 
+    $('#header_btn_font_color').colorpicker()
+    $('#header_btn_border_color').colorpicker()
+    $('#contact_font_color').colorpicker()
 
-$('.my-colorpicker2').on('colorpickerChange', function(event) {
-    console.log(this.id);
-  $('#'+this.id +' .fa-square').css('color', event.color.toString());
-})
-
-
-        </script>
+  </script>
 </body>
 </html>

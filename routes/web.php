@@ -19,7 +19,7 @@ Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('te
 Route::get('/search', [App\Http\Controllers\SearchController::class, 'index'])->name('search');
 
     Route::get('/home', function(){
-        return Redirect::to('/admin_panel');
+        return Redirect::to('/admin_panel/catalogs');
     });
 
 

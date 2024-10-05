@@ -4,38 +4,63 @@
 <meta http-equiv="cache-control" content="no-cache">
 <meta http-equiv="expires" content="0">
 <meta name="csrf-token" content="{{ csrf_token() }}">
-<title>Песни караоке-бара MIMONOT</title>
+<title>Пример шаблона каталога караоке</title>
 <meta name="robots" content="max-image-preview:large">
 
-<link rel="stylesheet" id="blankslate-style-css" href="style.css" type="text/css" media="all">
-<link rel="stylesheet" href="/custom.css">
-  <!-- jQuery -->
-<script src="/admin/plugins/jquery/jquery.min.js"></script>
+<link rel="stylesheet" id="blankslate-style-css" href="{{ asset('style.css') }}" type="text/css" media="all">
+
 <style>
-    ::-webkit-input-placeholder {font-size:{{$design->search_font_size}}px; color:{{$design->search_font_color}};}
-    ::-moz-placeholder          {font-size:{{$design->search_font_size}}px; color:{{$design->search_font_color}};}/* Firefox 19+ */
-    :-moz-placeholder           {font-size:{{$design->search_font_size}}px; color:{{$design->search_font_color}};}/* Firefox 18- */
-    :-ms-input-placeholder      {font-size:{{$design->search_font_size}}px; color:{{$design->search_font_color}};}
+    ::-webkit-input-placeholder {font-size:inherit; color:inherit;}
+    ::-moz-placeholder          {font-size:inherit; color:inherit;}/* Firefox 19+ */
+    :-moz-placeholder           {font-size:inherit; color:inherit;}/* Firefox 18- */
+    :-ms-input-placeholder      {font-size:inherit; color:inherit;}
+    .custom-pagination .page-item.active .page-link {
+}
+
+.pagination {
+    margin-top: 20px;
+    display: flex;
+    gap: 5px;
+    list-style: none;
+    justify-content: center;
+    color: {{$design->pagination_color ?? '#fff'}};
+    font-size: {{$design->pagination_font_size ?? '14'}}px;
+}
+.page-item{
+    color: inherit;
+    font-size: inherit;
+}
+
+.page-item.active {
+    color: {{$design->pagination_color_active ?? '#A02EE0'}};
+}
+
+.page-link{
+    color: inherit;
+    padding: 3px;
+    text-decoration: none;
+}
+
 </style>
 </head>
 <body class="">
 
 
-<div class="main_conteiner" style="font-family:{{$design->font_family}}; background:{{$design->color}};">
-
-
-
+<div class="main_conteiner" style="font-family:{{$design->font_family ?? 'auto'}}; background:{{$design->color ?? '#000'}};">
 	<div class="header">
         <div class="logo">
-            <img src="{{$info->logo}}">
+            <img src="{{$info->logo ?? asset('uploads/logo.png')}}">
         </div>
         <div class="menu">
-            <a href="{{$info->button_href}}" class="btn_menu" style="text-decoration: none;"><p style="background:{{$design->headbutton_font_color}}; color:{{$design->headbutton_font_size}}; border-color:{{$design->headbutton_border_color}};">{{$info->button_text}}</p></a>
-
+            <a href="{{$info->button_href ?? '#'}}" class="btn_menu" style="text-decoration: none;">
+                <p style="background:{{$design->headbutton_font_color ?? "#000"}}; color:{{$design->headbutton_font_size ?? '#fff'}}; border-color:{{$design->headbutton_border_color ?? '#A02EE0'}};">
+                {{$info->button_text ?? 'МЕНЮ'}}
+                </p>
+            </a>
         </div>
         <div class="info">
-            <p style="color:{{$design->headcontact_font_color}};">
-            {!! $info->contact !!}
+            <p style="color:{{$design->headcontact_font_color ?? '#fff'}};">
+            {!! $info->contact ?? 'ул. Пушкина д. 5 <br> ПН-ВС с 18:00 до 5:00' !!}
             </p>
         </div>
         <div class="seti"></div>
@@ -43,148 +68,104 @@
 
 <div class="content">
 
-
 	<div class="serc_box" style="position: relative;">
-		<div class="serc_input" style="background:{{$design->search_color}}; border-color:{{$design->search_border_color}};">
+		<div class="serc_input" style="background:{{$design->search_color ?? '#000'}}; border-color:{{$design->search_border_color ?? '#A02EE0'}};">
 			<div style="width: 100%;">
-				<input class="serth_input" id="search" type="text" name="" value="" placeholder="Поиск песен" style="font-size:{{$design->search_font_size}}px; color:{{$design->search_font_color}};">
+				<input class="serth_input" id="search" type="text" name="" value="" placeholder="Поиск песен" style="font-size:{{$design->search_font_size ?? '14'}}px; color:{{$design->search_font_color ?? '#fff'}};">
 			</div>
-            <input type="hidden" value="{{$design->catalog_id}}" name="catalog_id" id="catalog_id">
-
-
+            <input type="hidden" value="{{$design->catalog_id ?? ''}}" name="catalog_id" id="catalog_id">
 		</div>
 
         <div id="results">
-
-        @include($view, ['results' => $results])
+            <table class="table table-bordered">
+              <thead class="thead-light">
+                <tr>
+                  <th width="50%">Исполнитель</th>
+                  <th>Песня</th>
+                </tr>
+              </thead>
+              <tbody id="songTable">
+              </tbody>
+            </table>
+            <div id="pagination"></div>
         </div>
-		<!--<div class="ajax_serch_box">
-			<ul class="ajax-search"></ul>
-		</div>-->
-
-
 	</div>
-
-    <!--<table id="chert">
-    <thead>
-        <tr>
-            <th style="border-right: 1px solid #A02EE0;">Песня</th>
-            <th>Исполнитель</th>
-        </tr>
-  </thead>
-<tbody>
-
-    </tbody>
-</table>-->
-
-
-<!--<tr>
-      <td style="border-right: 1px solid #A02EE0;">АЛЕКСАНДР</td>
-      <td>3.15</td>
-    </tr>
-
-<tr>
-      <td style="border-right: 1px solid #A02EE0;">ЗВЁЗДЫ В ЛУЖАХ</td>
-      <td>30.02</td>
-    </tr>-->
-
-
-
-
-
-<!--<div class="wp-pagenavi" role="navigation">
-<span class="pages">Страница 1 из 2&nbsp;446</span>
-<span aria-current="page" class="current">1</span>
-<a class="page larger" title="Страница 2" href="https://k.mimonot73.ru/?paged=2">2</a>
-<a class="page larger" title="Страница 3" href="https://k.mimonot73.ru/?paged=3">3</a>
-<span class="extend">...</span>
-<a class="larger page" title="Страница 10" href="https://k.mimonot73.ru/?paged=10">10</a>
-<a class="larger page" title="Страница 20" href="https://k.mimonot73.ru/?paged=20">20</a>
-<span class="extend">...</span>
-<a class="nextpostslink" rel="next" aria-label="Следующая страница" href="https://k.mimonot73.ru/?paged=2">Дальше</a>
-</div>-->
-
-
+</div>
+</div>
 </div>
 
-
+</body>
 <script>
-        $(document).ready(function() {
-            var designPagination = @json($design->pagination);
-            var isLoading = false;
+  document.addEventListener('DOMContentLoaded', function () {
+    const currentUrl = window.location.href;
+    const urlSegments = currentUrl.split('/');
+    const catalogId = isNaN(urlSegments[urlSegments.length - 1]) ? 1 : parseInt(urlSegments[urlSegments.length - 1]);
+    
+    const songInput = document.getElementById('search');
+    const tbody = document.getElementById('songTable');
 
-            function fetch_data(query, page) {
-                if (isLoading) return;
-                isLoading = true;
-
-                $.ajax({
-                    url: "{{ route('template') }}",
-                    type: "GET",
-                    data: { query: query, page: page },
-                    headers: {
-                        'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
-                    },
-                    success: function(data) {
-                        if (designPagination) {
-                            $('#results').html(data.data);
-                            $('#pagination').html(data.pagination);
-                        } else {
-                            if (page === 1) {
-                                $('#results').html(data.data);
-                            } else {
-                                $('#result-list').append($(data.data).find('#result-list').html());
-                                if (!$(data.data).find('#load-more').length) {
-                                    $('#load-more').remove();
-                                }
-                            }
-                        }
-                        isLoading = false;
-                    },
-                    error: function() {
-                        isLoading = false;
-                    }
-                });
-            }
-
-            $('#search').on('input', function() {
-                var query = $(this).val();
-                fetch_data(query, 1);
-            });
-
-            if (designPagination) {
-                $(document).on('click', '.pagination a', function(e) {
-                    e.preventDefault();
-                    var query = $('#search').val();
-                    var page = $(this).attr('href').split('page=')[1];
-                    fetch_data(query, page);
-                });
-            } else {
-                $(document).on('click', '#load-more button', function() {
-                    var query = $('#search').val();
-                    var page = $(this).data('page');
-                    fetch_data(query, page);
-                    $(this).data('page', page + 1);
-                });
-
-                $(window).scroll(function() {
-                    if ($(window).scrollTop() + $(window).height() >= $(document).height() - 100) {
-                        $('#load-more button').trigger('click');
-                    }
-                });
-            }
+    function fetchSongs(page = 1) {
+      fetch(`{{ route('songs.fetch') }}?catalogId=${catalogId}&page=${page}`)
+        .then(response => response.json())
+        .then(data => {
+          renderTable(data.songs);
+          renderPagination(data.pagination);
         });
-    </script>
+    }
 
+    function renderTable(songs) {
+      tbody.innerHTML = '';
 
-</div>
+      if (!songs.length) {
+        const noResultRow = `<tr>
+            <td colspan="2" style="text-align: center;">
+            ${songInput.value === '' ? '<p class="text-muted">В каталоге нет песен</p>'
+            : '<p class="text-muted">По Вашему запросу ничего не найдено</p>'}
+            </td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', noResultRow);
+      }
 
+      songs.forEach(song => {
+        const row = `<tr>
+            <td>${song.singer}</td>
+            <td>${song.title}</td>
+        </tr>`;
+        tbody.insertAdjacentHTML('beforeend', row);
+      });
+    }
 
+    function renderPagination(paginationHtml) {
+      pagination.innerHTML = "";
+      
+      if (songInput.value === "") {        
+        const pagination = document.getElementById('pagination');
+        pagination.innerHTML = paginationHtml;
+  
+        document.querySelectorAll('#pagination a').forEach(link => {
+          link.addEventListener('click', function (e) {
+            e.preventDefault();
+            const page = new URL(this.href).searchParams.get('page');
+            fetchSongs(page);
+          });
+        });
+      }
+    }
 
+    function searchSongs() {
+      fetch(`{{ route('songs.search') }}?songInput=${songInput.value}&catalogId=${catalogId}`).then(response => response.json()).then((data) => {
+        const songsData = data.songs || [];
+        tbody.innerHTML = "";
+        renderTable(songsData);
+      })
 
+      if (songInput.value === '') fetchSongs();
+      renderPagination();
+    }
 
-</div>
+    songInput.addEventListener("input", searchSongs);
 
-
-
-
-</body></html>
+    fetchSongs();
+  });
+</script>
+</html>
