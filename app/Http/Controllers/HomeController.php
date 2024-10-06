@@ -33,13 +33,13 @@ class HomeController extends Controller
         if (count($parts) === 3) { // "sub.subdomain.com" имеет 3 части
             $subdomain = $parts[0]; // Получаем поддомен третьего уровня
             $catalog = Catalog::where('address', $subdomain)->first();
-            if(isset($catalog->id)){
-                $design = Design::where('catalog_id', $catalog->id)->first();
-                $info = Info::where('catalog_id', $catalog->id)->first();   
+            $catalog_id = $catalog->id;
+            if(isset($catalog_id)){
+                $design = Design::where('catalog_id', $catalog_id)->first();
+                $info = Info::where('catalog_id', $catalog_id)->first();   
                 $view = $design->pagination ? 'search_results' : 'search_results_infinite';             
-               
-
-                return view('template',compact('design','info','view'));
+                
+                return view('template',compact('design','info','view', 'catalog_id'));
             }else{
                 return view('welcome');
             }            
