@@ -187,7 +187,7 @@ class CatalogController extends Controller
 
         $filePath = $file->store('uploads');
 
-        $fullFilePath = storage_path('\/app/' . $filePath);
+        $fullFilePath = storage_path('/app/' . $filePath);
 
         ProcessExcelChunk::dispatch($fullFilePath, $catalogId, 1, 1000);
 
