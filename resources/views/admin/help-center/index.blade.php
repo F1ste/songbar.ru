@@ -78,7 +78,7 @@
         <div class="row">
             <div class="col-md-6">
                 <!-- TODO добавить ссылку на ТГ -->
-                <a href="#" class="btn btn-primary" target="_blank">Поддержка</a>
+                <a href="#tg" class="btn btn-primary" target="_blank">Поддержка</a>
             </div>
         </div>
     </div>

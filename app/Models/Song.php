@@ -4,14 +4,17 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use App\Models\Traits\Filterable;
 
 class Song extends Model
 {
     use HasFactory;
+    use Filterable;
 
-    protected $fillable = [
-        'title', // Добавьте атрибут 'title'
-        'singer', // Добавьте атрибут 'singer'
-        'catalog_id' // Добавьте атрибут 'catalog_id'
-    ];
+    protected $fillable = ['catalog_id', 'title', 'singer'];
+
+    public function catalogs()
+    {
+        return $this->belongsToMany(Catalog::class, 'catalog_songs');
+    }
 }

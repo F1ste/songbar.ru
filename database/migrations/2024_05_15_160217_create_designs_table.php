@@ -12,23 +12,29 @@ return new class extends Migration
     public function up(): void
     {
         Schema::create('designs', function (Blueprint $table) {
+            $table->engine = 'InnoDB';
             $table->id();
-            $table->integer('catalog_id');
-            $table->char('font-family', 100);
-            $table->char('color', 20);            
-            $table->boolean('pagination');
-            $table->char('pagination-color', 20);
-            $table->char('search-color', 20);
-            $table->char('search-border-color', 20);
-            $table->char('search-font-color', 20);
-            $table->char('search-font-size', 4);
-            $table->char('searchres-color', 20);
-            $table->char('searchres-border-color', 20);
-            $table->char('searchres-font-color', 20);
-            $table->char('searchres-font-size', 4);
-            $table->char('headbutton-font-color', 20);
-            $table->char('headbutton-font-size', 4);
-            $table->char('headcontact-font-color', 20);
+            $table->integer('catalog_id')->nullable();
+            $table->char('font_family', 100)->nullable();
+            $table->char('bg_color', 20)->nullable();            
+            $table->boolean('is_pagination')->nullable()->default(true);
+            $table->char('pagination_color', 20)->nullable();
+            $table->char('pagination_color_active', 20)->nullable();
+            $table->char('pagination_font_size', 4)->nullable();
+            $table->char('bg_search_color', 20)->nullable();
+            $table->char('search_border_color', 20)->nullable();
+            $table->char('search_font_color', 20)->nullable();
+            $table->char('search_font_size', 4)->nullable();
+            $table->char('search_results_color', 20)->nullable();
+            $table->char('search_results_border_color', 20)->nullable();
+            $table->char('search_results_font_color', 20)->nullable();
+            $table->char('search_results_font_size', 4)->nullable();
+            $table->char('header_btn_font_color', 20)->nullable();
+            $table->char('header_btn_bg_color', 20)->nullable();
+            $table->char('header_btn_border_color', 20)->nullable();
+            $table->char('header_btn_font_size', 4)->nullable();
+            $table->char('header_contact_font_color', 20)->nullable();
+            $table->char('header_contact_font_size', 4)->nullable();
             $table->timestamps();
         });
     }

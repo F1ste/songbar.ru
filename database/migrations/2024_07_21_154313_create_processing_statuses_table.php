@@ -13,17 +13,16 @@ class CreateProcessingStatusesTable extends Migration
      */
     public function up()
     {
-        // TODO временный фикс для ошибки при php artisan migrate
-        if (!Schema::hasTable('processing_statuses')) {
-            Schema::create('processing_statuses', function (Blueprint $table) {
-                $table->bigIncrements('id');
-                $table->unsignedBigInteger('catalog_id');
-                $table->integer('total_rows');
-                $table->integer('processed_rows')->default(0);
-                $table->string('status', 125)->default('in_progress');
-                $table->timestamps();
-            });
-        }
+        Schema::create('processing_statuses', function (Blueprint $table) {
+            $table->bigIncrements('id');
+            $table->unsignedBigInteger('catalog_id');
+            $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');
+            $table->integer('total_rows');
+            $table->integer('processed_rows')->default(0);
+            $table->string('status', 125)->default('in_progress');
+            $table->timestamps();
+        });
+
     }
 
     /**

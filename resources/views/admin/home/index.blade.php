@@ -48,7 +48,7 @@
                                 <tr>
                                     <td>
                                         <a href="https://{{$catalog->address}}.songbar.ru"
-                                            target="_blanc">{{$catalog->address}}.songbar.ru</a>
+                                            target="_blank">{{$catalog->address}}.songbar.ru</a>
                                     </td>
                                     <td class="project-actions text-right">
                                         <a class="btn btn-info btn-sm" href="{{ route('catalog.edit', $catalog->id) }}">
