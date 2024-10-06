@@ -62,7 +62,7 @@
 <div class="main_conteiner" style="font-family:{{$design->font_family ?? 'auto'}}; background:{{$design->bg_color ?? '#000'}};">
 	<div class="header">
         <div class="logo">
-            <img src="{{$info->logo ?? asset('uploads/logo.png')}}">
+            <img src="{{$info->logo ? '/'.$info->logo : asset('uploads/logo.png')}}">
         </div>
         <div class="menu">
             <a href="{{$info->button_href ?? '#'}}" class="btn_menu" style="text-decoration: none;">
