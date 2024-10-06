@@ -112,7 +112,11 @@
   document.addEventListener('DOMContentLoaded', function () {
     const currentUrl = window.location.href;
     const urlSegments = currentUrl.split('/');
-    const catalogId = isNaN(urlSegments[urlSegments.length - 1]) ? 1 : parseInt(urlSegments[urlSegments.length - 1]);
+    let catalogId = isNaN(urlSegments[urlSegments.length - 1]) ? 1 : parseInt(urlSegments[urlSegments.length - 1]);
+    @if (isset($catalog_id))
+      catalogId = {{$catalog_id}}
+    @endif
+    
     
     const songInput = document.getElementById('search');
     const tbody = document.getElementById('songTable');
