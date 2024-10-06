@@ -176,7 +176,7 @@
               <!-- input -->
               <div class="form-group">
                 <label>Пагинация размер шрифта</label>
-                <input type="number" id="pagination_size" name="pagination_font_size" value="{{$design->pagination_font_size}}" class="form-control update-field"></input>
+                <input type="number" id="pagination_size" name="pagination_font_size" value="{{$design->pagination_font_size ?? '14'}}" class="form-control update-field"></input>
               </div>
             </div>
           </div>
@@ -236,7 +236,7 @@
               <!-- select -->
               <div class="form-group">
                 <label>Размер шрифта</label>
-                <input type="number" id="search_font_size" name="search_font_size" value="{{$design->search_font_size}}" class="form-control update-field"></input>
+                <input type="number" id="search_font_size" name="search_font_size" value="{{$design->search_font_size ?? '14'}}" class="form-control update-field"></input>
               </div>
             </div>
           </div>
@@ -297,7 +297,7 @@
               <!-- input -->
               <div class="form-group">
                 <label>Размер шрифта</label>
-                <input id="search_results_font_size" type="number" name="search_results_font_size" value="{{$design->search_results_font_size}}" class="form-control update-field"></input>
+                <input id="search_results_font_size" type="number" name="search_results_font_size" value="{{$design->search_results_font_size ?? '16'}}" class="form-control update-field"></input>
               </div>
             </div>
           </div>
@@ -313,7 +313,7 @@
                     <label>Цвет фона</label>
 
                     <div id="header_btn_bg" class="input-group my-colorpicker2">
-                      <input type="text" name="header_btn_bg_color" value="{{$design->header_btn_bg_color ?? '#fff' }}"
+                      <input type="text" name="header_btn_bg_color" value="{{$design->header_btn_bg_color ?? '#000' }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -362,7 +362,7 @@
                   <!-- input -->
                   <div class="form-group">
                     <label>Размер шрифта</label>
-                    <input id="header_btn_font_size" type="number" name="header_btn_font_size" value="{{$design->header_btn_font_size}}" class="form-control update-field"></>
+                    <input id="header_btn_font_size" type="number" name="header_btn_font_size" value="{{$design->header_btn_font_size ?? '16'}}" class="form-control update-field"></>
                   </div>
               </div>
             </div>
@@ -392,7 +392,7 @@
                   <!-- input -->
                   <div class="form-group">
                     <label>Размер шрифта</label>
-                    <input type="number" id="contact_font_size" name="header_contact_font_size" value="{{$design->header_contact_font_size}}" class="form-control update-field"></input>
+                    <input type="number" id="contact_font_size" name="header_contact_font_size" value="{{$design->header_contact_font_size ?? '14'}}" class="form-control update-field"></input>
                   </div>
               </div>
 
