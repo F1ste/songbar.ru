@@ -26,6 +26,12 @@
     color: {{$design->pagination_color ?? '#fff'}};
     font-size: {{$design->pagination_font_size ?? '14'}}px;
 }
+#pagination {
+  @if (!$design->is_pagination)
+    visibility: hidden;
+    pointer-events: none;
+  @endif
+}
 .page-item{
     color: inherit;
     font-size: inherit;
@@ -41,25 +47,32 @@
     text-decoration: none;
 }
 
+.table{
+  color: {{$design->search_results_font_color ?? '#fff'}};
+  background-color: {{$design->search_results_color ?? '#000'}};
+  border: 1px solid;
+  border-color: {{$design->search_results_border_color ?? '#A02EE0'}};
+  font-size: {{$design->search_font_size}};
+}
 </style>
 </head>
 <body class="">
 
 
-<div class="main_conteiner" style="font-family:{{$design->font_family ?? 'auto'}}; background:{{$design->color ?? '#000'}};">
+<div class="main_conteiner" style="font-family:{{$design->font_family ?? 'auto'}}; background:{{$design->bg_color ?? '#000'}};">
 	<div class="header">
         <div class="logo">
             <img src="{{$info->logo ?? asset('uploads/logo.png')}}">
         </div>
         <div class="menu">
             <a href="{{$info->button_href ?? '#'}}" class="btn_menu" style="text-decoration: none;">
-                <p style="background:{{$design->headbutton_font_color ?? "#000"}}; color:{{$design->headbutton_font_size ?? '#fff'}}; border-color:{{$design->headbutton_border_color ?? '#A02EE0'}};">
+                <p style="background:{{$design->header_btn_bg_color ?? "#000"}}; color:{{$design->header_btn_font_color ?? '#fff'}}; font-size:{{$design->header_btn_font_size ?? '#fff'}}px; border-color:{{$design->header_btn_border_color ?? '#A02EE0'}};">
                 {{$info->button_text ?? 'МЕНЮ'}}
                 </p>
             </a>
         </div>
         <div class="info">
-            <p style="color:{{$design->headcontact_font_color ?? '#fff'}};">
+            <p style="color:{{$design->header_contact_font_color ?? '#fff'}}; font-size: {{$design->header_contact_font_size ?? 14}}px;">
             {!! $info->contact ?? 'ул. Пушкина д. 5 <br> ПН-ВС с 18:00 до 5:00' !!}
             </p>
         </div>
@@ -69,7 +82,7 @@
 <div class="content">
 
 	<div class="serc_box" style="position: relative;">
-		<div class="serc_input" style="background:{{$design->search_color ?? '#000'}}; border-color:{{$design->search_border_color ?? '#A02EE0'}};">
+		<div class="serc_input" style="background:{{$design->bg_search_color ?? '#000'}}; border-color:{{$design->search_border_color ?? '#A02EE0'}};">
 			<div style="width: 100%;">
 				<input class="serth_input" id="search" type="text" name="" value="" placeholder="Поиск песен" style="font-size:{{$design->search_font_size ?? '14'}}px; color:{{$design->search_font_color ?? '#fff'}};">
 			</div>

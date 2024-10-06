@@ -37,21 +37,27 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 }
 
 th {
-   border-bottom: 1px solid #A02EE0;
+   border-bottom: 1px solid;
+   border-color: inherit;
    padding: 8px;
 }
 td {
     padding: 5px;
 }
+tr, tbody, thead {
+    border-color: inherit;
+}
 td:first-child, th:first-child{
-	 border-right: 1px solid #A02EE0;
+	 border-right: 1px solid;
+     border-color: inherit;
 }
 
 table{
 	margin-top: 28px;
 	width: 100%;
 	color: #ffffff;
-	border: 1px solid #A02EE0;
+	border: 1px solid;
+    border-color: #A02EE0;
 	border-radius: 8px;
 }
 

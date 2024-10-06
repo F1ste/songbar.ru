@@ -16,6 +16,7 @@ use App\Models\ProcessingStatus;
 use Faker\Factory as FakerFactory;
 use App\Http\Requests\FilterRequest;
 use App\Http\Filters\SongFilter;
+use Illuminate\Support\Facades\Storage;
 
 class CatalogController extends Controller
 {
@@ -31,9 +32,17 @@ class CatalogController extends Controller
         return view('admin.catalog.index', compact('catalogs'));
     }
 
-    public function preview() 
+    public function preview(Request $request) 
     {
-        return view('template');
+        $catalog_id = $request->catalog_id;
+        $design = Design::where('catalog_id', $catalog_id)->first();
+        $info = Info::where('catalog_id', $catalog_id)->first();
+ 
+        return view('template', [
+            'design' => $design,
+            'info' => $info,
+            'catalog_id' => $catalog_id
+        ]);
     }
 
     /**
@@ -85,7 +94,7 @@ class CatalogController extends Controller
     public function infoupdate(Request $request)
     {
         $request->validate([
-            'logo' => 'required|file|mimes:jpg,png,jpeg,gif,svg,pdf|max:2048',
+            'logo' => 'file|mimes:jpg,png,jpeg,gif,svg,pdf|max:2048',
         ]);
 
 
@@ -125,7 +134,7 @@ class CatalogController extends Controller
                 $path = storage_path('app/public/' . $filename);
                 file_put_contents($path, $result->getString());
                 // Возвращение Data URI и URL файла
-                $downloadUrl = asset('storage/' . $filename);
+                $downloadUrl = Storage::url($filename);
 
                 // Получение Data URI
                 $dataUri = $result->getDataUri();
@@ -160,10 +169,6 @@ class CatalogController extends Controller
         $catalog_id = $request->input('catalog_id');
 
         $design = Design::where('catalog_id', $catalog_id)->first();
-        if (!$design) {
-            $design = new Design();
-            $design->catalog_id = $catalog_id;
-        }
         $design->$fieldName = $fieldValue;
 
         $design->save();

@@ -19,7 +19,7 @@ return new class extends Migration
             $table->string('logo')->nullable();
             $table->string('contact')->nullable();            
             $table->boolean('ourlogo')->nullable();
-            $table->char('button_text', 255)->nullable();
+            $table->text('button_text')->nullable();
             $table->string('button_href')->nullable();
             $table->timestamps();
         });

@@ -179,7 +179,6 @@
 <!-- AdminLTE dashboard demo (This is only for demo purposes) -->
 <script src="{{ asset('admin/plugins/bootstrap-colorpicker/js/bootstrap-colorpicker.min.js') }}"></script>
 <script src="{{ asset('admin/plugins/bootstrap-switch/js/bootstrap-switch.min.js') }}"></script>
-<script src="{{ asset('admin/dist/js/pages/dashboard.js') }}"></script>
 <script>
     //switch
     $("input[data-bootstrap-switch]").each(function(){

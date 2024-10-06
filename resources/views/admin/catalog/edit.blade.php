@@ -122,7 +122,7 @@
                 <label>Фон: цвет</label>
 
                 <div id="bg" class="input-group my-colorpicker2">
-                  <input type="text" name="color" value="{{$design->color ?? '#000'}}" class="form-control update-field">
+                  <input type="text" name="bg_color" value="{{$design->bg_color ?? '#000'}}" class="form-control update-field">
 
                   <div class="input-group-append">
                     <span class="input-group-text"><i class="fas fa-square"></i></span>
@@ -136,7 +136,7 @@
                 <label>Пагинация</label>
                 <div class="input-group" style="justify-content: center">
                   <input id="is_pagination" type="checkbox" value="{{$design->is_pagination ?? true}}" class="update-field"
-                    name="pagination" {{ $design->is_pagination ? 'checked' : '' }} data-bootstrap-switch>
+                    name="is_pagination" {{ $design->is_pagination ? 'checked' : '' }} data-bootstrap-switch>
                 </div>
               </div>
             </div>
@@ -146,7 +146,7 @@
                 <label>Пагинация цвет</label>
 
                 <div id="pagination_color" class="input-group my-colorpicker2">
-                  <input type="text" name="pagination-color" value="{{$design->pagination_color ?? '#fff'}}"
+                  <input type="text" name="pagination_color" value="{{$design->pagination_color ?? '#fff'}}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -162,7 +162,7 @@
                 <label>Пагинация цвет активной страницы</label>
 
                 <div id="pagination_color_active" class="input-group my-colorpicker2">
-                  <input type="text" name="pagination-color" value="{{$design->pagination_color_active ?? '#A02EE0'}}"
+                  <input type="text" name="pagination_color_active" value="{{$design->pagination_color_active ?? '#A02EE0'}}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -176,7 +176,7 @@
               <!-- input -->
               <div class="form-group">
                 <label>Пагинация размер шрифта</label>
-                <input type="number" id="pagination_size" name="pagination-font-size" value="14" class="form-control update-field"></input>
+                <input type="number" id="pagination_size" name="pagination_font_size" value="{{$design->pagination_font_size}}" class="form-control update-field"></input>
               </div>
             </div>
           </div>
@@ -188,7 +188,7 @@
                 <label>Поисковик фон (цвет)</label>
 
                 <div id="search_bg" class="input-group my-colorpicker2">
-                  <input type="text" name="search-color" value="{{$design->search_color_bg ?? '#000'}}"
+                  <input type="text" name="bg_search_color" value="{{$design->bg_search_color ?? '#000'}}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -205,7 +205,7 @@
                 <label>Цвет границы</label>
 
                 <div id="search_border_color" class="input-group my-colorpicker2">
-                  <input type="text" name="search-border-color" value="{{$design->search_border_color ?? '#A02EE0'}}"
+                  <input type="text" name="search_border_color" value="{{$design->search_border_color ?? '#A02EE0'}}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -222,7 +222,7 @@
                 <label>Цвет шрифта</label>
 
                 <div id="search_font_color" class="input-group my-colorpicker2">
-                  <input type="text" name="search-font-color" value="{{$design->search_font_color ?? '#fff' }}"
+                  <input type="text" name="search_font_color" value="{{$design->search_font_color ?? '#fff' }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -236,7 +236,7 @@
               <!-- select -->
               <div class="form-group">
                 <label>Размер шрифта</label>
-                <input type="number" id="search_font_size" name="search-font-size" value="14" class="form-control update-field"></input>
+                <input type="number" id="search_font_size" name="search_font_size" value="{{$design->search_font_size}}" class="form-control update-field"></input>
               </div>
             </div>
           </div>
@@ -249,7 +249,7 @@
                 <label>Фон (цвет)</label>
 
                 <div id="search_results_bg" class="input-group my-colorpicker2">
-                  <input type="text" name="searchres-color" value="{{$design->searchres_color ?? '#000' }}"
+                  <input type="text" name="search_results_color" value="{{$design->search_results_color ?? '#000' }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -266,7 +266,7 @@
                 <label>Цвет границы</label>
 
                 <div id="search_results_border_color" class="input-group my-colorpicker2">
-                  <input type="text" name="searchres-border-color" value="{{$design->searchres_border_color ?? '#A02EE0' }}"
+                  <input type="text" name="search_results_border_color" value="{{$design->search_results_border_color ?? '#A02EE0' }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -283,7 +283,7 @@
                 <label>Цвет шрифта</label>
 
                 <div id="search_results_font_color" class="input-group my-colorpicker2">
-                  <input type="text" name="searchres-font-color" value="{{$design->searchres_font_color ?? '#fff' }}"
+                  <input type="text" name="search_results_font_color" value="{{$design->search_results_font_color ?? '#fff' }}"
                     class="form-control update-field">
 
                   <div class="input-group-append">
@@ -297,7 +297,7 @@
               <!-- input -->
               <div class="form-group">
                 <label>Размер шрифта</label>
-                <input id="search_results_font_size" type="number" name="searchres-font-size" value="16" class="form-control update-field"></input>
+                <input id="search_results_font_size" type="number" name="search_results_font_size" value="{{$design->search_results_font_size}}" class="form-control update-field"></input>
               </div>
             </div>
           </div>
@@ -313,7 +313,7 @@
                     <label>Цвет фона</label>
 
                     <div id="header_btn_bg" class="input-group my-colorpicker2">
-                      <input type="text" name="headbutton-font-color" value="{{$design->headbutton_bg_color ?? '#fff' }}"
+                      <input type="text" name="header_btn_bg_color" value="{{$design->header_btn_bg_color ?? '#fff' }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -330,7 +330,7 @@
                     <label>Цвет границы</label>
 
                     <div id="header_btn_border_color" class="input-group my-colorpicker2">
-                      <input type="text" name="headbutton-font-color" value="{{$design->headbutton_border_color ?? '#A02EE0' }}"
+                      <input type="text" name="header_btn_border_color" value="{{$design->header_btn_border_color ?? '#A02EE0' }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -347,7 +347,7 @@
                     <label>Цвет текста</label>
 
                     <div id="header_btn_font_color" class="input-group my-colorpicker2">
-                      <input type="text" name="headbutton-font-color" value="{{$design->headbutton_font_color ?? '#fff' }}"
+                      <input type="text" name="header_btn_font_color" value="{{$design->header_btn_font_color ?? '#fff' }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -362,7 +362,7 @@
                   <!-- input -->
                   <div class="form-group">
                     <label>Размер шрифта</label>
-                    <input id="header_btn_font_size" type="number" name="searchres-font-size" value="16" class="form-control update-field"></>
+                    <input id="header_btn_font_size" type="number" name="header_btn_font_size" value="{{$design->header_btn_font_size}}" class="form-control update-field"></>
                   </div>
               </div>
             </div>
@@ -377,7 +377,7 @@
                     <label>Цвет текста</label>
 
                     <div id="contact_font_color" class="input-group my-colorpicker2">
-                      <input type="text" name="headcontact-font-color" value="{{$design->headcontact_font_color ?? '#fff' }}"
+                      <input type="text" name="header_contact_font_color" value="{{$design->header_contact_font_color ?? '#fff' }}"
                         class="form-control update-field">
 
                       <div class="input-group-append">
@@ -392,7 +392,7 @@
                   <!-- input -->
                   <div class="form-group">
                     <label>Размер шрифта</label>
-                    <input type="number" id="contact_font_size" name="contact-font-size" value="14" class="form-control update-field"></input>
+                    <input type="number" id="contact_font_size" name="header_contact_font_size" value="{{$design->header_contact_font_size}}" class="form-control update-field"></input>
                   </div>
               </div>
 
@@ -405,18 +405,16 @@
           <div class="row">
             <form class="mt-3 col-md-12" id="ajaxForm" method="POST" enctype="multipart/form-data">
               @csrf
-              <input type="hidden" value="{{$catalog}}" name="catalog_id">
+              <input type="hidden" value="{{$catalog->id}}" name="catalog_id">
               <div class="row">
-                <div class="col-md-3">
+                <div class="col-md-6">
                   <div class="form-group">
                     <label>Логотип(в формате png, svg)</label>
                     <input type="file" name="logo" value="{{$info->logo}}" id="fileLogo" class="form-control">
-                    @if(1 == 1)
-            <div class="col-md-6">
-              <img id="imgLogo" src="/{{$info->logo}}" alt="">
-              <button type="button" id="clearButton" class="btn btn-block btn-danger" style="display:none;">Удалить</button>
-            </div>
-          @endif
+                    <div id="image_preview">
+                      <img id="imgLogo" src="{{$info->logo ? '/' . $info->logo : asset('uploads/logo.png')}}" alt="Превью логотипа">
+                      <button type="button" id="clearButton" class="btn btn-block btn-danger" style="display:none;">Удалить</button>
+                    </div>
                   </div>
                 </div>
                 <div class="col-md-5 offset-md-1">
@@ -437,7 +435,7 @@
                           placeholder="Текст" type="text">
                       </div>
                       <div class="col-md-6">
-                        <input id="header_btn_link" class="form-control" name="button_href" value="{{$info->button_text ?? ''}}"
+                        <input id="header_btn_link" class="form-control" name="button_href" value="{{$info->button_href ?? ''}}"
                           placeholder="Ссылка" type="text">
                       </div>
                     </div>
@@ -490,7 +488,7 @@
     function updateIframeDesign(color, element, styleProperty) {
         const el = iframeDoc.querySelector(`${element}`);
         
-        if (!el); 
+        if (!el) return; 
         el.style[styleProperty] = color;
     }
 
@@ -514,6 +512,8 @@
 
     function updatePreviewImage (value, element) {
       const el = iframeDoc.querySelector(`${element}`);
+      const preview = document.querySelector('#imgLogo');
+      preview.src = value;
       el.src = value;
     }
 
@@ -526,7 +526,7 @@
       };
   }
 
-  function sanitizeHTML(input) {
+    function sanitizeHTML(input) {
     const allowedTags = ['b', 'i', 'br', 'strong', 'em', 'u'];
     const tempDiv = document.createElement('div');
     tempDiv.innerHTML = input;
@@ -550,82 +550,91 @@
     return tempDiv.innerHTML;
 }
 
-    document.addEventListener('DOMContentLoaded', function() {
-        loadPreviewPage('{{ route(name: 'catalog.preview') }}'); 
+    function changeColor (id, color) {
+      switch (id) {
+          case 'bg':
+              updateIframeDesign(color.toString(), '.main_conteiner', 'backgroundColor');
+              break;
+          case 'pagination_color':
+              updateIframeDesign(color.toString(), '.pagination', 'color');
+              break;
+          case 'pagination_color_active':
+              updateIframeDesign(color.toString(), '.page-item.active', 'color');
+              break;
+          case 'search_bg':
+              updateIframeDesign(color.toString(), '.serc_input', 'backgroundColor');
+              break;
+          case 'search_border_color':
+              updateIframeDesign(color.toString(), '.serc_input', 'borderColor');
+              break;
+          case 'search_font_color':
+              updateIframeDesign(color.toString(), '.serth_input', 'color');
+              break;
+          case 'search_results_bg':
+              updateIframeDesign(color.toString(), '.table', 'backgroundColor');
+              break;
+          case 'search_results_border_color':
+              updateIframeDesign(color.toString(), '.table', 'borderColor');
+              break;
+          case 'search_results_font_color':
+              updateIframeDesign(color.toString(), '.table', 'color');
+              break;
+          case 'header_btn_bg':
+              updateIframeDesign(color.toString(), '.menu p', 'backgroundColor');
+              break;
+          case 'header_btn_border_color':
+              updateIframeDesign(color.toString(), '.menu p', 'borderColor');
+              break;
+          case 'header_btn_font_color':
+              updateIframeDesign(color.toString(), '.menu p', 'color');
+              break;
+          case 'contact_font_color':
+              updateIframeDesign(color.toString(), '.info p', 'color');
+              break;
+          default:
+              console.log(`Неизвестный идентификатор: ${id}`);
+      }
+    }
 
-        $('.my-colorpicker2').on('colorpickerChange', debounce(function(event) {
-          switch (this.id) {
-            case 'bg':
-                updateIframeDesign(event.color.toString(), '.main_conteiner', 'backgroundColor');
+    function changeFontSize(id, value) {
+      switch (id) {
+            case 'pagination_size':
+                updateIframeDesign(value, '.pagination', 'fontSize');
                 break;
-            case 'pagination_color':
-                updateIframeDesign(event.color.toString(), '.pagination', 'color');
+            case 'search_font_size':
+              updateIframeDesign(value, '.serth_input', 'fontSize');
                 break;
-            case 'pagination_color_active':
-                updateIframeDesign(event.color.toString(), '.page-item.active', 'color');
+            case 'search_results_font_size':
+              updateIframeDesign(value, '.table', 'fontSize');
                 break;
-            case 'search_bg':
-                updateIframeDesign(event.color.toString(), '.serc_input', 'backgroundColor');
+            case 'header_btn_font_size':
+              updateIframeDesign(value, '.menu p', 'fontSize');
                 break;
-            case 'search_border_color':
-                updateIframeDesign(event.color.toString(), '.serc_input', 'borderColor');
-                break;
-            case 'search_font_color':
-                updateIframeDesign(event.color.toString(), '.serth_input', 'color');
-                break;
-            case 'search_results_bg':
-                updateIframeDesign(event.color.toString(), '.table', 'backgroundColor');
-                break;
-            case 'search_results_border_color':
-                updateIframeDesign(event.color.toString(), '.table', 'borderColor');
-                updateIframeDesign(event.color.toString(), '.table th', 'borderColor');
-                break;
-            case 'search_results_font_color':
-                updateIframeDesign(event.color.toString(), '.table', 'color');
-                break;
-            case 'header_btn_bg':
-                updateIframeDesign(event.color.toString(), '.menu p', 'backgroundColor');
-                break;
-            case 'header_btn_border_color':
-                updateIframeDesign(event.color.toString(), '.menu p', 'borderColor');
-                break;
-            case 'header_btn_font_color':
-                updateIframeDesign(event.color.toString(), '.menu p', 'color');
-                break;
-            case 'contact_font_color':
-                updateIframeDesign(event.color.toString(), '.info p', 'color');
+            case 'contact_font_size':
+              updateIframeDesign(value, '.info', 'fontSize');
                 break;
             default:
-                console.log(`Неизвестный идентификатор: ${this.id}`);
+                console.log('Неизвестный селект');
         }
-          
-          $('#'+this.id +' .fa-square').css('color', event.color.toString());
-        }, 300));
+    }
 
-        $('#pagination_size, #search_font_size, #search_results_font_size, #header_btn_font_size, #contact_font_size').on('change', function() {
-          const selectedValue = $(this).val();
-          const selectId = $(this).attr('id');
-          switch (selectId) {
-              case 'pagination_size':
-                  updateIframeDesign(selectedValue, '.pagination', 'fontSize');
-                  break;
-              case 'search_font_size':
-                updateIframeDesign(selectedValue, '.serth_input', 'fontSize');
-                  break;
-              case 'search_results_font_size':
-                updateIframeDesign(selectedValue, '.table', 'fontSize');
-                  break;
-              case 'header_btn_font_size':
-                updateIframeDesign(selectedValue, '.menu p', 'fontSize');
-                  break;
-              case 'contact_font_size':
-                updateIframeDesign(selectedValue, '.info', 'fontSize');
-                  break;
-              default:
-                  console.log('Неизвестный селект');
-          }
-        });
-        $('#header_btn_text, #contact_info_text').on('change', function() {
+    
+    document.addEventListener('DOMContentLoaded', function() {
+        loadPreviewPage('{{ route(name: 'catalog.preview') }}?catalog_id={{$catalog->id}}'); 
+
+      $('.my-colorpicker2').on('colorpickerChange', debounce(function(event) {
+        changeColor(this.id, event.color)
+        
+        $('#'+this.id +' .fa-square').css('color', event.color.toString());
+      }, 300));
+
+      $('#pagination_size, #search_font_size, #search_results_font_size, #header_btn_font_size, #contact_font_size').on('change', function() {
+        const selectedValue = $(this).val();
+        const selectId = $(this).attr('id');
+        changeFontSize(selectId, selectedValue);
+      });
+
+      $('#header_btn_text, #contact_info_text').on('change', function() {
           const newValue = $(this).val();
           const inputId = $(this).attr('id');
           
@@ -643,6 +652,23 @@
         
       $("input[data-bootstrap-switch]").on('switchChange.bootstrapSwitch', function(event, state) {          
           updatePaginationState(state)
+          
+          $.ajax({
+            url: '/admin_panel/updateField',
+            method: 'POST',
+            data: {
+              fieldName: 'is_pagination',
+              fieldValue: state ? 1 : 0,
+              catalog_id: {{$catalog->id}},
+              _token: $('meta[name="csrf-token"]').attr('content')
+            },
+            success: function (response) {
+              console.log(response);
+            },
+            error: function (xhr, status, error) {
+              console.error(xhr.responseText);
+            }
+          });
       });
 
       document.getElementById('fileLogo').addEventListener('change', function(event) {
@@ -668,7 +694,81 @@
       fileLogo.value = '';
       this.style.display = 'none';
     });
+
+    setTimeout(()=>{
+      $('.my-colorpicker2').each(function() {
+        const color = $(this).data('color')._original.color;
+        
+        changeColor(this.id, color)
+        $('#'+this.id +' .fa-square').css('color', color);
+    });
+    
+      $('#pagination_size, #search_font_size, #search_results_font_size, #header_btn_font_size, #contact_font_size').each(function() {
+          const selectedValue = $(this).val();
+          const selectId = $(this).attr('id');
+          changeFontSize(selectId, selectedValue);
+        });
+    },1000)
+    
+    $('.update-field').change(debounce(function () {
+      const fieldName = $(this).attr('name');
+      let fieldValue;
+
+      if ($(this).attr('type') === 'checkbox') {
+        fieldValue = $(this).is(':checked') ? 1 : 0;
+      } else {
+        fieldValue = $(this).val();
+      }
+
+      
+      $.ajax({
+        url: '/admin_panel/updateField',
+        method: 'POST',
+        data: {
+          fieldName: fieldName,
+          fieldValue: fieldValue,
+          catalog_id: {{$catalog->id}},
+          _token: $('meta[name="csrf-token"]').attr('content')
+        },
+        success: function (response) {
+          console.log(response);
+        },
+        error: function (xhr, status, error) {
+          console.error(xhr.responseText);
+        }
+      });
+    }, 300));
+
+  $('#ajaxForm').on('submit', function (event) {
+      event.preventDefault();
+
+      let formData = new FormData(this);
+      formData.append('ourlogo', $('#ourlogo').is(':checked') ? 1 : 0);
+
+      $.ajax({
+        url: "{{ route('infoupdate') }}",
+        type: "POST",
+        data: formData,
+        processData: false,
+        contentType: false,
+        success: function (response) {
+          $('#response').html(`
+            <br><br>
+            <a class="btn btn-info mt-3" id="download-link" href="${response.download_link}" download="qr-code.png">Скачать QR</a>
+            <br><br>
+            <img src="${response.qr_code}" alt="QR Code">
+            <br><br>
+            <a target="_blank" href="${response.href}">${response.href}</a>
+          `);
+        },
+        error: function (response) {
+          //$('#response').html('An error occurred.');
+        }
+      });
+    });
   });
+
+  
 </script>
 
 <script>
