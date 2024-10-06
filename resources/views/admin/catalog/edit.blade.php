@@ -407,7 +407,7 @@
               @csrf
               <input type="hidden" value="{{$catalog->id}}" name="catalog_id">
               <div class="row">
-                <div class="col-md-6">
+                <div class="col-md-3">
                   <div class="form-group">
                     <label>Логотип(в формате png, svg)</label>
                     <input type="file" name="logo" value="{{$info->logo}}" id="fileLogo" class="form-control">
@@ -611,7 +611,7 @@
               updateIframeDesign(value, '.menu p', 'fontSize');
                 break;
             case 'contact_font_size':
-              updateIframeDesign(value, '.info', 'fontSize');
+              updateIframeDesign(value, '.info p', 'fontSize');
                 break;
             default:
                 console.log('Неизвестный селект');
