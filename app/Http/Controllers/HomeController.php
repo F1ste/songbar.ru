@@ -39,21 +39,7 @@ class HomeController extends Controller
                 $view = $design->pagination ? 'search_results' : 'search_results_infinite';             
                
 
-                if ($request->ajax()) {
-                    $query = $request->input('query');
-                    $results = Song::where('title', 'LIKE', "%{$query}%")
-                    ->where('catalog_id', $catalog->id)
-                    ->paginate(20);                    
-            
-                    return response()->json([
-                        'data' => view('search_results', compact('results'))->render(),
-                        'pagination' => (string) $results->links()
-                    ]);
-                }
-
-;
-                $results = Song::where('catalog_id', $catalog->id)->paginate(20);
-                return view('template',compact('design','info','results','view'));
+                return view('template',compact('design','info','view'));
             }else{
                 return view('welcome');
             }            
