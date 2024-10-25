@@ -25,7 +25,10 @@ Route::get('/home', function(){
 Route::get('/songs/fetch', [CatalogController::class, 'fetchSongs'])->name('songs.fetch');
 Route::get('/song-search', [CatalogController::class, 'fetchSongs'])->name('songs.search');
 
-Route::post('/payment/success', [PaymentController::class, 'resultPay'])->name('payment.successs');
+Route::post('/payment/result', [PaymentController::class, 'resultPay'])->name('payment.result');
+
+Route::get('/payment/success', [PaymentController::class, 'successPay'])->name('payment.success');
+Route::get('/payment/fail', [PaymentController::class, 'failPay'])->name('payment.fail');
 
 Route::middleware(['auth'])->prefix('admin_panel')->group(function () {
     Route::post('/order/create', [App\Http\Controllers\Admin\PaymentController::class, 'pay'])->name('order.create');

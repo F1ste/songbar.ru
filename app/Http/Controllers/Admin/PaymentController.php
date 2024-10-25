@@ -38,10 +38,14 @@ class PaymentController extends Controller
         $signatureValue = PaymentServiceHelper::getHashValue($params);
 
         if (strtolower($signatureValue) !== strtolower($request->SignatureValue)) {
-            return null;
+            return redirect()->route('payment.fail');
         }
 
         $order = Order::find($request->InvId);
+
+        if ($order->status === 'success') {
+            return redirect()->route('payment.fail');
+        }
 
         $order->update(['status' => 'success']);
 
@@ -71,5 +75,15 @@ class PaymentController extends Controller
         }
 
         return 'OK'.$request->InvId;
+    }
+
+    public function successPay() {
+        
+        return view('success_payment');
+    }
+
+    public function failPay() {
+        
+        return view('fail_payment');
     }
 }

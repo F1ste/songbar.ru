@@ -1,15 +1,10 @@
-@extends('layouts.app')
-
 @section('content')
 <div class="container mt-5">
     <div class="row justify-content-center">
         <div class="col-md-8">
-            <div class="card text-center">
-                <div class="card-body">
-                    <h1 class="display-4 text-muted">Каталог временно недоступен</h1>
-                    <p class="lead">Этот каталог еще не опубликован. Пожалуйста, вернитесь позже.</p>
-                    <a href="{{ url('/') }}" class="btn btn-primary mt-3">На главную</a>
-                </div>
+            <div class="card text-center bg-dark text-white">
+                <h1 class="display-6">Этот каталог еще не опубликован. Пожалуйста, вернитесь позже.</h1>
+                <a href="{{ route('template') }}" class="btn btn-light mt-3">На главную</a>
             </div>
         </div>
     </div>
