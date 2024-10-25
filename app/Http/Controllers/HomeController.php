@@ -35,7 +35,7 @@ class HomeController extends Controller
             $catalog_id = $catalog->id;
 
             if(!$catalog->is_published) {
-                return view('welcome');
+                return view('unpuplished');
             }
                 
             if(isset($catalog_id)){
@@ -57,6 +57,7 @@ class HomeController extends Controller
             }
             
             return view('welcome');
+            
         } else {
             return view('welcome');
         }
