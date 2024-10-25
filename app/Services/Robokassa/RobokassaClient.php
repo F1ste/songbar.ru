@@ -11,8 +11,8 @@ class RobokassaClient implements ClientContract
         $merchantLogin = config('robokassa.login');
         $body['OutSum'] = strval($body['OutSum']);
         $params = ['MerchantLogin' => $merchantLogin, 'OutSum' => $body['OutSum'], 'InvId' => $body['InvId'], 'password' => config('robokassa.test_password1')];
-        
-        $signatureValue = PaymentServiceHelper::getHashValue($params);
+
+        $signatureValue = PaymentServiceHelper::getHashValue($params, $merchantLogin);
 
         $response = Http::withHeaders(['Content-Type' => 'application/x-www-form-urlencoded'])->asForm()->post(
             config('robokassa.url'), 

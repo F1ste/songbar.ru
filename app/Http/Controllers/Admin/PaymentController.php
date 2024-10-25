@@ -33,7 +33,7 @@ class PaymentController extends Controller
     }
 
     public function resultPay(SuccessPayRequest $request){
-        $params = ['MerchantLogin' => config('robokassa.login'), 'OutSum' => $request->OutSum, 'InvId' => $request->InvId, 'password' => config('robokassa.test_password1')];
+        $params = ['OutSum' => $request->OutSum, 'InvId' => $request->InvId, 'password' => config('robokassa.test_password2')];
 
         $signatureValue = PaymentServiceHelper::getHashValue($params);
 
