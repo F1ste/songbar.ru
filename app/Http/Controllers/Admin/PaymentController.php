@@ -37,7 +37,7 @@ class PaymentController extends Controller
 
         $signatureValue = PaymentServiceHelper::getHashValue($params);
 
-        if ($signatureValue !== $request->SignatureValue) {
+        if (strtolower($signatureValue) !== strtolower($request->SignatureValue)) {
             return null;
         }
 
