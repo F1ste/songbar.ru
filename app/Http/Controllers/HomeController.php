@@ -26,14 +26,18 @@ class HomeController extends Controller
      */
     public function index(Request $request)
     {
-        $host = $request->getHost(); // Получаем хост из запроса
-        $parts = explode('.', $host); // Разбиваем хост на части
+        $host = $request->getHost();
+        $parts = explode('.', $host);
 
-        // Проверяем наличие поддомена третьего уровня
-        if (count($parts) === 3) { // "sub.subdomain.com" имеет 3 части
-            $subdomain = $parts[0]; // Получаем поддомен третьего уровня
+        if (count($parts) === 3) {
+            $subdomain = $parts[0];
             $catalog = Catalog::where('address', $subdomain)->first();
             $catalog_id = $catalog->id;
+
+            if(!$catalog->is_published) {
+                return view('welcome');
+            }
+                
             if(isset($catalog_id)){
                 $design = Design::where('catalog_id', $catalog_id)->first();
                 $info = Info::where('catalog_id', $catalog_id)->first();   
@@ -50,9 +54,9 @@ class HomeController extends Controller
                 }
                 
                 return view('template',compact('design','info', 'catalog_id', 'head_script', 'body_script'));
-            } else{
-                return view('welcome');
-            }            
+            }
+            
+            return view('welcome');
         } else {
             return view('welcome');
         }
