@@ -25,10 +25,9 @@
 </div>
 <!-- /.content-header -->
 @php
-$isUserAdmin = auth()->user()->hasRole('admin');
+$isAllRights = auth()->user()->hasAnyRole(['admin', 'vip']);
 $isUserLite = auth()->user()->hasRole('lite') || auth()->user()->roles->isEmpty();
 $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEmpty();
-$isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
 @endphp
 
 
@@ -116,7 +115,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
         </div>
         <div class="tab-pane fade position-relative" id="custom-content-below-profile" role="tabpanel"
           aria-labelledby="custom-content-below-profile-tab">
-          @if ($isUserLite)
+          @if ($isUserLite && !$isAllRights)
           <div class="banned position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
             <div class="text-white text-center">
                 <h4>Для редактирования перейдите на тариф "Medium"</h4>
@@ -130,7 +129,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
               <div class="form-group">
                 <label>Шрифт</label>
                 <select id="fontFamily" name="font-family" class="form-control update-field" 
-                @if ($isUserLite)
+                @if ($isUserLite && !$isAllRights)
                   disabled
                 @endif
                 >
@@ -150,7 +149,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
 
                 <div id="bg" class="input-group my-colorpicker2">
                   <input type="text" name="bg_color" value="{{$design->bg_color ?? '#000'}}" class="form-control update-field"
-                  @if ($isUserLite)
+                  @if ($isUserLite && !$isAllRights)
                     disabled
                   @endif
                   >
@@ -168,7 +167,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div class="input-group" style="justify-content: center">
                   <input id="is_pagination" type="checkbox" value="{{$design->is_pagination ?? true}}" class="update-field"
                     name="is_pagination" {{ $design->is_pagination ? 'checked' : '' }} data-bootstrap-switch
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -183,7 +182,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="pagination_color" class="input-group my-colorpicker2">
                   <input type="text" name="pagination_color" value="{{$design->pagination_color ?? '#fff'}}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -203,7 +202,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="pagination_color_active" class="input-group my-colorpicker2">
                   <input type="text" name="pagination_color_active" value="{{$design->pagination_color_active ?? '#A02EE0'}}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -220,7 +219,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
               <div class="form-group">
                 <label>Пагинация размер шрифта</label>
                 <input type="number" id="pagination_size" name="pagination_font_size" value="{{$design->pagination_font_size ?? '14'}}" class="form-control update-field"
-                  @if ($isUserLite)
+                  @if ($isUserLite && !$isAllRights)
                     disabled
                   @endif
                 ></input>
@@ -237,7 +236,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="search_bg" class="input-group my-colorpicker2">
                   <input type="text" name="bg_search_color" value="{{$design->bg_search_color ?? '#000'}}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -258,7 +257,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="search_border_color" class="input-group my-colorpicker2">
                   <input type="text" name="search_border_color" value="{{$design->search_border_color ?? '#A02EE0'}}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -279,7 +278,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="search_font_color" class="input-group my-colorpicker2">
                   <input type="text" name="search_font_color" value="{{$design->search_font_color ?? '#fff' }}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -296,7 +295,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
               <div class="form-group">
                 <label>Размер шрифта</label>
                 <input type="number" id="search_font_size" name="search_font_size" value="{{$design->search_font_size ?? '14'}}" class="form-control update-field"
-                  @if ($isUserLite)
+                  @if ($isUserLite && !$isAllRights)
                     disabled
                   @endif
                 ></input>
@@ -314,7 +313,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="search_results_bg" class="input-group my-colorpicker2">
                   <input type="text" name="search_results_color" value="{{$design->search_results_color ?? '#000' }}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -335,7 +334,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="search_results_border_color" class="input-group my-colorpicker2">
                   <input type="text" name="search_results_border_color" value="{{$design->search_results_border_color ?? '#A02EE0' }}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -356,7 +355,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div id="search_results_font_color" class="input-group my-colorpicker2">
                   <input type="text" name="search_results_font_color" value="{{$design->search_results_font_color ?? '#fff' }}"
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     >
@@ -378,7 +377,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 name="search_results_font_size" 
                 value="{{$design->search_results_font_size ?? '16'}}" 
                 class="form-control update-field"
-                @if ($isUserLite)
+                @if ($isUserLite && !$isAllRights)
                   disabled
                 @endif
                 ></input>
@@ -399,7 +398,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                     <div id="header_btn_bg" class="input-group my-colorpicker2">
                       <input type="text" name="header_btn_bg_color" value="{{$design->header_btn_bg_color ?? '#000' }}"
                         class="form-control update-field"
-                        @if ($isUserLite)
+                        @if ($isUserLite && !$isAllRights)
                           disabled
                         @endif
                         >
@@ -420,7 +419,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                     <div id="header_btn_border_color" class="input-group my-colorpicker2">
                       <input type="text" name="header_btn_border_color" value="{{$design->header_btn_border_color ?? '#A02EE0' }}"
                         class="form-control update-field"
-                        @if ($isUserLite)
+                        @if ($isUserLite && !$isAllRights)
                           disabled
                         @endif
                         >
@@ -441,7 +440,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                     <div id="header_btn_font_color" class="input-group my-colorpicker2">
                       <input type="text" name="header_btn_font_color" value="{{$design->header_btn_font_color ?? '#fff' }}"
                         class="form-control update-field"
-                        @if ($isUserLite)
+                        @if ($isUserLite && !$isAllRights)
                           disabled
                         @endif
                         >
@@ -464,7 +463,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                     name="header_btn_font_size" 
                     value="{{$design->header_btn_font_size ?? '16'}}" 
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     ></>
@@ -484,7 +483,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                     <div id="contact_font_color" class="input-group my-colorpicker2">
                       <input type="text" name="header_contact_font_color" value="{{$design->header_contact_font_color ?? '#fff' }}"
                         class="form-control update-field"
-                        @if ($isUserLite)
+                        @if ($isUserLite && !$isAllRights)
                           disabled
                         @endif
                         >
@@ -507,7 +506,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                     name="header_contact_font_size" 
                     value="{{$design->header_contact_font_size ?? '14'}}" 
                     class="form-control update-field"
-                    @if ($isUserLite)
+                    @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
                     ></input>
@@ -537,7 +536,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 </div>
               </div>
               <div class="position-relative">
-              @if ($isUserLite)
+              @if ($isUserLite && !$isAllRights)
               <div class="banned position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                 <div class="text-white text-center">
                     <h4>Для редактирования перейдите на тариф "Medium"</h4>
@@ -549,7 +548,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                       <label>Контактная информация</label>
                       <textarea class="form-control" rows="5" name="contact" value="{!! $info->contact ?? 'ул. Пушкина д. 5 <br> ПН-ВС с 18:00 до 5:00' !!}"
                         id="contact_info_text"
-                        @if ($isUserLite)
+                        @if ($isUserLite && !$isAllRights)
                           disabled
                         @endif
                         >{!! $info->contact ?? 'ул. Пушкина д. 5 <br> ПН-ВС с 18:00 до 5:00' !!}</textarea>
@@ -563,7 +562,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                         <div class="col-md-6">
                           <input id="header_btn_text" class="form-control" name="button_text" value="{{$info->button_text ?? 'Меню' }}"
                             placeholder="Текст" type="text"
-                            @if ($isUserLite)
+                            @if ($isUserLite && !$isAllRights)
                               disabled
                             @endif
                             >
@@ -571,7 +570,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                         <div class="col-md-6">
                           <input id="header_btn_link" class="form-control" name="button_href" value="{{$info->button_href ?? ''}}"
                             placeholder="Ссылка" type="text"
-                            @if ($isUserLite)
+                            @if ($isUserLite && !$isAllRights)
                               disabled
                             @endif
                             >
@@ -585,7 +584,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                       <div class="row">
                         <input id="ourlogo" type="checkbox" name="ourlogo" value="{{$info->ourlogo ?? true}}"
                         {{ $info->ourlogo ? 'checked' : '' }} data-bootstrap-switch
-                        @if ($isUserLite)
+                        @if ($isUserLite && !$isAllRights)
                           disabled
                         @endif
                         >
@@ -673,7 +672,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
           <form action="{{ route('catalog.editSubdomain') }}" method="POST">
             <h4 class="mt-3 text-center">Домен</h4>
             <div class="position-relative">
-              @if ($isUserLite)
+              @if ($isUserLite && !$isAllRights)
                 <div class="banned position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <div class="text-white text-center">
                       <h4>Для редактирования перейдите на тариф "Medium"</h4>
@@ -696,7 +695,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                               placeholder="Введите поддомен" 
                               type="text"
                               aria-describedby="address"
-                              @if ($isUserLite) disabled @endif
+                              @if ($isUserLite && !$isAllRights) disabled @endif
                           >
                           <div class="input-group-append">
                               <span class="input-group-text">.songbar.ru</span>
@@ -710,7 +709,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
               </div>
             </div>
             <div class="position-relative mt-2">
-              @if ($isUserLite || $isUserMedium)
+              @if (($isUserLite || $isUserMedium) && !$isAllRights )
                 <div class="banned position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <div class="text-white text-center">
                       <h4>Для редактирования перейдите на тариф "Vip"</h4>
@@ -724,7 +723,7 @@ $isUserVip = auth()->user()->hasRole('vip') || auth()->user()->roles->isEmpty();
                 <div class="d-flex align-items-center">
                   <p class="mb-0">Запись добавлена ТХ</p>
                   <button class="btn btn-secondary d-block ml-5" 
-                  @if ($isUserLite || $isUserMedium) 
+                  @if (($isUserLite || $isUserMedium) && !$isAllRights) 
                   disabled
                   @endif 
                   type="button" role="tab">Проверить</button>

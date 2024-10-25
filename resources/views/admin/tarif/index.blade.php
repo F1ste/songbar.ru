@@ -37,59 +37,77 @@
                   </li>                               
                 </ul>
               </div>
+              @php
+                  $allTarifs = [
+                      ['name' => 'Lite', 'price' => 1, 'description' => 'Lite/Месяц'],
+                      ['name' => 'Medium', 'price' => 10000, 'description' => 'Medium/Месяц'],
+                      ['name' => 'VIP', 'price' => 15000, 'description' => 'Vip/Месяц']
+                  ];
+              @endphp
+
               <div class="card-body">
-                <div class="tab-content" id="custom-tabs-one-tabContent">
-                  <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
-                     <div class="col-md-12">
-                     <div class="row">
-                        <div class="order">
-                            <p class="title">Lite</p>
-                            <p class="priсe">5000 рублей/мес</p>
-                            <form action="{{ route('order.create') }}" method="post">
-                              @csrf
-                              <input type="hidden" name="amount" value="1.51">
-                              <input type="hidden" name="description" value="Lite/Месяц">
-                              <button type="submit" class="btn btn-block btn-warning btn-sm">Оплатить</button>
-                            </form>
-                           
-                        </div>
-                        <div class="order">
-                            <p class="title">Medium</p>
-                            <p class="priсe">10000 рублей/мес</p>
-                            <button type="button" class="btn btn-block btn-warning btn-sm">Активен до 29.03.2024</button>
-                        </div>                        
-                        <div class="order">
-                            <p class="title">VIP</p>
-                            <p class="priсe">15000 рублей/мес</p>
-                            <button type="button" class="btn btn-block btn-warning btn-sm">Выбрать</button>
-                        </div>
-                        </div>
-                     </div>
-                     <p class="description">При оплате за год, 1 месяц обслуживания БЕСПЛАТНО</p>
+                  <div class="tab-content" id="custom-tabs-one-tabContent">
+                      <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">
+                          <div class="col-md-12">
+                              <div class="row">
+                                  @foreach ($allTarifs as $tarif)
+                                      @php
+                                          $userTarif = $activeTarifs->firstWhere('tarif_name', strtolower($tarif['name']));
+                                      @endphp
+
+                                      <div class="order">
+                                          <p class="title">{{ $tarif['name'] }}</p>
+                                          <p class="priсe">{{ $tarif['price'] }} рублей/мес</p>
+                                          @if ($userTarif)
+                                              <button type="button" class="btn btn-block btn-secondary btn-sm" disabled>
+                                                  Активен до {{ \Carbon\Carbon::parse($userTarif->tarif_end)->format('d.m.Y') }}
+                                              </button>
+                                          @else
+                                              <form action="{{ route('order.create') }}" method="post">
+                                                  @csrf
+                                                  <input type="hidden" name="amount" value="{{ $tarif['price'] }}">
+                                                  <input type="hidden" name="description" value="{{ $tarif['description'] }}">
+                                                  <button type="submit" class="btn btn-block btn-warning btn-sm">Оплатить</button>
+                                              </form>
+                                          @endif
+                                      </div>
+                                  @endforeach
+                              </div>
+                          </div>
+                          <p class="description">При оплате за год, 1 месяц обслуживания БЕСПЛАТНО</p>
+                      </div>
+
+                      <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
+                          <div class="col-md-12">
+                              <div class="row">
+                                  @foreach ($allTarifs as $tarif)
+                                      @php
+                                          $userTarif = $activeTarifs->firstWhere('tarif_name', strtolower($tarif['name']));
+                                      @endphp
+
+                                      <div class="order">
+                                          <p class="title">{{ $tarif['name'] }}</p>
+                                          <p class="priсe">{{ $tarif['price'] }} рублей/мес</p>
+
+                                          @if ($userTarif)
+                                              <button type="button" class="btn btn-block btn-secondary btn-sm" disabled>
+                                                  Активен до {{ \Carbon\Carbon::parse($userTarif->tarif_end)->format('d.m.Y') }}
+                                              </button>
+                                          @else
+                                              <form action="{{ route('order.create') }}" method="post">
+                                                  @csrf
+                                                  <input type="hidden" name="amount" value="{{ $tarif['price'] * 12 }}">
+                                                  <input type="hidden" name="description" value="{{ $tarif['description'] }}/12Месяц">
+                                                  <button type="submit" class="btn btn-block btn-warning btn-sm">Оплатить</button>
+                                              </form>
+                                          @endif
+                                      </div>
+                                  @endforeach
+                              </div>
+                          </div>
+                          <p class="description">При оплате за год, 1 месяц обслуживания БЕСПЛАТНО</p>
+                      </div>
                   </div>
-                  <div class="tab-pane fade" id="custom-tabs-one-profile" role="tabpanel" aria-labelledby="custom-tabs-one-profile-tab">
-                  <div class="col-md-12">
-                     <div class="row">
-                        <div class="order">
-                            <p class="title">Lite</p>
-                            <p class="priсe">5000 рублей/мес</p>
-                            <a type="button" href="" class="btn btn-block btn-warning btn-sm">Оплатить</a>
-                        </div>
-                        <div class="order">
-                            <p class="title">Medium</p>
-                            <p class="priсe">10000 рублей/мес</p>
-                            <button type="button" class="btn btn-block btn-warning btn-sm">Активен до 29.03.2024</button>
-                        </div>                        
-                        <div class="order">
-                            <p class="title">VIP</p>
-                            <p class="priсe">15000 рублей/мес</p>
-                            <button type="button" class="btn btn-block btn-warning btn-sm">Выбрать</button>
-                        </div>
-                        </div>
-                     </div>
-                     <p class="description">При оплате за год, 1 месяц обслуживания БЕСПЛАТНО</p>
-                  </div>                  
-                </div>
               </div>
               <!-- /.card -->
             </div>
