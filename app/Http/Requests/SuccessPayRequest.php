@@ -14,9 +14,9 @@ class SuccessPayRequest extends FormRequest
     public function rules(): array
     {
         return [
-            'OutSum' => 'required|string',
-            'InvId' => 'required|numeric',
-            'SignatureValue' => 'required|numeric',
+            'OutSum' => 'required|numeric',
+            'InvId' => 'required|int',
+            'SignatureValue' => 'required|string',
         ];
     }
 }
