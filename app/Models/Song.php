@@ -5,11 +5,12 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use App\Models\Traits\Filterable;
+use App\Models\Traits\ViewsIncrementTrait;
 
 class Song extends Model
 {
     use HasFactory;
-    use Filterable;
+    use Filterable, ViewsIncrementTrait;
 
     protected $fillable = ['catalog_id', 'title', 'singer'];
 

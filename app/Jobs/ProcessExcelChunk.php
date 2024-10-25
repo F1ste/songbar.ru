@@ -9,9 +9,7 @@ use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Queue\SerializesModels;
 use PhpOffice\PhpSpreadsheet\IOFactory;
 use App\Models\Song;
-use App\Models\CatalogSong;
 use App\Models\ProcessingStatus;
-use Illuminate\Support\Facades\Log;
 
 class ProcessExcelChunk implements ShouldQueue
 {
@@ -73,6 +71,5 @@ class ProcessExcelChunk implements ShouldQueue
             ProcessExcelChunk::dispatch($this->filePath, $this->catalogId, $endRow + 1);
         }
     }
-    
     
 }

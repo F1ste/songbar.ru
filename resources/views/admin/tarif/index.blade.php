@@ -47,10 +47,10 @@
                             <p class="priсe">5000 рублей/мес</p>
                             <form action="{{ route('order.create') }}" method="post">
                               @csrf
-                              <input type="hidden" name="amount" value="1">
+                              <input type="hidden" name="amount" value="1.51">
                               <input type="hidden" name="description" value="Lite/Месяц">
                               <button type="submit" class="btn btn-block btn-warning btn-sm">Оплатить</button>
-                          </form>
+                            </form>
                            
                         </div>
                         <div class="order">

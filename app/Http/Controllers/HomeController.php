@@ -5,7 +5,7 @@ use App\Models\Catalog;
 use Illuminate\Http\Request;
 use App\Models\Design;
 use App\Models\Info;
-use App\Models\Song;
+use Illuminate\Support\Facades\Cookie;
 
 class HomeController extends Controller
 {
@@ -37,10 +37,20 @@ class HomeController extends Controller
             if(isset($catalog_id)){
                 $design = Design::where('catalog_id', $catalog_id)->first();
                 $info = Info::where('catalog_id', $catalog_id)->first();   
-                $view = $design->pagination ? 'search_results' : 'search_results_infinite';             
+                $head_script = $catalog->head_script;
+                $body_script = $catalog->body_script;
                 
-                return view('template',compact('design','info','view', 'catalog_id'));
-            }else{
+                $viewedCatalogs = json_decode(Cookie::get('viewed_catalogs', '[]'), true);
+
+                if (!in_array($catalog_id, $viewedCatalogs)) {
+                    $catalog->viewsCount();
+
+                    $viewedCatalogs[] = $catalog_id;
+                    Cookie::queue('viewed_catalogs', json_encode($viewedCatalogs), 60 * 24 * 1);
+                }
+                
+                return view('template',compact('design','info', 'catalog_id', 'head_script', 'body_script'));
+            } else{
                 return view('welcome');
             }            
         } else {

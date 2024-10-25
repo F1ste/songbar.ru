@@ -1,13 +1,17 @@
 <?php
 
 return [
+    'url' => env('ROBOKASSA_URL'),
+
+    'payment_url' => env('ROBOKASSA_PAYMENT_URL'),
+    
     'login' => env('ROBOKASSA_LOGIN'),
 
     'password1' => env('ROBOKASSA_PASSWORD1'),
 
     'password2' => env('ROBOKASSA_PASSWORD2'),
 
-    'is_test' => env('ROBOKASSA_IS_TEST', false),
+    'is_test' => env('ROBOKASSA_IS_TEST', 0),
 
     'test_password1' => env('ROBOKASSA_TEST_PASSWORD1'),
 

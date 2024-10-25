@@ -50,4 +50,12 @@ class User extends Authenticatable
     public function catalogs() : HasMany {
         return $this->hasMany(Catalog::class);
     }
+
+    public function orders() : HasMany {
+        return $this->hasMany(Order::class);
+    }
+
+    public function tarifs() {
+        return $this->hasMany(UserTarifs::class);
+    }
 }

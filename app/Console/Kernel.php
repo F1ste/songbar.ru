@@ -13,6 +13,10 @@ class Kernel extends ConsoleKernel
     protected function schedule(Schedule $schedule): void
     {
         $schedule->command('queue:restart')->everyFiveMinutes();
+        $schedule->command('app:reset-day-views')->dailyAt('00:00');
+        $schedule->command('app:reset-week-views')->weekly();
+        $schedule->command('app:reset-month-views')->monthly();
+        $schedule->command('app:reset-user-tarif')->dailyAt('23:59');
     }
 
     /**
@@ -23,5 +27,10 @@ class Kernel extends ConsoleKernel
         $this->load(__DIR__.'/Commands');
 
         require base_path('routes/console.php');
+    }
+
+    protected function scheduleTimezone()
+    {
+        return 'Europe/Moscow';
     }
 }

@@ -19,7 +19,13 @@ return new class extends Migration
             $table->string('singer');
             $table->boolean('back')->default(false);
             $table->char('type')->nullable();
+            $table->integer('view_per_day')->default(0);
+            $table->integer('view_per_week')->default(0);
+            $table->integer('view_per_month')->default(0);
+            $table->integer('view_per_all')->default(0);
             $table->timestamps();
+
+            $table->index(['title', 'singer']);
         });
     }
 
