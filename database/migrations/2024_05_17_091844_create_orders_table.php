@@ -16,9 +16,10 @@ class CreateOrdersTable extends Migration
         Schema::create('orders', function (Blueprint $table) {
             $table->engine = 'InnoDB';
             $table->id();
-            $table->string('order_number')->unique();
+            $table->unsignedBigInteger('user_id');
             $table->decimal('amount', 10, 2);
             $table->string('description')->nullable();
+            $table->string('status')->nullable();
             $table->timestamps();
         });
     }

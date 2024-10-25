@@ -2,10 +2,13 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Enum\RoleEnum;
 use App\Http\Controllers\Controller;
+use App\Http\Requests\SubdomainRequest;
 use App\Models\Catalog;
 use App\Models\Design;
 use App\Models\Info;
+use App\Models\User;
 use Illuminate\Foundation\Testing\WithFaker;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
@@ -16,6 +19,7 @@ use App\Models\ProcessingStatus;
 use Faker\Factory as FakerFactory;
 use App\Http\Requests\FilterRequest;
 use App\Http\Filters\SongFilter;
+use Illuminate\Support\Facades\Gate;
 use Illuminate\Support\Facades\Storage;
 
 class CatalogController extends Controller
@@ -35,13 +39,16 @@ class CatalogController extends Controller
     public function preview(Request $request) 
     {
         $catalog_id = $request->catalog_id;
+        $catalog = Catalog::findOrFail($catalog_id);
         $design = Design::where('catalog_id', $catalog_id)->first();
         $info = Info::where('catalog_id', $catalog_id)->first();
  
         return view('template', [
             'design' => $design,
             'info' => $info,
-            'catalog_id' => $catalog_id
+            'catalog_id' => $catalog_id,
+            'head_script' => $catalog->head_script,
+            'body_script' => $catalog->body_script,
         ]);
     }
 
@@ -50,6 +57,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
+        Gate::authorize('createCatalog', User::class);
         $user_id = Auth::id();
         $catalog = new Catalog();
         $catalog->user_id = $user_id;
@@ -73,9 +81,28 @@ class CatalogController extends Controller
     public function edit(Request $request)
     {
         $catalog = Catalog::find($request->id);
+        $catalogViews = [
+            'catalogDay' => $catalog->view_per_day,
+            'catalogWeek' => $catalog->view_per_week,
+            'catalogMonth' => $catalog->view_per_month,
+            'catalogAll' => $catalog->view_per_all,
+        ];
         $design = Design::where('catalog_id', $request->id)->first();
         $info = Info::where('catalog_id', $request->id)->first();
-        return view('admin.catalog.edit', compact('design', 'info', 'catalog'));
+        $songs = $catalog->songs();
+        $countSongs = $songs->count();
+
+        $songsViews = [
+            'songsDay' => $catalog->songsByDay()->take(10)->get(),
+            'songsWeek' => $catalog->songsByWeek()->take(10)->get(),
+            'songsMonth' => $catalog->songsByMonth()->take(10)->get(),
+            'songsAll' => $catalog->songsByAll()->take(10)->get(),
+            'allViewsDay' => $songs->sum('songs.view_per_day'),
+            'allViewsWeek' => $songs->sum('songs.view_per_week'),
+            'allViewsMonth' => $songs->sum('songs.view_per_month'),
+            'allViewsAllTime' => $songs->sum('songs.view_per_all'),
+        ];
+        return view('admin.catalog.edit', compact('design', 'info', 'catalog', 'songsViews', 'catalogViews', 'countSongs'));
     }
 
     public function fetchSongs(FilterRequest $request)
@@ -85,6 +112,12 @@ class CatalogController extends Controller
         $catalog = Catalog::find($request->catalogId);
         $songs = $catalog->songs()->filter($filter)->paginate(20);
 
+        if ($request->has('songInput') && $songs->isNotEmpty() && !strpos($_SERVER['HTTP_REFERER'], 'admin_panel')) {
+            $songs->take(5)->each(function ($song) {
+                $song->viewsCount();
+            });
+        }
+
         return response()->json([
             'songs' => $songs->items(),
             'pagination' => $songs->links()->render(),
@@ -93,6 +126,8 @@ class CatalogController extends Controller
 
     public function infoupdate(Request $request)
     {
+        $user = Auth::user();
+
         $request->validate([
             'logo' => 'file|mimes:jpg,png,jpeg,gif,svg,pdf|max:2048',
         ]);
@@ -113,10 +148,13 @@ class CatalogController extends Controller
             $info->logo = 'uploads/' . $fileName;
         }
 
-        $info->contact = nl2br($request->contact);
-        $info->button_text = $request->button_text;
-        $info->button_href = $request->button_href;
-        $info->ourlogo = $request->ourlogo;
+        if ($user->hasRole([RoleEnum::MEDIUM->value, RoleEnum::VIP->value, RoleEnum::ADMIN->value])) {
+            $info->contact = nl2br($request->contact);
+            $info->button_text = $request->button_text;
+            $info->button_href = $request->button_href;
+            $info->ourlogo = $request->ourlogo;
+        }
+
 
 
         if ($info->save()) {
@@ -158,11 +196,12 @@ class CatalogController extends Controller
     {
         $catalog = Catalog::find($id);
         $catalog->delete();
-        return redirect()->back()->withSuccess('Каталог удален!');
+        return redirect()->route('catalogs')->withSuccess('Каталог удален!');
     }
 
     public function updateField(Request $request)
     {
+        Gate::authorize('updateDesign', User::class);
         $fieldName = $request->input('fieldName');
         $fieldName = str_replace('-', '_', $fieldName);
         $fieldValue = $request->input('fieldValue');
@@ -216,5 +255,45 @@ class CatalogController extends Controller
             'total_rows' => $totalRows,
             'status' => $statusText
         ]);
+    }
+
+    public function editSubdomain(SubdomainRequest $request)
+    {
+        Gate::authorize('updateDomainName', User::class);
+        $catalog = Catalog::find($request->input('catalog_id'));
+
+        if (!$catalog) {
+            return redirect()->back()->withErrors(['message' => 'Каталог не найден']);
+        }
+
+        
+        $catalog->address = $request->input('address');
+        $catalog->save();
+
+        return redirect()->back()->with('success', 'Поддомен успешно сохранен');
+    }
+
+    public function changeIsPublish(Request $request, $id)
+    {
+        Gate::authorize('updateInfo', User::class);
+        $catalog = Catalog::findOrFail($id);
+
+        $catalog->is_published = !$catalog->is_published;
+        
+        $catalog->save();
+
+        return redirect()->back()->with('success', 'Статус публикации успешно изменён.');
+    }
+
+    public function saveScripts(Request $request, $id)
+    {
+        Gate::authorize('updateCustomHTML', User::class);
+        $catalog = Catalog::findOrFail($id);
+
+        $catalog->head_script = $request['head-script'];
+        $catalog->body_script = $request['body-script'];
+        $catalog->save();
+
+        return redirect()->back()->with('success', 'Скрипты успешно сохранены.');
     }
 }

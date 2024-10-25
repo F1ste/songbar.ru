@@ -27,7 +27,7 @@
     font-size: {{$design->pagination_font_size ?? '14'}}px;
 }
 #pagination {
-  @if (!$design->is_pagination)
+  @if (!$design->is_pagination ?? true)
     visibility: hidden;
     pointer-events: none;
   @endif
@@ -55,6 +55,7 @@
   font-size: {{$design->search_font_size}};
 }
 </style>
+{!! $head_script !!}
 </head>
 <body class="">
 
@@ -107,7 +108,16 @@
 </div>
 </div>
 
+@if ($info->ourlogo)
+<div id="songbarCopy" style="min-height: 25px; background: #000; color: #fff; display: flex;align-items: center;justify-content: center;">
+  <a href="https://songbar.ru" target="_blank" style="color:inherit; text-decoration: none;">
+    ©2024 SONGBAR - онлайн каталог песен для караоке-бара
+  </a>
+</div>
+@endif
+
 </body>
+{!! $body_script !!}
 <script>
   document.addEventListener('DOMContentLoaded', function () {
     const currentUrl = window.location.href;
@@ -169,6 +179,15 @@
       }
     }
 
+    function debounce(func, delay) {
+      let timeout;
+      return function(...args) {
+          const context = this;
+          clearTimeout(timeout);
+          timeout = setTimeout(() => func.apply(context, args), delay);
+      };
+    }
+
     function searchSongs() {
       fetch(`{{ route('songs.search') }}?songInput=${songInput.value}&catalogId=${catalogId}`).then(response => response.json()).then((data) => {
         const songsData = data.songs || [];
@@ -180,7 +199,7 @@
       renderPagination();
     }
 
-    songInput.addEventListener("input", searchSongs);
+    songInput.addEventListener("input", debounce(searchSongs, 500));
 
     fetchSongs();
   });

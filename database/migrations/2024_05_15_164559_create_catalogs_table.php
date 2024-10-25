@@ -17,6 +17,13 @@ return new class extends Migration
             $table->unsignedBigInteger('user_id');
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
             $table->string('address');
+            $table->integer('view_per_day')->default(0);
+            $table->integer('view_per_week')->default(0);
+            $table->integer('view_per_month')->default(0);
+            $table->integer('view_per_all')->default(0);
+            $table->text('head_script')->nullable();
+            $table->text('body_script')->nullable();
+            $table->boolean('is_published')->default(true);
             $table->timestamps();
         });
     }

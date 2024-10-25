@@ -18,7 +18,7 @@ return new class extends Migration
             $table->foreign('catalog_id')->references('id')->on('catalogs')->onDelete('cascade');
             $table->string('logo')->nullable();
             $table->string('contact')->nullable();            
-            $table->boolean('ourlogo')->nullable();
+            $table->boolean('ourlogo')->nullable()->default(true);
             $table->text('button_text')->nullable();
             $table->string('button_href')->nullable();
             $table->timestamps();

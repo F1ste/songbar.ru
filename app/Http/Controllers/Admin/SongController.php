@@ -11,15 +11,31 @@ class SongController extends Controller
 {
     public function store(Request $request)
     {
-        $song = Song::create(['title' => $request->title, 'singer' => $request->singer]);
+        $existingSong = Song::where('title', $request->title)
+            ->where('singer', $request->singer)
+            ->first();
+    
+        if ($existingSong) {
+            return response()->json([
+                'status' => 'error',
+                'message' => 'Песня уже существует в каталоге.'
+            ], 409);
+        }
+    
+        $song = Song::create([
+            'title' => $request->title,
+            'singer' => $request->singer
+        ]);
+    
         $song->catalogs()->attach($request->catalogId);
-
+    
         return response()->json([
             'status' => 'success',
             'song' => $song,
             'message' => 'Песня успешно добавлена в каталог.'
         ]);
     }
+    
 
     public function destroy(Request $request, Song $song)
     {
