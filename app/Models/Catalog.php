@@ -11,7 +11,7 @@ class Catalog extends Model
 {
     use HasFactory, ViewsIncrementTrait;
 
-    protected $fillable = ['user_id', 'address'];
+    protected $fillable = ['user_id', 'address', 'qr_code_path'];
 
     public function songs()
     {

@@ -31,7 +31,8 @@
                             class="fa fa-book"></i> Пример Каталогов</a>
                 </div>
             </div>
-        @else           <div class="card mt-3">
+        @else           
+        <div class="card mt-3">
                 <div class="card-body">
                     <table id="example1" class="table table-bordered table-striped">
                         <thead>
@@ -47,25 +48,30 @@
                             @foreach($catalogs as $catalog)
                                 <tr>
                                     <td>
-                                        <a href="https://{{$catalog->address}}.songbar.ru"
-                                            target="_blank">{{$catalog->address}}.songbar.ru</a>
+                                        <a href="https://{{ $catalog->address }}.songbar.ru" target="_blank">
+                                            {{ $catalog->address }}.songbar.ru
+                                        </a>
                                     </td>
                                     <td class="project-actions text-right">
+                                        @if($catalog->qr_code_path)
+                                            <a href="{{ asset($catalog->qr_code_path) }}" download class="btn btn-secondary btn-sm">
+                                                <i class="fas fa-download"></i> Скачать QR-код
+                                            </a>
+                                        @endif
+
                                         <a class="btn btn-info btn-sm" href="{{ route('catalog.edit', $catalog->id) }}">
-                                            <i class="fas fa-pencil-alt">
-                                            </i>
-                                            Редактировать
+                                            <i class="fas fa-pencil-alt"></i> Редактировать
                                         </a>
-                                        <form style="display:inline-block" action="{{ route('catalog.destroy', $catalog->id) }}"
-                                            method="POST">
+
+                                        <form style="display:inline-block" action="{{ route('catalog.destroy', $catalog->id) }}" method="POST">
                                             @csrf
-                                            @method('POST')
-                                            <button type="submit" class="btn btn-danger btn-sm delete-btn" href="#">
-                                                <i class="fas fa-trash">
-                                                </i>
-                                                Удалить
+                                            @method('DELETE')
+                                            <button type="submit" class="btn btn-danger btn-sm delete-btn">
+                                                <i class="fas fa-trash"></i> Удалить
                                             </button>
                                         </form>
+
+
                                     </td>
                                 </tr>
                             @endforeach

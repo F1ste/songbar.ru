@@ -173,6 +173,7 @@ class CatalogController extends Controller
                 file_put_contents($path, $result->getString());
                 // Возвращение Data URI и URL файла
                 $downloadUrl = Storage::url($filename);
+                $catalog->update(['qr_code_path' => $downloadUrl]);
 
                 // Получение Data URI
                 $dataUri = $result->getDataUri();
