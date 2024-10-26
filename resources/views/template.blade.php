@@ -87,33 +87,33 @@
           <div style="width: 100%;">
             <input class="serth_input" id="search" type="text" name="" value="" placeholder="Поиск песен" style="font-size:{{$design->search_font_size ?? '14'}}px; color:{{$design->search_font_color ?? '#fff'}};">
           </div>
-                <input type="hidden" value="{{$design->catalog_id ?? ''}}" name="catalog_id" id="catalog_id">
+          <input type="hidden" value="{{$design->catalog_id ?? ''}}" name="catalog_id" id="catalog_id">
         </div>
 
-            <div id="results">
-                <table class="table table-bordered">
-                  <thead class="thead-light">
-                    <tr>
-                      <th width="50%">Исполнитель</th>
-                      <th>Песня</th>
-                    </tr>
-                  </thead>
-                  <tbody id="songTable">
-                  </tbody>
-                </table>
-                <div id="pagination"></div>
-            </div>
+          <div id="results">
+              <table class="table table-bordered">
+                <thead class="thead-light">
+                  <tr>
+                    <th width="50%">Исполнитель</th>
+                    <th>Песня</th>
+                  </tr>
+                </thead>
+                <tbody id="songTable">
+                </tbody>
+              </table>
+              <div id="pagination"></div>
+          </div>
       </div>
     </div>
-@if ($info->ourlogo)
-<div id="songbarCopy" style="min-height: 25px; background: #000; color: #fff; display: flex;align-items: center;justify-content: center;">
-  <a href="https://songbar.ru" target="_blank" style="color:inherit; text-decoration: none;">
-    ©2024 SONGBAR - онлайн каталог песен для караоке-бара
-  </a>
-</div>
-@endif
-</div>
-</div>
+  </div>
+  @if ($info->ourlogo)
+  <div id="songbarCopy" style="min-height: 25px; background: #000; color: #fff; display: flex;align-items: center;justify-content: center;">
+    <a href="https://songbar.ru" target="_blank" style="color:inherit; text-decoration: none;">
+      ©2024 SONGBAR - онлайн каталог песен для караоке-бара
+    </a>
+  </div>
+  @endif
+
 
 </body>
 {!! $body_script !!}
