@@ -1,14 +1,16 @@
 @extends('layouts.dummy_layout')
 
 @section('content')
-<div class="container mt-5">
-    <div class="row justify-content-center">
-        <div class="col-md-8">
-            <div class="card text-center bg-dark text-white">
-                <h1 class="display-6">Этот каталог еще не опубликован. Пожалуйста, вернитесь позже.</h1>
-                <a href="{{ route('template') }}" class="btn btn-light mt-3">На главную</a>
+<main class="py-4 d-flex align-items-center bg-dark" style="min-height: 100%;">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-md-8">
+                <div class="text-center text-white align-items: center">
+                    <h1 class="display-6">Этот каталог еще не опубликован. Пожалуйста, вернитесь позже.</h1>
+                    <a href="https://songbar.ru/home/" class="btn btn-primary mt-3">На главную</a>
+                </div>
             </div>
         </div>
     </div>
-</div>
+</main>
 @endsection
