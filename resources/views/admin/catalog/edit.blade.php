@@ -1257,46 +1257,56 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
     return document.querySelector('meta[name="csrf-token"]').getAttribute('content');
   }
 
-  function checkProgress(catalogId) {
+  function checkProgress(catalogId, maxAttempts = 5) {
     const csrfToken = getCsrfToken();
     const routeUrl = @json(route('processing.status'));
     const url = `${routeUrl}?catalog_id=${catalogId}`;
 
-    var progressInterval = setInterval(function () {
-      fetch(url, {
-        method: 'GET',
-        headers: {
-          'X-CSRF-TOKEN': csrfToken,
-          'Accept': 'application/json'
-        },
+    let attempts = 0;
 
-      })
+    const progressInterval = setInterval(function () {
+        attempts++;
+
+        fetch(url, {
+            method: 'GET',
+            headers: {
+                'X-CSRF-TOKEN': csrfToken,
+                'Accept': 'application/json'
+            },
+        })
         .then(response => {
-          if (!response.ok) {
-            throw new Error('Network response was not ok');
-          }
-        
-          return response.json();
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            return response.json();
         })
         .then(data => {
-          document.querySelector('#progress').style.width = data.progress + '%';
-          document.querySelector('#status-text').innerText = `Загружено ${data.processed_rows} из ${data.total_rows} композиций`;
+            document.querySelector('#progress').style.width = data.progress + '%';
+            document.querySelector('#status-text').innerText = `Загружено ${data.processed_rows} из ${data.total_rows} композиций`;
 
-          if (data.status !== 'completed') {
-            document.querySelector('#uploadFileBtn').disabled = true;
-          }
+            if (data.status === 'in_progress') {
+              attempts = 0;  
+            }
 
-          if (data.progress === 100 && data.status === 'completed') {
-            document.querySelector('#uploadFileBtn').disabled = false;
-            clearInterval(progressInterval);
-          }
+            if (data.status !== 'completed') {
+                document.querySelector('#uploadFileBtn').disabled = true;
+            }
+
+            if (data.progress === 100 && data.status === 'completed' && attempts >= maxAttempts) {
+                document.querySelector('#uploadFileBtn').disabled = false;
+                clearInterval(progressInterval);
+            }
+
         })
         .catch(error => {
-          console.error('There was a problem with the fetch operation:', error);
-          clearInterval(progressInterval);
+          if (attempts >= maxAttempts) {
+                clearInterval(progressInterval);
+                console.log('Превышено количество попыток. Статус не найден.');
+                document.querySelector('#uploadFileBtn').disabled = false;
+            }
         });
     }, 1000);
-  }
+}
 
   function initialCheck() {
     const catalogId = document.querySelector('input[name="catalog_id"]').value;
@@ -1326,15 +1336,12 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
         });
 
         if (response.ok) {
-          const catalogId = document.querySelector('input[name="catalog_id"]').value;
-          setTimeout(() => {
-            checkProgress(catalogId);
-            location.reload();
-          }, 1000);
-
-    
+            const catalogId = document.querySelector('input[name="catalog_id"]').value;
+            setTimeout(() => {
+                checkProgress(catalogId, 5);
+            }, 1000);
         } else {
-            alert('Ошибка при загрузке файла.');
+            location.reload();
         }
     } catch (error) {
         console.error('Произошла ошибка при отправке:', error);
