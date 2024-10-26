@@ -35,7 +35,7 @@
 <script src="{{ asset('/admin/plugins/jquery/jquery.min.js') }}"></script>
 
 </head>
-<body>
+<body style="height: 100%;">
     
     @yield('content')
     
