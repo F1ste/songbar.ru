@@ -15,9 +15,9 @@ class Catalog extends Model
         'user_id', 
         'address', 
         'qr_code_path',
-        'views_per_day',
-        'views_per_week',
-        'views_per_month',
+        'view_per_day',
+        'view_per_week',
+        'view_per_month',
     ];
 
     public function songs()
