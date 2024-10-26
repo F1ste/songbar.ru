@@ -17,17 +17,17 @@ trait ViewsIncrementTrait
 
     public function viewsDayReset()
     {
-        $this->update(['views_per_day' => 0]);
+        $this->update(['view_per_day' => 0]);
     }
 
     public function viewsWeekReset()
     {
-        $this->update(['views_per_week' => 0]);
+        $this->update(['view_per_week' => 0]);
     }
 
     public function viewsMonthReset()
     {
-        $this->update(['views_per_month' => 0]);
+        $this->update(['view_per_month' => 0]);
     }
 
 

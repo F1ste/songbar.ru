@@ -16,9 +16,9 @@ class Song extends Model
         'catalog_id', 
         'title', 
         'singer',
-        'views_per_day',
-        'views_per_week',
-        'views_per_month',
+        'view_per_day',
+        'view_per_week',
+        'view_per_month',
     ];
 
     public function catalogs()
