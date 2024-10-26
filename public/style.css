@@ -8,8 +8,6 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
     min-height: 100vh;
     padding-left: 15px;
     padding-right: 15px;
-
-    padding-bottom: 30px;
     box-sizing: border-box;
     display: flex;
     flex-direction: column;
