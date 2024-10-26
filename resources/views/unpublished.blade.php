@@ -1,7 +1,7 @@
 @extends('layouts.dummy_layout')
 
 @section('content')
-<main class="py-4 d-flex align-items-center bg-dark" style="min-height: 100%;">
+<main class="py-4 d-flex align-items-center bg-dark" style="min-height: 100vh;">
     <div class="container">
         <div class="row justify-content-center">
             <div class="col-md-8">
