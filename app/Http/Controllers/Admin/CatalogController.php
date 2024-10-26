@@ -124,6 +124,35 @@ class CatalogController extends Controller
         ]);
     }
 
+    private function generateQRCode($catalog)
+    {
+        // Создание экземпляра QR-кода
+        $result = Builder::create()
+            ->writer(new PngWriter())
+            ->data('https://' . $catalog->address . '.songbar.ru')
+            ->size(300)
+            ->margin(10)
+            ->build();
+
+        // Сохранение QR-кода в формате PNG
+        $filename = 'qr-' . $catalog->address . '.png';
+        $path = storage_path('app/public/' . $filename);
+        file_put_contents($path, $result->getString());
+        // Возвращение Data URI и URL файла
+        $downloadUrl = Storage::url($filename);
+        $catalog->update(['qr_code_path' => $downloadUrl]);
+
+        // Получение Data URI
+        $dataUri = $result->getDataUri();
+
+        // Возвращение Data URI и ссылки для скачивания в JSON
+        return response()->json([
+            'qr_code' => $dataUri,
+            'download_link' => $downloadUrl,
+            'href' => 'https://' . $catalog->address . '.songbar.ru'
+        ]);
+    }
+
     public function infoupdate(Request $request)
     {
         $user = Auth::user();
@@ -159,31 +188,7 @@ class CatalogController extends Controller
 
         if ($info->save()) {
             if (isset($catalog->address)) {
-                // Создание экземпляра QR-кода
-                $result = Builder::create()
-                    ->writer(new PngWriter())
-                    ->data('https://' . $catalog->address . '.songbar.ru')
-                    ->size(300)
-                    ->margin(10)
-                    ->build();
-
-                // Сохранение QR-кода в формате PNG
-                $filename = 'qr-' . $catalog->address . '.png';
-                $path = storage_path('app/public/' . $filename);
-                file_put_contents($path, $result->getString());
-                // Возвращение Data URI и URL файла
-                $downloadUrl = Storage::url($filename);
-                $catalog->update(['qr_code_path' => $downloadUrl]);
-
-                // Получение Data URI
-                $dataUri = $result->getDataUri();
-
-                // Возвращение Data URI и ссылки для скачивания в JSON
-                return response()->json([
-                    'qr_code' => $dataUri,
-                    'download_link' => $downloadUrl,
-                    'href' => 'https://' . $catalog->address . '.songbar.ru'
-                ]);
+                return $this->generateQRCode($catalog);
             }
         }
 
@@ -270,6 +275,8 @@ class CatalogController extends Controller
         
         $catalog->address = $request->input('address');
         $catalog->save();
+
+        $this->generateQRCode($catalog);
 
         return redirect()->back()->with('success', 'Поддомен успешно сохранен');
     }
