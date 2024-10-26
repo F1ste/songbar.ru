@@ -60,7 +60,7 @@
 <body class="">
 
 
-<div class="main_conteiner" style="font-family:{{$design->font_family ?? 'auto'}}; background:{{$design->bg_color ?? '#000'}}; display: flex; flex-direction: column; box-sizing: border-box;">
+<div class="main_conteiner" style="font-family:{{$design->font_family ?? 'auto'}}; background:{{$design->bg_color ?? '#000'}}; display: flex; flex-direction: column; box-sizing: border-box; padding-bottom: 0;">
 	<div class="header">
         <div class="logo">
             <img src="{{$info->logo ? '/'.$info->logo : asset('uploads/logo.png')}}">
