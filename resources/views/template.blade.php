@@ -105,14 +105,14 @@
           </div>
       </div>
     </div>
+    @if ($info->ourlogo)
+    <div id="songbarCopy">
+      <a href="https://songbar.ru" target="_blank" style="color:inherit; text-decoration: none;">
+        ©2024 SONGBAR - онлайн каталог песен для караоке-бара
+      </a>
+    </div>
+    @endif
   </div>
-  @if ($info->ourlogo)
-  <div id="songbarCopy">
-    <a href="https://songbar.ru" target="_blank" style="color:inherit; text-decoration: none;">
-      ©2024 SONGBAR - онлайн каталог песен для караоке-бара
-    </a>
-  </div>
-  @endif
 
 
 </body>
