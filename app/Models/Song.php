@@ -12,7 +12,14 @@ class Song extends Model
     use HasFactory;
     use Filterable, ViewsIncrementTrait;
 
-    protected $fillable = ['catalog_id', 'title', 'singer'];
+    protected $fillable = [
+        'catalog_id', 
+        'title', 
+        'singer',
+        'views_per_day',
+        'views_per_week',
+        'views_per_month',
+    ];
 
     public function catalogs()
     {
