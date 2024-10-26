@@ -106,7 +106,6 @@
 	</div>
 </div>
 </div>
-</div>
 
 @if ($info->ourlogo)
 <div id="songbarCopy" style="min-height: 25px; background: #000; color: #fff; display: flex;align-items: center;justify-content: center;">
@@ -115,6 +114,8 @@
   </a>
 </div>
 @endif
+
+</div>
 
 </body>
 {!! $body_script !!}
