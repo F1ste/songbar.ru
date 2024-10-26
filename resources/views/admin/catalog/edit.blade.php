@@ -944,7 +944,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
     allStats.textContent = allViews;
   }
 </script>
-{{auth()->user()->role}}
+
 <script>
   const defaultImage = '{{ $info->logo ?? asset('uploads/logo.png') }}' ;
   const iframe = document.getElementById('catalog-iframe');
@@ -1327,8 +1327,11 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
 
         if (response.ok) {
           const catalogId = document.querySelector('input[name="catalog_id"]').value;
-          checkProgress(catalogId);
-          location.reload();
+          setTimeout(() => {
+            checkProgress(catalogId);
+          }, 1500);
+          
+          
         } else {
             alert('Ошибка при загрузке файла.');
         }
