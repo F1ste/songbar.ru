@@ -247,12 +247,7 @@ class CatalogController extends Controller
         $status = ProcessingStatus::where('catalog_id', $catalogId)->first();
 
         if (!$status) {
-            $status = ProcessingStatus::create([
-                'catalog_id' => $catalogId,
-                'status' => 'in_progress',
-                'total_rows' => 0,
-                'processed_rows' => 0,
-            ]);
+            return response()->json(['error' => 'Статус не найден.'], 404);
         }
 
         $totalRows = $status->total_rows;
