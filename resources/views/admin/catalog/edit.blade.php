@@ -1327,7 +1327,10 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
 
         if (response.ok) {
           const catalogId = document.querySelector('input[name="catalog_id"]').value;
-          checkProgress(catalogId);
+          setTimeout(() => {
+            checkProgress(catalogId);
+            location.reload();
+          }, 1000);
 
     
         } else {
