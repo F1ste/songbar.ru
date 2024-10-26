@@ -107,7 +107,7 @@
     </div>
   </div>
   @if ($info->ourlogo)
-  <div id="songbarCopy" style="min-height: 25px; background: #000; color: #fff; display: flex;align-items: center;justify-content: center;">
+  <div id="songbarCopy">
     <a href="https://songbar.ru" target="_blank" style="color:inherit; text-decoration: none;">
       ©2024 SONGBAR - онлайн каталог песен для караоке-бара
     </a>

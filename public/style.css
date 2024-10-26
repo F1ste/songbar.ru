@@ -3,14 +3,26 @@ html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abb
 
 
 
-	.main_conteiner{
-		background: #000;
-		min-height: 100vh;
-		padding-left: 15px;
-		padding-right: 15px;
+.main_conteiner{
+    background: #000;
+    min-height: 100vh;
+    padding-left: 15px;
+    padding-right: 15px;
 
-		padding-bottom: 30px;
-        box-sizing: border-box;
+    padding-bottom: 30px;
+    box-sizing: border-box;
+    display: flex;
+    flex-direction: column;
+}
+#songbarCopy{
+    min-height: 25px; 
+    background: #000; 
+    color: #fff; 
+    display: flex;
+    align-items: center;
+    justify-content: center; 
+    margin-top: auto; 
+    padding: 10px;
 }
 
 .header{
