@@ -1,0 +1,31 @@
+@use "sass:math";
+@use "mixins";
+@use "../variables";
+@forward "fonts";
+
+
+
+$pc: mixins.em(variables.$containerWidth);
+$tablet: mixins.em(991.98);
+$mobile: mixins.em(767.98);
+$mobileSmall: mixins.em(479.98);
+.wrapper {
+  min-height: 100%;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+
+  > main {
+    flex: 1 1 auto;
+  }
+}
+[class*="__container"] {
+  @if (variables.$maxWidthContainer>0) {
+    max-width: mixins.rem(variables.$maxWidthContainer);
+    box-sizing: border-box;
+    margin: 0 auto;
+  }
+  @if (variables.$containerPadding>0) {
+    padding: 0 mixins.rem(math.div(variables.$containerPadding, 2));
+  }
+}

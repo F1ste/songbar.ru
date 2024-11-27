@@ -1,0 +1,66 @@
+.button {
+  display: inline-flex;
+  justify-content: center;
+  padding: 0;
+  border: 3px solid var(--color-accent);
+  border-radius: 16px;
+  cursor: pointer;
+  font-family: "Montserrat", serif;
+  font-size: 18px;
+  transition: all .1s ease-out;
+
+  @media (any-hover: hover) {
+    &:hover {
+      background-color: var(--color-accent);
+      border-color: var(--color-accent);
+    }
+  }
+
+  &._fw {
+    width: 100%;
+  }
+
+  &._sm{
+    padding: 8px;
+    border-radius: 18px;
+  }
+  &._md{
+    padding: 15px;
+  }
+  &._xl{
+    padding: 26px;
+  }
+
+  &._main{
+    background-color: var(--color-accent);
+    color: var(--color-white);
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--color-accent-hover);
+        border-color: var(--color-accent-hover);
+      }
+    }
+  }
+
+  &._outline{
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--color-accent-hover);
+        border-color: var(--color-accent-hover);
+        color: var(--color-white);
+      }
+    }
+  }
+
+  &._white{
+    background-color: var(--color-white);
+    color: var(--color-accent);
+    @media (any-hover: hover) {
+      &:hover {
+        background-color: var(--color-accent-hover);
+        border-color: var(--color-accent-hover);
+        color: var(--color-white);
+      }
+    }
+  }
+}

@@ -1,0 +1,25 @@
+:root {
+  --color-accent: #4668E9;
+  --color-accent-hover: #6780ea;
+  --color-dark-200: #161616;
+  --color-dark-300: #0A090F;
+  --color-grey-300: #6E6E6E;
+  --color-grey-250: #C8C8C8;
+  --color-grey-200: #D8D8D8;
+  --color-grey-175: #EFF0F6;
+  --color-grey-150: #F4F4F4;
+  --color-grey-100: #F7F7F7;
+  --color-white: #ffffff;
+  --color-white-hover: #d7d7d7;
+  --color-black: #000000;
+  --color-gold: #F5D771;
+  --color-primary-text: var(--color-black);
+  --color-secondary-text: #1B1B1B;
+  --color-third-text: #170F49;
+}
+
+$minWidth: 320;
+$maxWidth: 1440;
+$maxWidthContainer: 1260;
+$containerPadding: 30;
+$containerWidth: $maxWidthContainer + $containerPadding;
