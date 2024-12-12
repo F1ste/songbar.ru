@@ -1,3 +1,5 @@
+@use "../base/base";
+
 .tariffs{
   &__container{
     margin-top: 46px;
@@ -44,6 +46,10 @@
     align-items: center;
     flex: 1 0 394px;
     height: 660px;
+
+    @media (max-width: base.$mobileSmall) {
+      flex-basis: 304px;
+    }
   }
   &__container .tariffs_accent{
     background-color: var(--color-accent);

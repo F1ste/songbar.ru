@@ -11,7 +11,7 @@
         <link href="https://fonts.bunny.net/css?family=figtree:400,600&display=swap" rel="stylesheet" />
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ asset('landing/dist/assets/main.css') }}">
+        <link rel="stylesheet" href="{{ asset('landing/dist/assets/main.css?v=102') }}">
     </head>
     <div class="wrapper">
       <header class="header">
@@ -274,9 +274,9 @@
               </div>
               <div class="footer__col">
                   <div class="footer__support">
-                      <a href="#" class="footer__link">Поддержка</a>
-                      <a href="#" class="footer__link">info@songbar.ru</a>
-                      <a href="#" class="footer__link">Telegram: @helpsongbar</a>
+                      <div class="footer__link">Поддержка</d>
+                      <a href="info@songbar.ru" class="footer__link">info@songbar.ru</a>
+                      <a href="t.me/helpsongbar" class="footer__link">Telegram: @helpsongbar</a>
                   </div>
               </div>
               <div class="footer__copy">

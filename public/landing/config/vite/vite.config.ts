@@ -1,6 +1,7 @@
 import { defineConfig,  } from 'vite';
 import {resolveRoot} from './utils';
 import handlebars from 'vite-plugin-handlebars';
+import autoprefixer from 'autoprefixer';
 
 const outDir = resolveRoot('dist');
 const root = resolveRoot('src');
@@ -44,6 +45,9 @@ export default defineConfig({
       scss: {
         api: 'modern-compiler',
       },
+      postcss:{
+        plugins: [autoprefixer],
+      }
     },
   },
   plugins: [

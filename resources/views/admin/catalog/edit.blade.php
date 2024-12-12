@@ -72,7 +72,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
         <div class="tab-pane fade show active" id="custom-content-below-load" role="tabpanel"
           aria-labelledby="custom-content-below-load-tab">
           <h4 class="mt-3">Загрузите песни в формате xlsx, csv</h4>
-          <p><a href="">Скачать образец</a></p>
+          <p><a href="{{ asset('catalog_example.xls') }}">Скачать образец</a></p>
           <form id="upload-form" action="{{ route('importExcell') }}" method="POST" enctype="multipart/form-data">
             @csrf
             <input type="hidden" name="catalog_id" value="{{ $catalog->id }}">
