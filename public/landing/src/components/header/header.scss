@@ -1,8 +1,14 @@
+@use "../../scss/base/base";
+
 .header{
   position: absolute;
   width: 100%;
   left: 0;
   top: 0;
+
+  &__container{
+    max-width: none;
+  }
 
   &__content{
     display: flex;
@@ -10,6 +16,9 @@
     justify-content: space-between;
     width: 100%;
     padding: 15px 50px;
+    @media (max-width: base.$mobile) {
+      padding-inline: 20px;
+    }
   }
 
   &__image {

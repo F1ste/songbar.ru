@@ -13,6 +13,9 @@
       padding: 0 85px;
       margin-bottom: 40px;
     }
+    @media (max-width: base.$mobile) {
+      padding: 0 25px;
+    }
   }
   &__card{
     flex: 1;
@@ -40,6 +43,11 @@
       }
     }
 
+    @media (max-width: base.$mobile) {
+      padding: 40px;
+      flex-basis: auto;
+    }
+
     & .advantages__card-decor{
       position: absolute;
       left: -80px;
@@ -52,11 +60,18 @@
       @media (max-width: base.$tablet) {
         left: -50px;
       }
-
+      @media (max-width: base.$mobile) {
+        display: none;
+        padding: 0;
+        margin-bottom: 0;
+      }
     }
 
     & .advantages__card-info{
       margin-left: 80px;
+      @media (max-width: base.$mobile) {
+        margin-left: 0;
+      }
     }
 
     & .advantages__card-title{
