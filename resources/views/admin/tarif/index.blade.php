@@ -39,7 +39,7 @@
               </div>
               @php
                   $allTarifs = [
-                      ['name' => 'Lite', 'price' => 1, 'description' => 'Lite/Месяц'],
+                      ['name' => 'Lite', 'price' => 5000, 'description' => 'Lite/Месяц'],
                       ['name' => 'Medium', 'price' => 10000, 'description' => 'Medium/Месяц'],
                       ['name' => 'VIP', 'price' => 15000, 'description' => 'Vip/Месяц']
                   ];

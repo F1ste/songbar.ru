@@ -19,7 +19,7 @@
               <div class="header__content">
                   <a href="/"><img class="header__image" src="{{ asset('landing/dist/images/logo.png') }}" alt="Songbar лого"></a>
                   @auth
-                    <a href="{{ url('/home') }}" class="header__button button _sm _main">Личный кабинет</a>
+                    <a href="{{ url('/home') }}" class="header__button button _sm _main" style="width: auto; max-width: none;">Личный кабинет</a>
                   @else
                     <a href="{{ route('login') }}" class="header__button button _sm _main">Вход</a>
                   @endauth
@@ -268,7 +268,7 @@
                   <a class="footer__image" href="/"><img class="footer__image" src="{{ asset('landing/dist/images/logo.png') }}" alt="Songbar лого"></a>
                   <div class="footer__links">
                       <a href="#" class="footer__link">Создать обращение</a>
-                      <a href="#" class="footer__link">Пользовательское соглашение</a>
+                      <a href="{{ asset('user_agreement.docx') }}" class="footer__link">Пользовательское соглашение</a>
                       <a href="#" class="footer__link">Политика конфиденциальности</a>
                   </div>
               </div>
