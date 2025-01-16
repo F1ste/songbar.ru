@@ -37,7 +37,7 @@ Route::middleware(['auth'])->prefix('admin_panel')->group(function () {
     Route::get('/catalogs', [CatalogController::class, 'index'])->name('catalogs');
     Route::get('/catalog/create', [CatalogController::class, 'create'])->name('catalog.create');
     Route::get('/catalog/edit/{id}', [CatalogController::class, 'edit'])->name('catalog.edit');
-    Route::post('/catalog/destroy/{id}', [CatalogController::class, 'destroy'])->name('catalog.destroy');
+    Route::delete('/catalog/destroy/{id}', [CatalogController::class, 'destroy'])->name('catalog.destroy');
     Route::post('/catalog/infoupdate/{id}', [CatalogController::class, 'infoupdate'])->name('catalog.infoupdate');
     Route::get('/tarif', [TarifController::class, 'index'])->name('tarif');
     Route::post('/updateField', [CatalogController::class, 'updateField']);

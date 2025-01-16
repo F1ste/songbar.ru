@@ -57,7 +57,7 @@ class CatalogController extends Controller
      */
     public function create()
     {
-        Gate::authorize('createCatalog', User::class);
+        // Gate::authorize('createCatalog', User::class);
         $user_id = Auth::id();
         $catalog = new Catalog();
         $catalog->user_id = $user_id;
