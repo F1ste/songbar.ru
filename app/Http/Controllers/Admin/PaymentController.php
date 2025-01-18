@@ -23,6 +23,10 @@ class PaymentController extends Controller
 
         $resultPay = $this->service->makePay($request->amount, $order->description, $order->id);
 
+        if ($resultPay === 'fail') {
+            return redirect()->route('payment.fail');
+        }
+
         if ($resultPay !== 'fail') {
             $order->update(['status' => 'pending']);
             return redirect()->away($resultPay);
@@ -33,7 +37,7 @@ class PaymentController extends Controller
     }
 
     public function resultPay(SuccessPayRequest $request){
-        $params = ['OutSum' => $request->OutSum, 'InvId' => $request->InvId, 'password' => config('robokassa.test_password2')];
+        $params = ['OutSum' => $request->OutSum, 'InvId' => $request->InvId, 'password' => config('robokassa.password2')];
 
         $signatureValue = PaymentServiceHelper::getHashValue($params);
 

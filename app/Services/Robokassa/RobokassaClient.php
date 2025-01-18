@@ -10,7 +10,7 @@ class RobokassaClient implements ClientContract
     public function connect(array $body) {
         $merchantLogin = config('robokassa.login');
         $body['OutSum'] = strval($body['OutSum']);
-        $params = ['MerchantLogin' => $merchantLogin, 'OutSum' => $body['OutSum'], 'InvId' => $body['InvId'], 'password' => config('robokassa.test_password1')];
+        $params = ['MerchantLogin' => $merchantLogin, 'OutSum' => $body['OutSum'], 'InvId' => $body['InvId'], 'password' => config('robokassa.password1')];
 
         $signatureValue = PaymentServiceHelper::getHashValue($params, $merchantLogin);
 
