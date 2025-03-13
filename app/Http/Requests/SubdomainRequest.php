@@ -3,6 +3,7 @@
 namespace App\Http\Requests;
 
 use Illuminate\Foundation\Http\FormRequest;
+use Illuminate\Validation\Rule;
 
 class SubdomainRequest extends FormRequest
 {
@@ -14,7 +15,13 @@ class SubdomainRequest extends FormRequest
     public function rules()
     {
         return [
-            'address' => 'required|string|max:255|regex:/^[a-zA-Z0-9\-]+$/|unique:catalogs,address',
+            'address' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z0-9\-]+$/',
+                Rule::unique('catalogs', 'address')->ignore($this->catalog_id),
+            ],
         ];
     }
 

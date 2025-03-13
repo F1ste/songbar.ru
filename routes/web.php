@@ -2,6 +2,8 @@
 
 use App\Http\Controllers\Admin\PaymentController;
 use App\Http\Controllers\Admin\TarifController;
+use App\Http\Controllers\Auth\NewPasswordController;
+use App\Http\Controllers\Auth\PasswordResetLinkController;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Admin\CatalogController;
 use App\Http\Controllers\Admin\SongController;
@@ -53,6 +55,14 @@ Route::middleware(['auth'])->prefix('admin_panel')->group(function () {
     Route::post('/catalog/is_publish/{id}', [CatalogController::class, 'changeIsPublish'])->name('catalog.changeIsPublish');
     Route::post('/catalog/save_scripts/{id}', [CatalogController::class, 'saveScripts'])->name('catalog.saveScripts');
 
+});
+
+Route::middleware('guest')->group(function () {
+    Route::get('forgot-password', [PasswordResetLinkController::class, 'create'])->name('password.request');
+    Route::post('forgot-password', [PasswordResetLinkController::class, 'store'])->name('password.email');
+
+    Route::get('reset-password/{token}', [NewPasswordController::class, 'create'])->name('password.reset');
+    Route::post('reset-password', [NewPasswordController::class, 'store'])->name('password.update');
 });
 
  Route::get('/clear-cache', function() {

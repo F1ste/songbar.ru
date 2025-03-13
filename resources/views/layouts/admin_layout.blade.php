@@ -30,6 +30,19 @@
   <!-- jQuery -->
 <script src="{{ asset('/admin/plugins/jquery/jquery.min.js') }}"></script>
 </head>
+@php
+    $roleName = 'Базовый';
+
+    if (auth()->user()->hasAnyRole(['admin', 'vip'])) {
+        $roleName = 'VIP';
+    } 
+    if (auth()->user()->hasRole('lite')) {
+        $roleName = 'Lite';
+    } 
+    if (auth()->user()->hasRole('medium')) {
+        $roleName = 'Medium';
+    }
+@endphp
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
@@ -57,12 +70,14 @@
     <ul class="navbar-nav ml-auto">      
       <!-- Notifications Dropdown Menu -->
       <li class="nav-item dropdown">
-      <div class="user-panel pb-2 pt-1 d-flex">
+      <div class="user-panel pb-2 pt-1 d-flex align-items-center">
+
+      <div><span>Статус:</span> <span class="text-muted">{{ $roleName }}</span></div>
         <div class="image">
           <img src="/admin/dist/img/user2-160x160.jpg" class="img-circle elevation-2" alt="User Image">
         </div>
         <div class="info">
-          <a href="#" class="d-block">{{Auth::user()->name}}</a>
+          <a href="{{route('profile')}}" class="d-block">{{Auth::user()->name}}</a>
         </div>
         <div class="info">
         <form method="POST" action="{{ route('logout') }}">
