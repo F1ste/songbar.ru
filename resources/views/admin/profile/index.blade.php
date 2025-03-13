@@ -25,15 +25,19 @@
 		<div class="col-md-8">
 			<div class="card">
 				<div class="card-body">
-					@if ($errors->any())
-						<div class="alert alert-danger">
-							<ul>
-								@foreach ($errors->all() as $error)
-									<li>{{ $error }}</li>
-								@endforeach
-							</ul>
-						</div>
-					@endif
+				@if (session('success'))
+				<div class="alert alert-success alert-dismissible fade show" role="alert">
+					{{ session('success') }}
+				</div>
+				@endif
+
+				@if ($errors->any())
+					<div class="alert alert-danger alert-dismissible fade show" role="alert">
+						@foreach ($errors->all() as $error)
+							<p class="mb-0">{{ $error }}</p>
+						@endforeach
+					</div>
+				@endif
 					<form method="POST" action="{{ route('profile.update') }}">
 						@csrf
 						<div class="form-group">

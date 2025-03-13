@@ -23,6 +23,23 @@
 <section class="container">
     <div class="container-fluid" id="accordion">
         <div class="card">
+            <div class="card-header" id="heading_3" data-toggle="collapse" data-target="#collapse_3"
+                aria-expanded="false" aria-controls="collapse_3" role="button">
+                <h5 class="mb-0">
+                    <span class="btn-link">
+                        Как я могу связаться с поддержкой?
+                    </span>
+                </h5>
+            </div>
+            <div id="collapse_3" class="collapse" aria-labelledby="heading_3">
+                <div class="card-body">
+                    <span>Вы можете связаться с технической поддержкой через следующие электронную почту или телеграм канал:</span>
+                    <div>email: <a href="mailto:info@songbar.ru" class="" target="_blank">info@songbar.ru</a></div>
+                    <div>tg: <a href="https://t.me/helpsongbar" target="_blank">@helpsongbar</a></div>
+                </div>
+            </div>
+        </div>
+        <div class="card">
             <div class="card-header" id="heading_1" data-toggle="collapse" data-target="#collapse_1"
                 aria-expanded="true" aria-controls="collapse_1" role="button">
                 <h5 class="mb-0">
@@ -55,33 +72,8 @@
                 </div>
             </div>
         </div>
-        <div class="card">
-            <div class="card-header" id="heading_3" data-toggle="collapse" data-target="#collapse_3"
-                aria-expanded="false" aria-controls="collapse_3" role="button">
-                <h5 class="mb-0">
-                    <span class="btn-link">
-                        Как я могу связаться с поддержкой?
-                    </span>
-                </h5>
-            </div>
-            <div id="collapse_3" class="collapse" aria-labelledby="heading_3">
-                <div class="card-body">
-                    <span>Вы можете связаться с поддержкой, используя контактную форму на странице "Контакты".</span>
-                </div>
-            </div>
-        </div>
     </div>
 
 </section>
-<div class="content-header">
-    <div class="container-fluid">
-        <div class="row">
-            <div class="col-md-6">
-                <!-- TODO добавить ссылку на ТГ -->
-                <a href="#tg" class="btn btn-primary" target="_blank">Поддержка</a>
-            </div>
-        </div>
-    </div>
-</div>
 
 @endsection

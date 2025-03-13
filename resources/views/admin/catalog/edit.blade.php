@@ -11,7 +11,7 @@
   <div class="container-fluid">
     <div class="row mb-2">
       <div class="col-sm-6">
-        <h1 class="m-0">@yield('title')</h1>
+        <h1 class="m-0">@yield('title') <span class="text-muted">{{ old('address', $catalog->address ?? '') }}</span></h1>
       </div><!-- /.col -->
       <!--<div class="col-sm-6">
             <ol class="breadcrumb float-sm-right">
@@ -22,6 +22,19 @@
       <!-- /.col -->
     </div><!-- /.row -->
   </div><!-- /.container-fluid -->
+  @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+    </div>
+  @endif
+
+  @if ($errors->any())
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          @foreach ($errors->all() as $error)
+              <p class="mb-0">{{ $error }}</p>
+          @endforeach
+      </div>
+  @endif
 </div>
 <!-- /.content-header -->
 @php
@@ -708,7 +721,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
 
               </div>
             </div>
-            <div class="position-relative mt-2">
+            <!-- <div class="position-relative mt-2">
               @if (($isUserLite || $isUserMedium) && !$isAllRights )
                 <div class="banned position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
                   <div class="text-white text-center">
@@ -729,7 +742,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
                   type="button" role="tab">Проверить</button>
                 </div>
               </div>
-            </div>
+            </div> -->
             
             <div class="d-flex justify-content-between ml-auto mr-auto mt-4" style="max-width:500px;">
               <button class="btn btn-secondary d-block" data-toggle="pill" href="#more-menu" role="tab">Назад</button>
@@ -811,7 +824,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
               <form style="display:inline-block" action="{{ route('catalog.destroy', $catalog->id) }}"
                   method="POST">
                   @csrf
-                  @method('POST')
+                  @method('DELETE')
                   <button type="submit" class="btn btn-danger btn-sm delete-btn" href="#">
                       <i class="fas fa-trash">
                       </i>
@@ -1249,7 +1262,10 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
     });
   });
 
-  
+  $(document).ready(function () {
+    $('#ajaxForm button[type="submit"]').click();
+  })
+
 </script>
 
 <script>

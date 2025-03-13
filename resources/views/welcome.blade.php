@@ -275,12 +275,12 @@
               <div class="footer__col">
                   <div class="footer__support">
                       <div class="footer__link-heading">Поддержка</div>
-                      <a href="info@songbar.ru" class="footer__link">info@songbar.ru</a>
-                      <a href="t.me/helpsongbar" class="footer__link">Telegram: @helpsongbar</a>
+                      <a href="mailto:info@songbar.ru" class="footer__link">info@songbar.ru</a>
+                      <a href="https://t.me/helpsongbar" class="footer__link">Telegram: @helpsongbar</a>
                   </div>
               </div>
               <div class="footer__copy">
-                  ©2024 SONGBAR - онлайн каталог песен для караоке-бара
+                  ©2025 SONGBAR - онлайн каталог песен для караоке-бара
               </div>
           </div>
       </footer>

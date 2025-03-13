@@ -273,8 +273,9 @@ class CatalogController extends Controller
         }
 
         
-        $catalog->address = $request->input('address');
-        $catalog->save();
+        $catalog->update([
+            'address' => $request->input('address')
+        ]);
 
         $this->generateQRCode($catalog);
 
@@ -283,7 +284,7 @@ class CatalogController extends Controller
 
     public function changeIsPublish(Request $request, $id)
     {
-        Gate::authorize('updateInfo', User::class);
+        // Gate::authorize('updateInfo', User::class);
         $catalog = Catalog::findOrFail($id);
 
         $catalog->is_published = !$catalog->is_published;
