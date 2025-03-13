@@ -35,6 +35,7 @@
           @endforeach
       </div>
   @endif
+  <div id="response-container"  role="alert"></div>
 </div>
 <!-- /.content-header -->
 @php
@@ -479,7 +480,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
                     @if ($isUserLite && !$isAllRights)
                       disabled
                     @endif
-                    ></>
+                    ></d>
                   </div>
               </div>
             </div>
@@ -573,7 +574,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
                       <label>Кнопка</label>
                       <div class="row">
                         <div class="col-md-6">
-                          <input id="header_btn_text" class="form-control" name="button_text" value="{{$info->button_text ?? 'Меню' }}"
+                          <input id="header_btn_text" class="form-control" name="button_text" value="{{$info->button_text ?? '' }}"
                             placeholder="Текст" type="text"
                             @if ($isUserLite && !$isAllRights)
                               disabled
@@ -607,7 +608,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
                 </div>
               </div>
 
-              <button type="submit" class="btn btn-success mt-3">Сохранить</button>
+              <button type="submit" id="save-info" class="btn btn-success mt-3">Сохранить</button>
             </form>
             <div id="response"></div>
           </div>
@@ -1264,6 +1265,15 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
 
   $(document).ready(function () {
     $('#ajaxForm button[type="submit"]').click();
+
+    $('#save-info').on('click', function(event) {
+    document.getElementById('response-container').innerHTML = `
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
+            Информация о каталоге успешно сохранена
+            <button type="button" class="close" data-dismiss="alert">&times;</button>
+        </div>
+    `;
+  })
   })
 
 </script>
@@ -1351,7 +1361,17 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
             body: formData
         });
 
-        if (response.ok) {
+        const data = await response.json();
+
+        if (data.status === 'success') {            
+            document.getElementById('response-container').`
+              <div class="alert alert-success alert-dismissible fade show" role="alert">
+                  ${data.message}
+                  <button type="button" class="close" data-dismiss="alert">&times;</button>
+              </div>
+            `
+            
+
             const catalogId = document.querySelector('input[name="catalog_id"]').value;
             setTimeout(() => {
                 checkProgress(catalogId, 5);

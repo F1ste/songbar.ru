@@ -13,16 +13,20 @@
     <a
         href="{{ $url }}"
         style="
-        background-color:#00af66;
-        border-color:#00af66;
-        border-radius:4px;
-        border-style:solid;
-        border-width:8px 18px 8px 18px;
-        box-sizing:border-box;
-        color:#fff;
-        display:inline-block;
-        font-family:'-apple-system' , 'blinkmacsystemfont' , 'segoe ui' , 'roboto' , 'helvetica' , 'arial' , sans-serif , 'apple color emoji' , 'segoe ui emoji' , 'segoe ui symbol';
-        overflow:hidden;text-decoration:none;"
+        box-sizing: border-box;
+        font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif, 'Apple Color Emoji', 'Segoe UI Emoji', 'Segoe UI Symbol';
+        position: relative;
+        -webkit-text-size-adjust: none;
+        border-radius: 4px;
+        color: #fff;
+        display: inline-block;
+        overflow: hidden;
+        text-decoration: none;
+        background-color: #2d3748;
+        border-bottom: 8px solid #2d3748;
+        border-left: 18px solid #2d3748;
+        border-right: 18px solid #2d3748;
+        border-top: 8px solid #2d3748;"
         target="_blank" 
         rel="noopener noreferrer">
         Сбросить пароль
