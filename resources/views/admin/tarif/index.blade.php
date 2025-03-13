@@ -41,10 +41,10 @@
                   $allTarifs = [
                       ['name' => 'Lite', 'price' => 5000, 'description' => 'Lite/Месяц'],
                       ['name' => 'Medium', 'price' => 10000, 'description' => 'Medium/Месяц'],
-                      ['name' => 'VIP', 'price' => 15000, 'description' => 'Vip/Месяц']
+                      
                   ];
               @endphp
-
+              <!-- ['name' => 'VIP', 'price' => 15000, 'description' => 'Vip/Месяц'] -->
               <div class="card-body">
                   <div class="tab-content" id="custom-tabs-one-tabContent">
                       <div class="tab-pane fade show active" id="custom-tabs-one-home" role="tabpanel" aria-labelledby="custom-tabs-one-home-tab">

@@ -51,6 +51,11 @@
                                         <a href="https://{{ $catalog->address }}.songbar.ru" target="_blank">
                                             {{ $catalog->address }}.songbar.ru
                                         </a>
+                                        @if ($catalog->is_published)
+                                            <span class="text-success">(Опубликован)</span>
+                                        @else
+                                            <span class="text-danger">(Не опубликован)</span>
+                                        @endif
                                     </td>
                                     <td class="project-actions text-right">
                                         @if($catalog->qr_code_path)

@@ -65,13 +65,19 @@
         <div class="logo">
             <img src="{{$info->logo ? '/'.$info->logo : asset('uploads/logo.png')}}">
         </div>
-        <div class="menu">
-            <a href="{{$info->button_href ?? '#'}}" class="btn_menu" style="text-decoration: none;">
-                <p style="background:{{$design->header_btn_bg_color ?? "#000"}}; color:{{$design->header_btn_font_color ?? '#fff'}}; font-size:{{$design->header_btn_font_size ?? '#fff'}}px; border-color:{{$design->header_btn_border_color ?? '#A02EE0'}};">
-                {{$info->button_text ?? 'МЕНЮ'}}
-                </p>
-            </a>
-        </div>
+        
+        @if(!empty($info->button_text))
+            <div class="menu">
+                <a href="{{ $info->button_href ?? '#' }}" class="btn_menu" style="text-decoration: none;">
+                    <p style="background:{{ $design->header_btn_bg_color ?? '#000' }}; 
+                              color:{{ $design->header_btn_font_color ?? '#fff' }}; 
+                              font-size:{{ $design->header_btn_font_size ?? '16' }}px; 
+                              border-color:{{ $design->header_btn_border_color ?? '#A02EE0' }};">
+                        {{ $info->button_text }}
+                    </p>
+                </a>
+            </div>
+        @endif
         <div class="info">
             <p style="color:{{$design->header_contact_font_color ?? '#fff'}}; font-size: {{$design->header_contact_font_size ?? 14}}px;">
             {!! $info->contact ?? 'ул. Пушкина д. 5 <br> ПН-ВС с 18:00 до 5:00' !!}

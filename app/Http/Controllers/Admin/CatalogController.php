@@ -236,7 +236,10 @@ class CatalogController extends Controller
 
         ProcessExcelChunk::dispatch($fullFilePath, $catalogId, 1, 1000);
 
-        return response()->json(['message' => 'Файл загружен и будет обработан в фоновом режиме.']);
+        return response()->json([
+            'status' => 'success',
+            'message' => 'Файл успешно загружен и будет обработан в фоновом режиме.'
+        ]);
     }
 
 
