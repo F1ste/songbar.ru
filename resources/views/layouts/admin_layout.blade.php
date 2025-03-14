@@ -33,15 +33,15 @@
 @php
     $roleName = 'Базовый';
 
-    if (auth()->user()->hasAnyRole(['admin', 'vip'])) {
-        $roleName = 'VIP';
-    } 
     if (auth()->user()->hasRole('lite')) {
         $roleName = 'Lite';
     } 
     if (auth()->user()->hasRole('medium')) {
         $roleName = 'Medium';
     }
+    if (auth()->user()->hasAnyRole(['admin', 'vip'])) {
+        $roleName = 'VIP';
+    } 
 @endphp
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
