@@ -8,6 +8,41 @@
 <meta name="robots" content="max-image-preview:large">
 
 <link rel="stylesheet" id="blankslate-style-css" href="{{ asset('style.css') }}" type="text/css" media="all">
+@if ($design->font_family == 'Montserrat')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+@endif
+@if ($design->font_family == 'Montserrat_Alternates')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Montserrat+Alternates:ital,wght@0,100;0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,100;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap" rel="stylesheet">
+@endif
+@if ($design->font_family == 'Oswald')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Oswald:wght@200..700&display=swap" rel="stylesheet">
+@endif
+@if ($design->font_family == 'PT_Sans_Narrow')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=PT+Sans+Narrow:wght@400;700&display=swap" rel="stylesheet">
+@endif
+@if ($design->font_family == 'Roboto')
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:opsz,wght@9..40,700&family=Roboto:ital,wght@0,100..900;1,100..900&display=swap" rel="stylesheet">
+@endif
+@if ($design->font_family == 'Tektur')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tektur:wght@400..900&display=swap" rel="stylesheet">
+@endif
+@if ($design->font_family == 'Yanone_Kaffeesatz')
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Yanone+Kaffeesatz:wght@200..700&display=swap" rel="stylesheet">
+@endif
 
 <style>
     ::-webkit-input-placeholder {font-size:inherit; color:inherit;}
@@ -52,15 +87,14 @@
   background-color: {{$design->search_results_color ?? '#000'}};
   border: 1px solid;
   border-color: {{$design->search_results_border_color ?? '#A02EE0'}};
-  font-size: {{$design->search_font_size}};
+  font-size: {{$design->search_font_size ?? '16'}}px;
 }
 </style>
 {!! $head_script !!}
 </head>
-<body class="">
+<body class="" style="font-family:'{{ str_replace('_', ' ', $design->font_family) ?? 'Arial' }}', sans-serif;">
 
-
-<div class="main_conteiner" style="font-family:{{$design->font_family ?? 'auto'}}; background:{{$design->bg_color ?? '#000'}}; display: flex; flex-direction: column; box-sizing: border-box; padding-bottom: 0;">
+<div class="main_conteiner" style="background:{{$design->bg_color ?? '#000'}}; display: flex; flex-direction: column; box-sizing: border-box; padding-bottom: 0;">
 	<div class="header">
         <div class="logo">
             <img src="{{$info->logo ? '/'.$info->logo : asset('uploads/logo.png')}}">

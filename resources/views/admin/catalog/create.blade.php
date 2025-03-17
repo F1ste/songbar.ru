@@ -371,8 +371,8 @@
                 </div>
                 <div class="col-md-3">
                   <div class="form-group">
-                    <label>Наш логотип</label>
-                    <div class="row">
+                    <label>Логотип SongBar</label>
+                    <div>
                       <input type="checkbox" name="ourlogo" id="ourlogo" checked data-bootstrap-switch>
                     </div>
                   </div>

@@ -147,11 +147,14 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
                   disabled
                 @endif
                 >
-                  <option value="1">Шрифт 1</option>
-                  <option value="2">Шрифт 2</option>
-                  <option value="3">Шрифт 3</option>
-                  <option value="4">Шрифт 4</option>
-                  <option value="5">Шрифт 5</option>
+                <option value="Arial" {{ $design->font_family === 'Arial' ? 'selected' : '' }}>Arial</option>
+                <option value="Montserrat" {{ $design->font_family === 'Montserrat' ? 'selected' : '' }}>Montserrat</option>
+                <option value="Montserrat_Alternates" {{ $design->font_family === 'Montserrat_Alternates' ? 'selected' : '' }}>Montserrat Alternates</option>
+                <option value="Oswald" {{ $design->font_family === 'Oswald' ? 'selected' : '' }}>Oswald</option>
+                <option value="PT_Sans_Narrow" {{ $design->font_family === 'PT_Sans_Narrow' ? 'selected' : '' }}>PT Sans Narrow</option>
+                <option value="Roboto" {{ $design->font_family === 'Roboto' ? 'selected' : '' }}>Roboto</option>
+                <option value="Tektur" {{ $design->font_family === 'Tektur' ? 'selected' : '' }}>Tektur</option>
+                <option value="Yanone_Kaffeesatz" {{ $design->font_family === 'Yanone_Kaffeesatz' ? 'selected' : '' }}>Yanone Kaffeesatz</option>
                 </select>
               </div>
             </div>
@@ -551,7 +554,7 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
               </div>
               <div class="position-relative">
               @if ($isUserLite && !$isAllRights)
-              <div class="banned position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center">
+              <div class="banned position-absolute top-0 start-0 w-100 h-100 d-flex align-items-center justify-content-center row">
                 <div class="text-white text-center">
                     <h4>Для редактирования перейдите на тариф "Medium"</h4>
                 </div>
@@ -594,8 +597,8 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
                   </div>
                   <div class="col-md-3 offset-md-1">
                     <div class="form-group">
-                      <label>Наш логотип</label>
-                      <div class="row">
+                      <label>Логотип SongBar</label>
+                      <div>
                         <input id="ourlogo" type="checkbox" name="ourlogo" value="{{$info->ourlogo ?? true}}"
                         {{ $info->ourlogo ? 'checked' : '' }} data-bootstrap-switch
                         @if ($isUserLite && !$isAllRights)
@@ -1113,9 +1116,30 @@ $isUserMedium = auth()->user()->hasRole('medium') || auth()->user()->roles->isEm
         }
     }
 
+    function updateIframeFont(font) {
+      const iframeBody = iframeDoc.querySelector('body');
+
+      if (!iframeBody) return;
+
+      const formattedFont = font.replace(/_/g, ' ');
+
+      iframeBody.style.fontFamily = `'${formattedFont}', sans-serif`;
+
+        if (font !== 'Arial') {
+            const fontLink = iframeDoc.createElement('link');
+            fontLink.href = `https://fonts.googleapis.com/css2?family=${font.replace(/_/g, '+')}&display=swap`;
+            fontLink.rel = 'stylesheet';
+            iframeDoc.head.appendChild(fontLink);
+        }
+    }
     
     document.addEventListener('DOMContentLoaded', function() {
-        loadPreviewPage('{{ route(name: 'catalog.preview') }}?catalog_id={{$catalog->id}}'); 
+        loadPreviewPage('{{ route(name: 'catalog.preview') }}?catalog_id={{$catalog->id}}');
+
+      document.getElementById('fontFamily').addEventListener('change', function (e) {
+        const selectedFont = e.target.value;
+        updateIframeFont(selectedFont);
+      });
 
       $('.my-colorpicker2').on('colorpickerChange', debounce(function(event) {
         changeColor(this.id, event.color)
