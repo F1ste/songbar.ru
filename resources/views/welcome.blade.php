@@ -204,8 +204,8 @@
         </section>
         <section class="tariffs__container">
           <div class="tariffs__title">Тарифы</div>
-          <div class="tariffs__items">
-            <div class="tariffs__card">
+          <div class="tariffs__items" style="justify-content: center;">
+            <!-- <div class="tariffs__card">
               <div class="tariffs__name">Lite</div>
               <div class="tariffs__text">Что входит</div>
               <ul class="tariffs__checklist">
@@ -220,9 +220,9 @@
                 <div class="tariffs__price"><span>5000₽</span>/месяц</div>
                 <a href="{{ route('register') }}" class="button _xl _main _fw">Начать</a>
               </div>
-            </div>
+            </div> -->
 
-            <div class="tariffs__card tariffs_accent">
+            <div class="tariffs__card tariffs_accent" style="max-width: 400px;">
               <div class="tariffs__name">Medium</div>
               <div class="tariffs__text">Что входит</div>
               <ul class="tariffs__checklist">
@@ -236,11 +236,15 @@
               </ul>
               <div class="tariffs__price-wrapper">
                 <div class="tariffs__price"><span>10000₽</span>/месяц</div>
-                <a href="{{ route('register') }}" class="button _xl _white _fw">Начать</a>
+                @auth
+                    <a href="{{ route('tarif') }}" class="button _xl _white _fw">Начать</a>
+                @else
+                    <a href="{{ route('register') }}" class="button _xl _white _fw">Начать</a>
+                @endauth
               </div>
             </div>
 
-            <div class="tariffs__card">
+            <!-- <div class="tariffs__card">
               <div class="tariffs__name">VIP</div>
               <div class="tariffs__text">Что входит</div>
               <ul class="tariffs__checklist">
@@ -256,7 +260,7 @@
                 <div class="tariffs__price"><span>15000₽</span>/месяц</div>
                 <a href="{{ route('register') }}" class="button _xl _main _fw">Начать</a>
               </div>
-            </div>
+            </div> -->
           </div>
 
         </section>

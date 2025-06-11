@@ -39,7 +39,6 @@
               </div>
               @php
                   $allTarifs = [
-                      ['name' => 'Lite', 'price' => 5000, 'description' => 'Lite/Месяц'],
                       ['name' => 'Medium', 'price' => 10000, 'description' => 'Medium/Месяц'],
                       
                   ];
@@ -57,6 +56,15 @@
 
                                       <div class="order">
                                           <p class="title">{{ $tarif['name'] }}</p>
+                                          <ul class="tariffs__checklist">
+                                            <li class="tariffs__checklist-item">Загрузка базы песен</li>
+                                            <li class="tariffs__checklist-item">Собственный логотип</li>
+                                            <li class="tariffs__checklist-item">Создание QR кода</li>
+                                            <li class="tariffs__checklist-item">Кол-во песен неограничено </li>
+                                            <li class="tariffs__checklist-item">Техническая поддержка</li>
+                                            <li class="tariffs__checklist-item">Статистика посещений</li>
+                                            <li class="tariffs__checklist-item">Ваш персональный адрес</li>
+                                          </ul>
                                           <p class="priсe">{{ $tarif['price'] }} рублей/мес</p>
                                           @if ($userTarif)
                                               <button type="button" class="btn btn-block btn-secondary btn-sm" disabled>
@@ -67,12 +75,18 @@
                                                   @csrf
                                                   <input type="hidden" name="amount" value="{{ $tarif['price'] }}">
                                                   <input type="hidden" name="description" value="{{ $tarif['description'] }}">
-                                                  <button type="submit" class="btn btn-block btn-warning btn-sm">Оплатить</button>
+                                                  <button type="submit" disabled class="btn btn-block btn-warning btn-sm pay-button-monthly">Оплатить</button>
                                               </form>
                                           @endif
                                       </div>
                                   @endforeach
                               </div>
+                          </div>
+                          <div class="form-check mb-3 mt-4">
+                              <input type="checkbox" class="form-check-input agreement-checkbox" id="agreement-monthly" required>
+                              <label class="form-check-label" for="agreement-monthly">
+                                  Я даю согласие на регулярные списания, на обработку персональных данных и принимаю условия <a href="{{ asset('public_offer.docx') }}">публичной оферты</a>
+                              </label>
                           </div>
                           <p class="description">При оплате за год, 1 месяц обслуживания БЕСПЛАТНО</p>
                       </div>
@@ -87,6 +101,15 @@
 
                                       <div class="order">
                                           <p class="title">{{ $tarif['name'] }}</p>
+                                          <ul class="tariffs__checklist">
+                                            <li class="tariffs__checklist-item">Загрузка базы песен</li>
+                                            <li class="tariffs__checklist-item">Собственный логотип</li>
+                                            <li class="tariffs__checklist-item">Создание QR кода</li>
+                                            <li class="tariffs__checklist-item">Кол-во песен неограничено </li>
+                                            <li class="tariffs__checklist-item">Техническая поддержка</li>
+                                            <li class="tariffs__checklist-item">Статистика посещений</li>
+                                            <li class="tariffs__checklist-item">Ваш персональный адрес</li>
+                                          </ul>
                                           <p class="priсe">{{ $tarif['price'] }} рублей/мес</p>
 
                                           @if ($userTarif)
@@ -98,12 +121,18 @@
                                                   @csrf
                                                   <input type="hidden" name="amount" value="{{ $tarif['price'] * 12 }}">
                                                   <input type="hidden" name="description" value="{{ $tarif['description'] }}/12Месяц">
-                                                  <button type="submit" class="btn btn-block btn-warning btn-sm">Оплатить</button>
+                                                  <button type="submit" disabled class="btn btn-block btn-warning btn-sm pay-button-yearly">Оплатить</button>
                                               </form>
                                           @endif
                                       </div>
                                   @endforeach
                               </div>
+                          </div>
+                          <div class="form-check mb-3 mt-4">
+                              <input type="checkbox" class="form-check-input agreement-checkbox" id="agreement-yearly" required>
+                              <label class="form-check-label" for="agreement-yearly">
+                                  Я даю согласие на регулярные списания, на обработку персональных данных и принимаю условия <a href="{{ asset('public_offer.docx') }}">публичной оферты</a>
+                              </label>
                           </div>
                           <p class="description">При оплате за год, 1 месяц обслуживания БЕСПЛАТНО</p>
                       </div>
@@ -116,4 +145,26 @@
       </div>
     </section>
     <!-- /.content -->
+
+    <script>
+      document.addEventListener('DOMContentLoaded', function() {
+          const monthlyCheckbox = document.getElementById('agreement-monthly');
+          const monthlyButtons = document.querySelectorAll('.pay-button-monthly');
+          
+          monthlyCheckbox.addEventListener('change', function() {
+              monthlyButtons.forEach(button => {
+                  button.disabled = !this.checked;
+              });
+          });
+
+          const yearlyCheckbox = document.getElementById('agreement-yearly');
+          const yearlyButtons = document.querySelectorAll('.pay-button-yearly');
+          
+          yearlyCheckbox.addEventListener('change', function() {
+              yearlyButtons.forEach(button => {
+                  button.disabled = !this.checked;
+              });
+          });
+      });
+    </script>
     @endsection

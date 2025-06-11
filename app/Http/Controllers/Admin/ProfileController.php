@@ -23,9 +23,20 @@ class ProfileController extends Controller
             'email' => 'required|string|email|max:255|unique:users,email,' . $user->id,
             'phone_number' => 'required|string|max:20',
             'city' => 'nullable|string|max:255',
+            'karaoke_name' => 'nullable|string|max:255',
+            'juridical_name' => 'nullable|string|max:255',
+            'inn' => 'nullable|string|max:20',
         ]);
 
-        $user->update($request->only(['name', 'email', 'phone_number', 'city']));
+        $user->update($request->only([
+            'name', 
+            'email', 
+            'phone_number', 
+            'city',
+            'karaoke_name',
+            'juridical_name',
+            'inn'
+        ]));
 
         return redirect()->route('profile.update')->with('success', 'Профиль обновлен успешно.');
     }
