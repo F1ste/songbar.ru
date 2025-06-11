@@ -12,6 +12,19 @@
             </div>
         </div><!-- /.row -->
     </div><!-- /.container-fluid -->
+    @if (session('success'))
+    <div class="alert alert-success alert-dismissible fade show" role="alert">
+        {{ session('success') }}
+    </div>
+  @endif
+
+  @if ($errors->any())
+      <div class="alert alert-danger alert-dismissible fade show" role="alert">
+          @foreach ($errors->all() as $error)
+              <p class="mb-0">{{ $error }}</p>
+          @endforeach
+      </div>
+  @endif
 </div>
 <!-- /.content-header -->
 <!-- Main content -->

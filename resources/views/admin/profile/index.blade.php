@@ -85,6 +85,43 @@
 							@enderror
 						</div>
 
+						<div class="form-group">
+							<label for="karaoke_name">{{ __('Название караоке') }}</label>
+							<input id="karaoke_name" type="text" class="form-control @error('karaoke_name') is-invalid @enderror"
+								name="karaoke_name" value="{{ old('karaoke_name', $user->karaoke_name) }}">
+							@error('karaoke_name')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+
+						
+						<div class="form-group">
+							<label for="juridical_name">{{ __('Юридическое наименование') }}</label>
+							<input id="juridical_name" type="text" class="form-control @error('juridical_name') is-invalid @enderror"
+								name="juridical_name" value="{{ old('juridical_name', $user->juridical_name) }}">
+							@error('juridical_name')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+
+
+						
+						<div class="form-group">
+							<label for="inn">{{ __('ИНН') }}</label>
+							<input id="inn" type="text" class="form-control @error('inn') is-invalid @enderror"
+								name="inn" value="{{ old('inn', $user->inn) }}">
+							@error('inn')
+								<span class="invalid-feedback" role="alert">
+									<strong>{{ $message }}</strong>
+								</span>
+							@enderror
+						</div>
+
+
 						<div class="form-group mb-0 float-right">
 							<button type="submit" class="btn btn-warning">
 								{{ __('Обновить') }}

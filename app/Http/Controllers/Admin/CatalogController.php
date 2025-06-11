@@ -58,7 +58,18 @@ class CatalogController extends Controller
     public function create()
     {
         // Gate::authorize('createCatalog', User::class);
+        
         $user_id = Auth::id();
+        $user = User::find($user_id);
+
+        if (!$user->hasRole([RoleEnum::MEDIUM->value, RoleEnum::VIP->value, RoleEnum::ADMIN->value]) && $user->catalogs->count() >= 1) {
+            return redirect()->route('catalogs')->withErrors('Превышено максимальное количество каталогов, для увеличения лимита перейдите на другой тариф');
+        }
+        
+        if ($user->catalogs->count() >= 5) {
+            return redirect()->route('catalogs')->withErrors('Превышено максимальное количество каталогов');
+        }
+
         $catalog = new Catalog();
         $catalog->user_id = $user_id;
         $faker = FakerFactory::create();

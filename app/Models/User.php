@@ -25,6 +25,9 @@ class User extends Authenticatable
         'password',
         'phone_number',
         'city',
+        'karaoke_name',
+        'juridical_name',
+        'inn'
     ];
 
     /**
