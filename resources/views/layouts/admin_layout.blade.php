@@ -136,6 +136,14 @@
               </p>
             </a>
           </li>
+          <li class="nav-item">
+            <a href="{{route('subscribe')}}" class="nav-link">
+              <i class="nav-icon fas fa-th"></i>
+              <p>
+                Подписка
+              </p>
+            </a>
+          </li>
         </ul>
       </nav>
       <!-- /.sidebar-menu -->

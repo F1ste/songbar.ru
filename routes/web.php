@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\PaymentController;
+use App\Http\Controllers\Admin\SubscribeController;
 use App\Http\Controllers\Admin\TarifController;
 use App\Http\Controllers\Auth\NewPasswordController;
 use App\Http\Controllers\Auth\PasswordResetLinkController;
@@ -54,7 +55,7 @@ Route::middleware(['auth'])->prefix('admin_panel')->group(function () {
     Route::post('/catalog/subdomain', [CatalogController::class, 'editSubdomain'])->name('catalog.editSubdomain');
     Route::post('/catalog/is_publish/{id}', [CatalogController::class, 'changeIsPublish'])->name('catalog.changeIsPublish');
     Route::post('/catalog/save_scripts/{id}', [CatalogController::class, 'saveScripts'])->name('catalog.saveScripts');
-
+    Route::get('/subscribe', [SubscribeController::class, 'index'])->name('subscribe');
 });
 
 Route::middleware('guest')->group(function () {

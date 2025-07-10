@@ -4,6 +4,8 @@ return [
     'url' => env('ROBOKASSA_URL'),
 
     'payment_url' => env('ROBOKASSA_PAYMENT_URL'),
+
+    'payment_recurring_url' => env('ROBOKASSA_PAYMENT_RECURRING_URL'),
     
     'login' => env('ROBOKASSA_LOGIN'),
 
